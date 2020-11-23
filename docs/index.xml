@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ΔY Blog on ΔY</title>
+    <link>https://acanalis.github.io/</link>
+    <description>Recent content in ΔY Blog on ΔY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 22 Nov 2020 21:42:04 -0300</lastBuildDate><atom:link href="https://acanalis.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://acanalis.github.io/posts/hello-world/</link>
+      <pubDate>Sun, 22 Nov 2020 21:42:04 -0300</pubDate>
+      
+      <guid>https://acanalis.github.io/posts/hello-world/</guid>
+      <description>Hello World This blog will be devoted to my learning experiences in programming. In fact, building this site is an experience in Hugo, the World&amp;rsquo;s Fastest Static Site Generator™. There are many themes that you can choose from, but trying to dissect them is not the best learning experience. So I started everything from scratch.
+Welcome and I hope you enjoy it.</description>
+    </item>
+    
+  </channel>
+</rss>

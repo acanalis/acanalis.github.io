@@ -1,0 +1,5 @@
+publishdir: docs
+title: ΔY
+baseurl: https://acanalis.github.io/
+en:
+  languageCode: "en-us"
