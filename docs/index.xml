@@ -16,5 +16,15 @@
 Welcome and I hope you enjoy it.</description>
     </item>
     
+    <item>
+      <title>Project Files</title>
+      <link>https://acanalis.github.io/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://acanalis.github.io/admin/</guid>
+      <description>Here&amp;rsquo;s a list of all the files in the repository.
+.git hooks applypatch-msg.sample#!/bin/sh # # An example hook script to check the commit log message taken by # applypatch from an … commit-msg.sample#!/bin/sh # # An example hook script to check the commit log message. # Called by &amp;#34;git commit&amp;#34; with … fsmonitor-watchman.sample#!/usr/bin/perl use strict; use warnings; use IPC::Open2; # An example hook script to integrate … post-update.</description>
+    </item>
+    
   </channel>
 </rss>

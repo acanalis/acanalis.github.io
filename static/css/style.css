@@ -7,3 +7,46 @@ body{
     margin: 0 auto;
 }
 
+/* Folder Lists */
+
+ol {
+    margin: 0px;
+    padding-left: 20px;
+}
+
+li.folder { 
+    list-style-type: "📁";
+}
+
+li.file {
+    list-style-type: "📄";
+}
+
+label{
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    position: absolute;
+    margin: 0;
+    height: 0;
+    width: 0;
+}
+
+li.folder>input:checked ~ ol{
+    display: none;
+}
+
+li.folder>input:not(checked) ~ ol{
+    display: block;
+}
+
+li.file>input:checked ~ pre{
+    display: none;
+}
+
+li.file>input:not(checked) ~ pre{
+    display: block;
+}
+
+
