@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | ΔY ~ acanalis</title>
-    <link>https://acanalis.github.io/posts/</link>
-      <atom:link href="https://acanalis.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://acanalis.github.io/post/</link>
+      <atom:link href="https://acanalis.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><lastBuildDate>Sun, 22 Nov 2020 21:42:04 -0300</lastBuildDate>
     <image>
       <url>https://acanalis.github.io/images/icon_hu07b1bbbe1c81c973c15a74a5d3cb3a82_2466_512x512_fill_box_center_2.png</url>
       <title>Posts</title>
-      <link>https://acanalis.github.io/posts/</link>
+      <link>https://acanalis.github.io/post/</link>
     </image>
     
     <item>
       <title>Hello World</title>
-      <link>https://acanalis.github.io/posts/hello-world/</link>
+      <link>https://acanalis.github.io/post/hello-world/</link>
       <pubDate>Sun, 22 Nov 2020 21:42:04 -0300</pubDate>
-      <guid>https://acanalis.github.io/posts/hello-world/</guid>
+      <guid>https://acanalis.github.io/post/hello-world/</guid>
       <description>&lt;p&gt;Hello World! Welcome to the site.&lt;/p&gt;
-&lt;p&gt;The name of the site, ΔY, represents moving forward one small step ΔY at a time.&lt;/p&gt;
+&lt;p&gt;The name of the site, ΔY, represents moving forward one small step at a time.&lt;/p&gt;
 &lt;p&gt;The main topic for this site/blog will be learning and teaching experiences in general,
 and in particular those about programming.&lt;/p&gt;
 &lt;p&gt;Hope you enjoy it.&lt;/p&gt;

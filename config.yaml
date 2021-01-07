@@ -16,6 +16,16 @@ params:
     sharealike: true
     allow_commercial: true
     allow_derivatives: true
-    notice: "This work is licensed under {license}"
+    notice: "Except where otherwise noted, this website is licensed under {license}"
   
   
+markup:
+  defaultMarkdownHandler : goldmark
+  goldmark:
+    renderer:
+      unsafe: true 
+  highlight: 
+    codeFences: false  
+  tableOfContents:
+    startLevel : 2
+    endLevel : 3
