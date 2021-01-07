@@ -1,5 +1,21 @@
 publishdir: docs
-title: ΔY
+title: ΔY ~ acanalis
 baseurl: https://acanalis.github.io/
+
 en:
   languageCode: "en-us"
+
+module:
+  imports: 
+    - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy
+
+params:
+  date_format: 2006/02/01
+  copyright_license: 
+    enable: true
+    sharealike: true
+    allow_commercial: true
+    allow_derivatives: true
+    notice: "This work is licensed under {license}"
+  
+  

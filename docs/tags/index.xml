@@ -1,9 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on ΔY</title>
+    <title>Tags | ΔY ~ acanalis</title>
     <link>https://acanalis.github.io/tags/</link>
-    <description>Recent content in Tags on ΔY</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://acanalis.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+      <atom:link href="https://acanalis.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tags</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator>
+    <image>
+      <url>https://acanalis.github.io/images/icon_hu07b1bbbe1c81c973c15a74a5d3cb3a82_2466_512x512_fill_box_center_2.png</url>
+      <title>Tags</title>
+      <link>https://acanalis.github.io/tags/</link>
+    </image>
+    
   </channel>
 </rss>
