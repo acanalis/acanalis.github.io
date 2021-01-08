@@ -33,6 +33,16 @@
   </url>
   
   <url>
+    <loc>https://acanalis.github.io/es/presentation/curso-go/</loc>
+    <lastmod>2020-12-04T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/es/presentation/</loc>
+    <lastmod>2020-12-04T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://acanalis.github.io/es/post/</loc>
     <lastmod>2020-11-22T21:42:04-03:00</lastmod>
     <xhtml:link
@@ -101,6 +111,10 @@
                 hreflang="es"
                 href="https://acanalis.github.io/es/categories/"
                 />
+  </url>
+  
+  <url>
+    <loc></loc>
   </url>
   
   <url>

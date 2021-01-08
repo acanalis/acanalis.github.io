@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ΔY</title>
-    <link>https://acanalis.github.io/es/</link>
-      <atom:link href="https://acanalis.github.io/es/index.xml" rel="self" type="application/rss+xml" />
-    <description>ΔY</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>es-ar</language><lastBuildDate>Fri, 08 Jan 2021 11:19:00 -0300</lastBuildDate>
+    <title>Presentaciones | ΔY</title>
+    <link>https://acanalis.github.io/es/presentation/</link>
+      <atom:link href="https://acanalis.github.io/es/presentation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Presentaciones</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>es-ar</language><lastBuildDate>Fri, 04 Dec 2020 19:00:00 +0000</lastBuildDate>
     <image>
       <url>https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png</url>
-      <title>ΔY</title>
-      <link>https://acanalis.github.io/es/</link>
+      <title>Presentaciones</title>
+      <link>https://acanalis.github.io/es/presentation/</link>
     </image>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://acanalis.github.io/es/post/hello-world/</link>
-      <pubDate>Fri, 08 Jan 2021 11:19:00 -0300</pubDate>
-      <guid>https://acanalis.github.io/es/post/hello-world/</guid>
-      <description>&lt;p&gt;Hello World! Bienvenidos a ΔY.&lt;/p&gt;
-&lt;p&gt;El nombre del sitio representa avanzar un paso a la vez.&lt;/p&gt;
-&lt;p&gt;La idea es hablar acerca de programar, aprender y enseñar.&lt;/p&gt;
-&lt;p&gt;Que lo disfruten.&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Curso de Go - WIE</title>
@@ -55,14 +43,6 @@
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=YK3z_mjS2JQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Video del Curso&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://acanalis.github.io/es/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://acanalis.github.io/es/about/</guid>
-      <description></description>
     </item>
     
   </channel>
