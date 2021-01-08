@@ -1,9 +1,6 @@
 publishdir: docs
-title: ΔY ~ acanalis
+title: ΔY
 baseurl: https://acanalis.github.io/
-
-en:
-  languageCode: "en-us"
 
 module:
   imports: 
@@ -11,12 +8,8 @@ module:
 
 params:
   date_format: 2006/02/01
-  copyright_license: 
-    enable: true
-    sharealike: true
-    allow_commercial: true
-    allow_derivatives: true
-    notice: "Except where otherwise noted, this website is licensed under {license}"
+  main_menu:
+    show_language: true
   
   
 markup:
@@ -31,21 +24,46 @@ markup:
     endLevel : 3
 
 
-# Navigation Links
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
+defaultContentLanguage: en
+languages: 
+  en: 
+    languageCode: "en-us"
+    contentDir: content/en
+    menu: 
+      main:
+        - name : "Posts"
+          url : "post"
+          weight : 20
+        - name : "About @acanalis"
+          url : "about"
+          weight : 30
+    params:
+      copyright_license:
+          enable: true
+          sharealike: true
+          allow_commercial: true
+          allow_derivatives: true
+          notice: "Except where otherwise noted, this website is licensed under {license}"
 
-#[[main]]
-#  name : "Home"
-#  url : "/"
-#  weight : 10
+  es: 
+    languageCode: "es-ar"
+    contentDir: content/es
+    menu:
+      main:
+        - name : "Posts"
+          url : "post"
+          weight : 20
+        - name : "Acerca de @acanalis"
+          url : "about"
+          weight : 30
+    params:
+      copyright_license:
+        enable: true
+        sharealike: true
+        allow_commercial: true
+        allow_derivatives: true
+        notice: "Excepto indicación en contrario, este sitio está licenciado bajo {license}"
 
-menu: 
-  main:
-    - name : "About"
-      url : "about"
-      weight : 20
-    - name : "Posts"
-      url : "post"
-      weight : 30
+       
+
+
