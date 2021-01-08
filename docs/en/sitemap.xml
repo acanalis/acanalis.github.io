@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://acanalis.github.io/post/hello-world/</loc>
+    <lastmod>2020-11-22T21:42:04-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/post/hello-world/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/post/hello-world/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/post/</loc>
+    <lastmod>2020-11-22T21:42:04-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/</loc>
+    <lastmod>2020-11-22T21:42:04-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc></loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href=""
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href=""
+                />
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/about/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/about/"
+                />
+  </url>
+  
+  <url>
+    <loc></loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href=""
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href=""
+                />
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://acanalis.github.io/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://acanalis.github.io/es/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://acanalis.github.io/tags/"
+                />
+  </url>
+  
+</urlset>

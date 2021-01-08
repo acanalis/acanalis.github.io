@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories | ΔY</title>
-    <link>https://acanalis.github.io/categories/</link>
-      <atom:link href="https://acanalis.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://acanalis.github.io/es/categories/</link>
+      <atom:link href="https://acanalis.github.io/es/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>es-ar</language>
     <image>
       <url>https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png</url>
       <title>Categories</title>
-      <link>https://acanalis.github.io/categories/</link>
+      <link>https://acanalis.github.io/es/categories/</link>
     </image>
     
   </channel>
