@@ -12,18 +12,10 @@ headless: false
 # Order that this section appears on the page.
 weight: 20
 
-title: Biography
+title: About
 
 # Choose the user profile to display
 # This should be the username (folder name) of a profile in your `content/authors/` folder.
 # See https://wowchemy.com/docs/get-started/#introduce-yourself
 author: admin
-
-date_format: 2006/02/01
-copyright_license: 
-    enable: false
-    sharealike: false
-    allow_commercial: false
-    allow_derivatives: false
-    notice: "Except where otherwise noted, this website is licensed under {license}"
 ---

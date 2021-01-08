@@ -14,7 +14,7 @@ organizations:
   url: https://www.itba.edu.ar/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: ""
 
 # Interests to show in About widget
 interests:
@@ -25,7 +25,7 @@ interests:
 # Education to show in About widget
 education:
   courses:
-  - course: Mechanical Engineer
+  - course: Mechanical Engineering
     institution: ITBA
     year: 2021
 
@@ -62,3 +62,5 @@ Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
 
 {{< staticref "media/demo_resume.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Download my resumé{{< /staticref >}}.
+
+© 2021 Agustin Canalis. All Rights Reserved

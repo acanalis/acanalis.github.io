@@ -3,12 +3,11 @@ title: "Hello World"
 date: 2020-11-22T21:42:04-03:00
 ---
 
-Hello World! Welcome to the site.
+Hello World! Welcome to ΔY.
 
-The name of the site, ΔY, represents moving forward one small step at a time.
+The name of the blog represents moving forward one small step at a time.
 
-The main topic for this site/blog will be learning and teaching experiences in general,
-and in particular those about programming.
+The idea is to talk about programming, learning and teaching. 
 
-Hope you enjoy it.
+Enjoy!
 
