@@ -3,7 +3,7 @@
 # Documentation: https://wowchemy.com/docs/page-builder/
 widget: experience
 
-active: false
+active: true
 
 # This file represents a page section.
 headless: true
@@ -24,24 +24,12 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
-  - title: CEO
-    company: GenCoin
-    company_url: ''
-    location: California
-    date_start: '2017-01-01'
-    date_end: ''
-    description: |2-
-        Responsibilities include:
-        
-        * Analysing
-        * Modelling
-        * Deploying
-        
-  - title: Professor
-    company: University X
-    company_url: ''
-    location: California
-    date_start: '2016-01-01'
-    date_end: '2016-12-31'
-    description: Taught electronic engineering and researched semiconductor physics.
+  - title: Profesor de Ciencia y Robótica
+    company: Bedes Grammar School
+    company_url: 'https://bedes.com.ar/'
+    location: Manuel Alberti, Buenos Aires, Argentina
+    date_start: '2018-05-01'
+    date_end: '2021-02-01'
+    description: |
+        Bedes Grammar School es el colegio del cual egresé. Me ofrecieron una suplencia en 2018, y pasé a titularidad al año siguiente. Fue una excelente oportunidad para ingresar al mundo de la educación.
 ---

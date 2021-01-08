@@ -18,9 +18,9 @@ bio: ""
 
 # Interests to show in About widget
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Composite Materials
+- Programming
+- Education
 
 # Education to show in About widget
 education:
@@ -53,12 +53,11 @@ email: ""
 
 # Highlight the author in author lists? (true/false)
 highlight_name: false
+
+nothing: |
+  {{< staticref "media/demo_resume.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Download my resumé{{< /staticref >}}.
 ---
+I was born in Neuquén, Argentina :argentina: and am now living in Buenos Aires City. 
 
-[Work in progress. Current info comes from a template]
+I program in Go (Golang) and MATLAB.
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
-
-{{< staticref "media/demo_resume.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Download my resumé{{< /staticref >}}.

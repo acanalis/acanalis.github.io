@@ -11,7 +11,7 @@ params:
   main_menu:
     show_language: true
   
-  
+enableEmoji: true
 markup:
   defaultMarkdownHandler : goldmark
   goldmark:

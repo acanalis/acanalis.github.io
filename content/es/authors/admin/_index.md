@@ -6,7 +6,7 @@ title: Agustin Canalis
 superuser: true
 
 # Role/position/tagline
-role: Mechanical Engineering Student
+role: Estudiante Ingeniería Mecánica
 
 # Organizations/Affiliations to show in About widget
 organizations:
@@ -18,14 +18,14 @@ bio: ""
 
 # Interests to show in About widget
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Materiales Compuestos
+- Programación 
+- Educación
 
 # Education to show in About widget
 education:
   courses:
-  - course: Mechanical Engineering
+  - course: Ingeniería Mecánica
     institution: ITBA
     year: 2021
 
@@ -53,12 +53,13 @@ email: ""
 
 # Highlight the author in author lists? (true/false)
 highlight_name: false
+
+nothing: |
+  {{< staticref "media/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Descargar mi CV {{< /staticref >}}.
+
 ---
 
-[Work in progress. Current info comes from a template]
+Nací en 1997 en Neuquén, Argentina :argentina: , y actualmente vivo en la Ciudad de Buenos Aires. 
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Programo en Go (Golang) y MATLAB. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
-
-{{< staticref "media/demo_resume.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Download my resumé{{< /staticref >}}.
