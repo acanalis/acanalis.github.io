@@ -1,0 +1,11 @@
+{{ $s := .Inner }}
+{{ $s  = strings.Replace $s "\\d" "<i class=\"far fa-folder  pr-1 fa-fw\"></i>" }}
+{{ $s  = strings.Replace $s "\\f" "<i class=\"far fa-file  pr-1 fa-fw\"></i>" }}
+<style>
+    div.dirs ul {
+        list-style: none;
+    }
+</style>
+<div class="dirs">
+{{ $s | markdownify }}
+</div>
