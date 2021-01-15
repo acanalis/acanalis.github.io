@@ -27,8 +27,7 @@ and up-to-date explanations.
 A static site is one which can be served from a static server. A static server's only 
 job is to provide the necessary `*.html, *.js, *.css, etc` files to the clients.
 
-In principle you can write those files by hand, but Hugo makes it easy to generate
- them. 
+In principle you can write those files by hand, but Hugo makes them easy to generate. 
 
 ## 2. Hugo is a CLI program
 Hugo itself is an executable file with which you interact via the 
@@ -36,9 +35,9 @@ command line (PowerShell, cmd, bash).
 
 With Hugo installed, and with a Hugo project in the current directory, 
 you can run `hugo`, which generates the site, or `hugo server`, which 
-hosts the site in a local server so that you can see the result. Those are the two most important commands. 
+hosts the site in a local server so that you can see it in your browser. These are the two most important commands. 
 
-Also important is the `-h` flag, which displays help for any given command.
+The `-h` flag displays help for any given command.
 
 Some familiarity with command line interface programs is needed. 
 
@@ -67,9 +66,9 @@ It stands on its own: you can upload just those files to the static server and f
 ## 4. Theme users edit configs and write in `/content`. 
 If you just want to use a nice theme you saw at the [Hugo Themes Page](https://themes.gohugo.io/),
 you can start with the example site (every theme has one) and then use your intuition to
-edit the configuration files and add content files like the ones in the example inside the `/content` and its subdirs.
+edit the configuration files and add content files like the ones in the example.
 
-In principle you can ignore the details of the templating language and write markdown, but somewhere along the line you'll need to know the internals of a theme. 
+In principle you can ignore the inner workings of the templating language and just write markdown, but somewhere along the line you'll need to know more. 
 
 ## 5. The generated site mirrors the structure of `/content`
 
@@ -92,7 +91,32 @@ If `/content` looks like this:
       * \f linearalgebra.md
 {{</ dir >}}
 
-The resulting site will look like this:
+The output in `/public` will be very similar:
+
+{{< dir >}}
+* \d public 
+  * \f index.html
+  * \d blog
+    * \f index.html
+    * \d hello-world
+      * \f index.html
+    * \d bye-world
+      * \f index.html
+  * \d presentations
+    * \f index.html
+    * \d why-hugo
+      * \f index.html
+    * \d why-go.md
+      * \f index.html
+    * \d math
+      * \f index.html
+      * \d cuadratics
+        * \f index.html
+      * \d linearalgebra
+        * \f index.html
+{{</ dir >}}
+
+The site will look like this once it's hosted:
 
 ```none
 https://example.com/
@@ -106,7 +130,7 @@ https://example.com/presentations/math/
 https://example.com/presentations/math/cuadratics/
 https://example.com/presentations/math/linearalgebra/
 ```
-Notice the correspondence between URL structure and directory structure.
+Notice the correspondence between URL structure and `/content` structure.
 
 ## 6. `/content` contains markdown files that start with structured data
 
@@ -119,37 +143,37 @@ The following three versions of `/content/hello-world.md` have the same effect. 
 * YAML Front Matter
   ```
   ---
-  title: Hello World
+  title: Hello
   date: 2021-01-13T11:00:00-03:00
   ---
-  Hello World!!
+  Hello World!
   ```
 * TOML Front Matter
   ```
   +++
-  title = "Hello World"
+  title = "Hello"
   date = "2021-01-13T11:00:00-03:00"
   +++
-  Hello World!!
+  Hello World!
   ```
 * JSON Front Matter
   ```
   {
-    title : "Hello World",
+    title : "Hello",
     date : "2021-01-13T11:00:00-03:00"
   }
-  Hello World!!
+  Hello World!
   ```
 
 ## 7. `/layouts` contains the HTML templates.
-Each content file is rendered to HTML using one of the templates inside `layouts`.
-The template to be used is decided using a [wide set of rules](https://gohugo.io/templates/lookup-order). 
+Each page is rendered by inserting the variables and text from the content file into certain positions an HTML template. 
+Out of the many templates located in `/layouts`, a specific one is selected for each page using a [wide set of rules](https://gohugo.io/templates/lookup-order). 
 
 This is subset of rules I find convenient:
 
 * `content/somepath/foo.md` will be rendered using `layouts/somepath/single.html`
 * `content/somepath/_index.md` will be rendered using `layouts/somepath/list.html`.  
-* If any of these doesn't exist, it defaults to `layouts/_default/single.html` and `layouts/_default/list.html` respectively.
+* `layouts/_default/single.html` and `layouts/_default/list.html` are used in the case that the others don't exist.
 
 This way `/content`, `/layouts`, and `/public` will have similar structures.
 
@@ -169,20 +193,20 @@ Consider the following `layouts/_default/single.html` example:
 </body>
 ```
 
-When a page is rendered with this template, all the `{{ ... }}` clauses disappear, and some are replaced by the value of a variables or the result of a function. 
+When Hugo renders a page with this template, all the `{{ ... }}` clauses disappear, and some are replaced by the value of a variables or the result of a function. 
 
-In the first one, the `.Title` variable, a type `string` defined in the Front Matter, is fed to the function _upper_. The upper function takes a string and returns the same string with every letter capitalized.
+In the first clause, the `upper` function receives the `.Title` variable as an argument, which is a value of type `string` defined in the Front Matter. 
 
-In the second one, the variable `.Content` is called to be inserted. In contains the markdown of the content file already rendered to HTML. This means that for example, `## Hello` turns into `<h2> Hello </h2>`. 
+In the second clause, the variable `.Content` is inserted. In contains the markdown of the content file already rendered to HTML. This means that for example, `## Hello` turns into `<h2> Hello </h2>`. 
 
-If this file: 
+If this file was rendered: 
 ```none
 ---
 title: Hello
 ---
 ## Hello World
 ```
-was rendered, the generated file would look like this: 
+ the generated file would look like this: 
 ```html
 <html>
 <head>
@@ -192,6 +216,7 @@ was rendered, the generated file would look like this:
 <h2> Hello World </h2>
 </body>
 ```
+Checkout the [documentation for `upper`](https://gohugo.io/functions/upper) and other functions if you are curious.
 
 ## 9. Hugo-specific variables depend on front matter, config, or position. 
 
