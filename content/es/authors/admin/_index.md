@@ -63,4 +63,4 @@ Nací en 1997 en Neuquén, Argentina :argentina: , y actualmente vivo en la Ciud
 
 Programo en Go (Golang) y MATLAB. 
 
-{{< staticref "/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Ver mi CV {{< /staticref >}}.
+{{< staticref "/AgustinCanalisCV.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Ver mi CV {{< /staticref >}}.

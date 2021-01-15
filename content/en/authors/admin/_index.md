@@ -61,4 +61,4 @@ I was born in Neuquén, Argentina :argentina: and am now living in Buenos Aires 
 
 I program in Go (Golang) and MATLAB.
 
-{{< staticref "cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} See my resumé (Spanish){{< /staticref >}}.
+{{< staticref "AgustinCanalisCV.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} See my resumé (Spanish){{< /staticref >}}.
