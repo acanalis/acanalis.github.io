@@ -27,7 +27,7 @@ education:
   courses:
   - course: Ingeniería Mecánica
     institution: ITBA
-    year: 2021 (Tesis pendiente)
+    year: 2020 (Tesis pendiente)
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -63,4 +63,4 @@ Nací en 1997 en Neuquén, Argentina :argentina: , y actualmente vivo en la Ciud
 
 Programo en Go (Golang) y MATLAB. 
 
-{{< staticref "/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Descargar mi CV {{< /staticref >}}.
+{{< staticref "/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Ver mi CV {{< /staticref >}}.

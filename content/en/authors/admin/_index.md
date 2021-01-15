@@ -18,8 +18,8 @@ bio: ""
 
 # Interests to show in About widget
 interests:
-- Composite Materials
-- Programming
+- Data Science
+- Automation
 - Education
 
 # Education to show in About widget
@@ -27,7 +27,7 @@ education:
   courses:
   - course: Mechanical Engineering
     institution: ITBA
-    year: 2021
+    year: 2020 (thesis pending)
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -61,3 +61,4 @@ I was born in Neuquén, Argentina :argentina: and am now living in Buenos Aires 
 
 I program in Go (Golang) and MATLAB.
 
+{{< staticref "cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} See my resumé (Spanish){{< /staticref >}}.
