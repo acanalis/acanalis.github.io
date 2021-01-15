@@ -8,7 +8,7 @@ aliases: ["/curso-go"]
 
 location: ITBA
 
-summary: Un curso para programadoras y no programadores hecho por Patricio Whittinslow ([@soypat](https://github.com/soypat)), @acanalis, y [Women in Engineering ITBA](https://www.linkedin.com/company/wie-itba/).
+summary: Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow ([@soypat](https://github.com/soypat)), @acanalis, y [Women in Engineering ITBA](https://www.linkedin.com/company/wie-itba/).
 abstract: ""
 
 # Talk start and end times.

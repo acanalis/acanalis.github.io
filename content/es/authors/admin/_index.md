@@ -18,8 +18,8 @@ bio: ""
 
 # Interests to show in About widget
 interests:
-- Materiales Compuestos
-- Programación 
+- Data Science
+- Automatización
 - Educación
 
 # Education to show in About widget
@@ -27,7 +27,7 @@ education:
   courses:
   - course: Ingeniería Mecánica
     institution: ITBA
-    year: 2021
+    year: 2021 (Tesis pendiente)
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -55,7 +55,7 @@ email: ""
 highlight_name: false
 
 nothing: |
-  {{< staticref "media/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Descargar mi CV {{< /staticref >}}.
+  
 
 ---
 
@@ -63,3 +63,4 @@ Nací en 1997 en Neuquén, Argentina :argentina: , y actualmente vivo en la Ciud
 
 Programo en Go (Golang) y MATLAB. 
 
+{{< staticref "/cv.pdf" "newtab" >}}{{< icon name="download" pack="fas" >}} Descargar mi CV {{< /staticref >}}.
