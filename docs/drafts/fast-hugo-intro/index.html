@@ -599,15 +599,14 @@ and up-to-date explanations.</p>
 <h2 id="1-hugo-is-a-static-site-generator">1. Hugo is a static site generator</h2>
 <p>A static site is one which can be served from a static server. A static server&rsquo;s only 
 job is to provide the necessary <code>*.html, *.js, *.css, etc</code> files to the clients.</p>
-<p>In principle you can write those files by hand, but Hugo makes it easy to generate
-them.</p>
+<p>In principle you can write those files by hand, but Hugo makes them easy to generate.</p>
 <h2 id="2-hugo-is-a-cli-program">2. Hugo is a CLI program</h2>
 <p>Hugo itself is an executable file with which you interact via the 
 command line (PowerShell, cmd, bash).</p>
 <p>With Hugo installed, and with a Hugo project in the current directory, 
 you can run <code>hugo</code>, which generates the site, or <code>hugo server</code>, which 
-hosts the site in a local server so that you can see the result. Those are the two most important commands.</p>
-<p>Also important is the <code>-h</code> flag, which displays help for any given command.</p>
+hosts the site in a local server so that you can see it in your browser. These are the two most important commands.</p>
+<p>The <code>-h</code> flag displays help for any given command.</p>
 <p>Some familiarity with command line interface programs is needed.</p>
 <h2 id="3-hugo-projects-have-a-definite-directory-structure">3. Hugo projects have a definite directory structure.</h2>
 <p>The top level of a Hugo project may have these:</p>
@@ -641,8 +640,8 @@ It stands on its own: you can upload just those files to the static server and f
 <h2 id="4-theme-users-edit-configs-and-write-in-content">4. Theme users edit configs and write in <code>/content</code>.</h2>
 <p>If you just want to use a nice theme you saw at the <a href="https://themes.gohugo.io/" target="_blank" rel="noopener">Hugo Themes Page</a>,
 you can start with the example site (every theme has one) and then use your intuition to
-edit the configuration files and add content files like the ones in the example inside the <code>/content</code> and its subdirs.</p>
-<p>In principle you can ignore the details of the templating language and write markdown, but somewhere along the line you&rsquo;ll need to know the internals of a theme.</p>
+edit the configuration files and add content files like the ones in the example.</p>
+<p>In principle you can ignore the inner workings of the templating language and just write markdown, but somewhere along the line you&rsquo;ll need to know more.</p>
 <h2 id="5-the-generated-site-mirrors-the-structure-of-content">5. The generated site mirrors the structure of <code>/content</code></h2>
 <p>If <code>/content</code> looks like this:</p>
 
@@ -684,7 +683,71 @@ edit the configuration files and add content files like the ones in the example 
 </ul>
 
 </div>
-<p>The resulting site will look like this:</p>
+<p>The output in <code>/public</code> will be very similar:</p>
+
+
+
+<style>
+    div.dirs ul {
+        list-style: none;
+    }
+</style>
+<div class="dirs">
+<ul>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> public
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> hello-world
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> bye-world
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> presentations
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> why-hugo
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> why-go.md
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> math
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> cuadratics
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+<li><i class="far fa-folder  pr-1 fa-fw"></i> linearalgebra
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<p>The site will look like this once it&rsquo;s hosted:</p>
 <pre><code class="language-none">https://example.com/
 https://example.com/blog/
 https://example.com/blog/hello-world/
@@ -696,7 +759,7 @@ https://example.com/presentations/math/
 https://example.com/presentations/math/cuadratics/
 https://example.com/presentations/math/linearalgebra/
 </code></pre>
-<p>Notice the correspondence between URL structure and directory structure.</p>
+<p>Notice the correspondence between URL structure and <code>/content</code> structure.</p>
 <h2 id="6-content-contains-markdown-files-that-start-with-structured-data">6. <code>/content</code> contains markdown files that start with structured data</h2>
 <p>The first part of content files is called the &ldquo;Front Matter&rdquo;, and is written in YAML, JSON, or TOML format. It stores metadata of the page, typically title, date, and others. Then, <a href="https://commonmark.org" target="_blank" rel="noopener">Commonmark&rsquo;s flavor of markdown</a> is used to write the text of the page.</p>
 <p>Variables have various effects on the generated page. Some are Hugo-specific, and some are theme-specific. A big part of working with Hugo is figuring out what variables have to be set to do what you want.</p>
@@ -704,37 +767,37 @@ https://example.com/presentations/math/linearalgebra/
 <ul>
 <li>YAML Front Matter
 <pre><code>---
-title: Hello World
+title: Hello
 date: 2021-01-13T11:00:00-03:00
 ---
-Hello World!!
+Hello World!
 </code></pre>
 </li>
 <li>TOML Front Matter
 <pre><code>+++
-title = &quot;Hello World&quot;
+title = &quot;Hello&quot;
 date = &quot;2021-01-13T11:00:00-03:00&quot;
 +++
-Hello World!!
+Hello World!
 </code></pre>
 </li>
 <li>JSON Front Matter
 <pre><code>{
-  title : &quot;Hello World&quot;,
+  title : &quot;Hello&quot;,
   date : &quot;2021-01-13T11:00:00-03:00&quot;
 }
-Hello World!!
+Hello World!
 </code></pre>
 </li>
 </ul>
 <h2 id="7-layouts-contains-the-html-templates">7. <code>/layouts</code> contains the HTML templates.</h2>
-<p>Each content file is rendered to HTML using one of the templates inside <code>layouts</code>.
-The template to be used is decided using a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">wide set of rules</a>.</p>
+<p>Each page is rendered by inserting the variables and text from the content file into certain positions an HTML template. 
+Out of the many templates located in <code>/layouts</code>, a specific one is selected for each page using a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">wide set of rules</a>.</p>
 <p>This is subset of rules I find convenient:</p>
 <ul>
 <li><code>content/somepath/foo.md</code> will be rendered using <code>layouts/somepath/single.html</code></li>
 <li><code>content/somepath/_index.md</code> will be rendered using <code>layouts/somepath/list.html</code>.</li>
-<li>If any of these doesn&rsquo;t exist, it defaults to <code>layouts/_default/single.html</code> and <code>layouts/_default/list.html</code> respectively.</li>
+<li><code>layouts/_default/single.html</code> and <code>layouts/_default/list.html</code> are used in the case that the others don&rsquo;t exist.</li>
 </ul>
 <p>This way <code>/content</code>, <code>/layouts</code>, and <code>/public</code> will have similar structures.</p>
 <h2 id="8-template-writing-means-writing-html-sprinkled-with-">8. Template writing means writing <code>HTML</code> sprinkled with <code>{{...}}</code></h2>
@@ -748,16 +811,16 @@ The template to be used is decided using a <a href="https://gohugo.io/templates/
 {{.Content}} 
 &lt;/body&gt;
 </code></pre>
-<p>When a page is rendered with this template, all the <code>{{ ... }}</code> clauses disappear, and some are replaced by the value of a variables or the result of a function.</p>
-<p>In the first one, the <code>.Title</code> variable, a type <code>string</code> defined in the Front Matter, is fed to the function <em>upper</em>. The upper function takes a string and returns the same string with every letter capitalized.</p>
-<p>In the second one, the variable <code>.Content</code> is called to be inserted. In contains the markdown of the content file already rendered to HTML. This means that for example, <code>## Hello</code> turns into <code>&lt;h2&gt; Hello &lt;/h2&gt;</code>.</p>
-<p>If this file:</p>
+<p>When Hugo renders a page with this template, all the <code>{{ ... }}</code> clauses disappear, and some are replaced by the value of a variables or the result of a function.</p>
+<p>In the first clause, the <code>upper</code> function receives the <code>.Title</code> variable as an argument, which is a value of type <code>string</code> defined in the Front Matter.</p>
+<p>In the second clause, the variable <code>.Content</code> is inserted. In contains the markdown of the content file already rendered to HTML. This means that for example, <code>## Hello</code> turns into <code>&lt;h2&gt; Hello &lt;/h2&gt;</code>.</p>
+<p>If this file was rendered:</p>
 <pre><code class="language-none">---
 title: Hello
 ---
 ## Hello World
 </code></pre>
-<p>was rendered, the generated file would look like this:</p>
+<p>the generated file would look like this:</p>
 <pre><code class="language-html">&lt;html&gt;
 &lt;head&gt;
 &lt;title&gt; HELLO &lt;/title&gt;
@@ -766,6 +829,7 @@ title: Hello
 &lt;h2&gt; Hello World &lt;/h2&gt;
 &lt;/body&gt;
 </code></pre>
+<p>Checkout the <a href="https://gohugo.io/functions/upper" target="_blank" rel="noopener">documentation for <code>upper</code></a> and other functions if you are curious.</p>
 <h2 id="9-hugo-specific-variables-depend-on-front-matter-config-or-position">9. Hugo-specific variables depend on front matter, config, or position.</h2>
 <p>The previous are examples of Hugo-specific Front Matter-defined variables.</p>
 <p>Some variables are available everywhere in the site (<em>global</em> variables) like <code>.Site.Author</code>. This variable is defined in <code>config.yaml</code> as <code>author: John Doe</code> (remember that TOML and JSON also possible).</p>
