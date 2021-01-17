@@ -1,6 +1,6 @@
 ---
-title: "Fundamentals of Hugo"
-subtitle: what is what
+title: Hugo What is What
+subtitle: Fundamentals of Hugo
 date: 2021-01-13T11:00:00-03:00
 _build:
   list: never
@@ -14,7 +14,7 @@ Starting with [Hugo](https://gohugo.io) _The world’s fastest framework for bui
 it's difficult to make sense of all the new vocabulary and concepts. 
 The usual way to learn is to install Hugo, try out the 
 [Quick start](https://gohugo.io/getting-started/quick-start/), and then navigate enough
-documentation pages until you eventually to see the wider picture. everything makes sense.
+documentation pages until everything makes sense.
 
 The Hugo Docs, while very precise, don't provide a learning order. Tutorials 
 usually are written to achieve a certain goal (_how to do X with Hugo_) but don't go into 
@@ -24,11 +24,13 @@ This article is an attempt to give beginners a "what is what" introduction to Hu
 be missing. The objective is to explain 90% of how Hugo works in 25 key points, with the hope of
 making the rest of the learning experience easier.
 
-This article is for beginners to Hugo. This is not the place for me to mention exceptions and special
+This article is for beginners to Hugo. This is not the place to mention exceptions and special
  rules; if necessary, I'll put them in footnotes.
 Visit [Hugo Docs](https://gohugo.io/documentation) for the most precise and up-to-date explanations.
 
 {{< toc >}}
+
+# Info for Everyone
 
 ## Hugo is a static site generator
 A static site is one which can be served from a static server. A static server's only 
@@ -39,7 +41,7 @@ Interaction is possible, but using JavaScript on the client-side.
 
 ## Hugo is a CLI program
 Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash). 
-
+ 
 After you [install Hugo](https://gohugo.io/getting-started/installing/)
 you can run `hugo`, or `hugo server`, the two most important commands. If there's a 
 valid Hugo project in the current directory, `hugo` will generate the site, and `hugo server`
@@ -51,36 +53,40 @@ Some familiarity with command line interface programs is needed.
 
 ## Hugo's separates content from layouts
 
-In principle, you can write HTML/CSS/JS by hand to do a static site. This is inconvenient:
+In principle, you can write HTML/CSS/JS by hand to do a static site.
+For many reasons this is inconvenient:
 
-* HTML is tedious to write. For a simple link you will type an extra 57 characters: `<a href="example.com" rel="noopener noreferrer" target="_blank">example.com</a>`.
-  It's fine for one page, but it scales poorly.
-* Typically some parts of the code are the same for all the pages, like certain analytics, fonts, links, etc.
-* Even if you copy and paste everything it'll be tedious to do, and more importantly, I'll be impossible to make changes in an elegant way.
-* You are focusing on two problems at once. Maybe you want to write the Best Cookie Recipe in the world,
-  but now you are in a sidequest trying to figure out which CSS property centers your image. It's unproductive. 
-* You have to actually know what you are doing. If frontend programming is outside your area of 
-  expertise, it will take a lot of learning to make a production-grade website. That's not a top priority 
-  for everyone. 
+[^17]: Slight exaggeration of: `<a href="https://example.com" rel="noopener noreferrer" target="_blank">example.com</a>`
 
-This is the problem that Hugo aims to solve by allowing you to separate web design into 
+* HTML is verbose compared to a plain document. For a link[^17] you will type 57 characters 
+  plus the actual link. It's fine for one page, but it scales poorly.
+* Typically some parts of the code are the same for all the pages, like certain analytics, 
+  fonts, links, etc. Even if you copy and paste everything it'll be tedious to do
+* If you want to make a change you'll have to do it manually on every file.
+* Focus is divided between writing relatable content and handling the looks of the site. 
+* Web design is its own field of knowledge and not everyone wants to invert time and effort 
+  on that. 
+
+Hugo makes This is the problem that Hugo aims to solve by allowing you to separate web design into 
 two activities: content writing and template writing.
 
 Content is written in [markdown](https://commonmark.org), which conceptually is a condensed
-syntactic sugar for HTML. Markdown is very simple to understand and use. 
+syntactic sugar for HTML. Markdown is very easy to use. 
 
-Hugo will turn those files into HTML and insert them it into the templates written in a 
-special templating language. 
+Templates are written in a special templating language, and Hugo will use them 
+to turn your content files into the HTML your static site needs. 
 
 ## Society is divided into Theme Users and Theme Writers. 
 
 If you just want to use a nice theme from the [Hugo Themes Page](https://themes.gohugo.io/),
-you can start with the example site - every theme has one - and then use your intuition to add files
+you can start with the example site --every theme has one-- and then use your intuition to add files
 and configurations. No knowledge of the templates or even Web Design is required, all you need is 
-to write all your content in markdown and browse [Content Management Docs](https://gohugo.io/content-management) and
-the theme documentation every once in a while.
+to write all your content in markdown and browse [Content Management Docs](https://gohugo.io/content-management) 
+and the theme documentation every once in a while.
 
 But the day will come that you'll you need to tinker with the themes or write your own.
+
+# Info for Theme Users
 
 ## Hugo projects have a definite directory structure
 
@@ -100,20 +106,57 @@ The top level of a Hugo project may have these:
 * \d static
 {{</ dir >}}
 
-Each one has a specific use. A config file is mandatory[^1], 
-and the rest directories are optional and added as needed. 
-The folders can be configured with different names, although this is not common.
+You can read about each of them at [Directory Structure Docs](https://gohugo.io/getting-started/directory-structure/). 
+A config file is mandatory[^1], and the rest directories are optional and added as needed.[^15] 
+
+[^15]: The folders can be configured to have different names, although this is not common.
 
 [^1]: This isn't 100% true. The configs can be set at `/config` as pointed out in the
   [Configuration Directory Documentation](https://gohugo.io/getting-started/configuration/#configuration-directory).
 
-`/public` is the default output directory: it is created to store the generated files.
-It stands on its own: you can upload just those files to the static server and forget that you ever used Hugo to create them. 
+`/public` is created to store the generated files.
+The files stands on their own: you can upload them to the static server and forget 
+that you ever used Hugo to create them. 
 
-## Bring other Hugo projects into your own with Modules
+## Merge other Hugo projects to yours with Modules
 
+[Hugo Modules](https://gohugo.io/hugo-modules/) offer a very flexible and understandable way of 
+importing from other project. 
 
+Suppose that you want to add the [`Ananke`](https://themes.gohugo.io/gohugo-theme-ananke/) 
+theme to your site. You could clone the repository from `https://github.com/theNewDynamic/gohugo-theme-ananke` 
+and copy and paste files from that project into yours. 
 
+But the cleaner method, more maintainable method is to: 
+
+[^13]: If you **do** expect people to import your project then put the path that everyone
+  will use to import your project. This is how it would look like: 
+  `hugo mod init github.com/johndoe/my_module_project`. 
+  See [Documentation on Using Modules](https://gohugo.io/hugo-modules/use-modules/) 
+
+* Run the command `hugo mod init path/to/your/project` which will initialize your project as a Hugo Module. If you don't 
+  intend people to import your project, then `path/to/your/project` doesn't matter, you can put a `_`
+  if you want.[^13]
+* Include the following lines in the config: 
+  ```yaml 
+  baseURL: https://example.com/ 
+  # ... and everything else
+
+  module:
+    imports:
+      - path: github.com/theNewDynamic/gohugo-theme-ananke
+  ``` 
+
+The result is almost the same as copy and pasting: the files from Ananke behave as 
+if they were your own. Note that only these folders are merged: `archetypes`, 
+`assets`, `content`, `data`, `i18n`, `layouts`, `static`. 
+
+The advantages of doing this:
+  * You can update easily with the command `hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke`
+  * Your files override the other project's file when they have the same name, which allows you
+    to tinker around.
+  * You can [mount specific directories](https://gohugo.io/hugo-modules/configuration/#module-config-mounts) instead of the whole project.[^14]
+  
 ## Content files are "front matter" + markdown
 
 Any markdown `.md` file inside `/content` is called a **content file**[^8]. 
@@ -139,6 +182,7 @@ The following three versions of `/content/hello-world.md` have the same effect. 
   date: 2021-01-13T11:00:00-03:00
   ---
   ## Hello World!
+  In this article, I will...
   ```
 * TOML Front Matter
   ```
@@ -147,6 +191,7 @@ The following three versions of `/content/hello-world.md` have the same effect. 
   date = "2021-01-13T11:00:00-03:00"
   +++
   ## Hello World!
+  In this article, I will...
   ```
 * JSON Front Matter
   ```
@@ -155,7 +200,13 @@ The following three versions of `/content/hello-world.md` have the same effect. 
     date : "2021-01-13T11:00:00-03:00"
   }
   ## Hello World!
+  In this article, I will...
   ```
+
+## Shortcodes extend markdown
+
+Markdown falls short in some aspects.
+
 
 ## The generated site has the structure of `/content`
 
@@ -226,6 +277,8 @@ There's a clear correspondence between `/content` structure, output site, and UR
   [Page Bundles](https://gohugo.io/content-management/page-bundles/) 
   which allows you to divide each page on a separate directory where 
   you can also keep the images and resources specific to that page.
+
+# Info for Theme Writers 
 
 ## **Sections** are subdirs of `/content` that have an `_index.md` [^2]
 
@@ -515,7 +568,6 @@ The output is exactly the same. Notice that there are less parenthesis used.
 
 ## Partials are like custom functions for templates
 
-## Shortcodes are like custom functions for markdown
 
 
 
