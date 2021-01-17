@@ -1,50 +1,55 @@
 ---
-title: "Hugo: What is What"
+title: "Fundamentals of Hugo"
+subtitle: what is what
 date: 2021-01-13T11:00:00-03:00
 _build:
   list: never
 
 url: /drafts/fast-hugo-intro
 summary: Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation
-  Read these 20 key points.
+  Read these 25 key points.
 ---
 
-Starting with [Hugo](https://gohugo.io) _The world’s fastest framework for building websites_ , it's a bit difficult to make sense of all the new
-vocabulary and concepts. Usual way to learn is to install Hugo, try out the 
-[Quick start](https://gohugo.io/getting-started/quick-start/), and then navigate the 
-documentation until everything makes sense. That is difficult because there's no general summary
- of Hugo concepts in the docs. You need to visit the page of each topic 
- in order to see the wider picture.
+Starting with [Hugo](https://gohugo.io) _The world’s fastest framework for building websites_, 
+it's difficult to make sense of all the new vocabulary and concepts. 
+The usual way to learn is to install Hugo, try out the 
+[Quick start](https://gohugo.io/getting-started/quick-start/), and then navigate enough
+documentation pages until you eventually to see the wider picture. everything makes sense.
 
-This article is an attempt to condense all the essential information in 20 key points. 
-The objective is to explain 90% of how Hugo works and to make the rest of the learning easier.
+The Hugo Docs, while very precise, don't provide a learning order. Tutorials 
+usually are written to achieve a certain goal (_how to do X with Hugo_) but don't go into 
+depth on how Hugo works. 
 
-This article is for people with some background on Web design (HTML/CSS/JS) but beginners to Hugo.
-Some exceptions and special rules are omitted for the sake of clarity, but I'll put them in footnotes.
+This article is an attempt to give beginners a "what is what" introduction to Hugo that seems to 
+be missing. The objective is to explain 90% of how Hugo works in 25 key points, with the hope of
+making the rest of the learning experience easier.
+
+This article is for beginners to Hugo. This is not the place for me to mention exceptions and special
+ rules; if necessary, I'll put them in footnotes.
 Visit [Hugo Docs](https://gohugo.io/documentation) for the most precise and up-to-date explanations.
 
 {{< toc >}}
 
 ## Hugo is a static site generator
 A static site is one which can be served from a static server. A static server's only 
-job is to provide the necessary `*.html, *.js, *.css, etc` files to the clients.
+job is to provide the necessary files `*.html, *.js, *.css, etc`  to the clients.
 
 Every client gets the same files: there's no server-side intelligence or interaction.
 Interaction is possible, but using JavaScript on the client-side.
 
 ## Hugo is a CLI program
-Hugo itself is an executable file with which you interact via the 
-command line (PowerShell, cmd, bash). 
+Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash). 
 
-With Hugo installed, and with a Hugo project in the current directory, 
-you can run `hugo`, which generates the site, or `hugo server`, which 
-hosts the site in a local server so that you can see it in your browser. These are the two most important commands. 
+After you [install Hugo](https://gohugo.io/getting-started/installing/)
+you can run `hugo`, or `hugo server`, the two most important commands. If there's a 
+valid Hugo project in the current directory, `hugo` will generate the site, and `hugo server`
+will host it on a local server so that you can see it in your browser. 
 
 The `-h` flag displays help for any given command.
 
 Some familiarity with command line interface programs is needed. 
 
-## Hugo's value is in separating content from layouts
+## Hugo's separates content from layouts
 
 In principle, you can write HTML/CSS/JS by hand to do a static site. This is inconvenient:
 
@@ -58,26 +63,27 @@ In principle, you can write HTML/CSS/JS by hand to do a static site. This is inc
   expertise, it will take a lot of learning to make a production-grade website. That's not a top priority 
   for everyone. 
 
-Hugo allows you to treat content and layout into two distinct activities. 
+This is the problem that Hugo aims to solve by allowing you to separate web design into 
+two activities: content writing and template writing.
 
 Content is written in [markdown](https://commonmark.org), which conceptually is a condensed
 syntactic sugar for HTML. Markdown is very simple to understand and use. 
 
-Hugo will turn those files into HTML by the rendering markdown 
-and inserting it into the layout templates written in a special templating language. 
+Hugo will turn those files into HTML and insert them it into the templates written in a 
+special templating language. 
 
-## Society is divided into Theme users and Theme writers. 
+## Society is divided into Theme Users and Theme Writers. 
 
-If you just want to use a nice theme you saw at the [Hugo Themes Page](https://themes.gohugo.io/),
-you can start with the example site (every theme has one) and then use your intuition to add files
-and configurations. No knowledge of the templates or even Web Design is required, you'll just 
-write all your content in markdown, and browse the [Content Management](https://gohugo.io/content-management) part of the Docs and
-the documentation of the chosen theme every once in a while.
+If you just want to use a nice theme from the [Hugo Themes Page](https://themes.gohugo.io/),
+you can start with the example site - every theme has one - and then use your intuition to add files
+and configurations. No knowledge of the templates or even Web Design is required, all you need is 
+to write all your content in markdown and browse [Content Management Docs](https://gohugo.io/content-management) and
+the theme documentation every once in a while.
 
-But if you need to tinker with the themes or you want to write your own, 
-you will need to know about the underlying system. 
+But the day will come that you'll you need to tinker with the themes or write your own.
 
-## Hugo projects have a definite directory structure. 
+## Hugo projects have a definite directory structure
+
 The top level of a Hugo project may have these: 
 
 {{< dir >}}
@@ -94,32 +100,35 @@ The top level of a Hugo project may have these:
 * \d static
 {{</ dir >}}
 
-Each one has a specific use. The config file (`/config.yaml,toml,json`) is mandatory[^1], 
+Each one has a specific use. A config file is mandatory[^1], 
 and the rest directories are optional and added as needed. 
+The folders can be configured with different names, although this is not common.
 
 [^1]: This isn't 100% true. The configs can be set at `/config` as pointed out in the
   [Configuration Directory Documentation](https://gohugo.io/getting-started/configuration/#configuration-directory).
 
-`/public` is the default[^6] output directory: it is created to store the generated files.
+`/public` is the default output directory: it is created to store the generated files.
 It stands on its own: you can upload just those files to the static server and forget that you ever used Hugo to create them. 
 
-[^6]: the output directory can be changed using the `publishDir` configuration variable: in `config.yaml`: `publishDir: docs`.
+## Bring other Hugo projects into your own with Modules
 
-## Content files are "front matter" + markdown.
 
-Any markdown `.md`[^8] file inside `/content` is called a **content file**. 
+
+## Content files are "front matter" + markdown
+
+Any markdown `.md` file inside `/content` is called a **content file**[^8]. 
 A corresponding page will rendered with the information contained in it. 
 
-[^8] Files other than markdown can be used, including html, pandoc, etc.
+[^8]: Files other than markdown can be used, including html, pandoc, etc.
   [See the list of content formats](https://gohugo.io/content-management/formats/#list-of-content-formats)
 
-Content files start with a **front matter**, a section written YAML, JSON, or TOML that defines 
-metadata variables of the page. Typically title and date are defined, among others. 
+Content files start with a part written YAML, JSON, or TOML that is called **front matter** and 
+defines metadata variables of the page. Typically title and date are defined, among others. 
 Markdown is used for the rest of the file.
 
-Front matter variables have different effects on the generated page. 
-Some are Hugo-specific, and some are Theme-specific. 
-A big part of working with Hugo is figuring out which variables to set to do what you want. 
+Front matter variables have different effects on the generated page, some are Hugo-specific, 
+and some are theme-specific. 
+A big part of working with Hugo is figuring out which variables do what you want. 
 
 The following three versions of `/content/hello-world.md` have the same effect. Notice the different delimiters for each format:
 
@@ -148,9 +157,9 @@ The following three versions of `/content/hello-world.md` have the same effect. 
   ## Hello World!
   ```
 
-## The generated site mirrors the structure of `/content`
+## The generated site has the structure of `/content`
 
-If `/content` looks like this:
+Suppose `/content` looks like this:
 
 {{< dir >}}
 * \d content 
@@ -169,7 +178,7 @@ If `/content` looks like this:
       * \f linearalgebra.md
 {{</ dir >}}
 
-The output has the same shape:
+Then output has a similar structure:
 
 {{< dir >}}
 * \d public 
@@ -194,7 +203,7 @@ The output has the same shape:
         * \f index.html
 {{</ dir >}}
 
-And the final site will look like this once it's hosted:
+And the final site will have these URLs available once it's hosted:
 
 ```none
 https://example.com/
@@ -218,25 +227,23 @@ There's a clear correspondence between `/content` structure, output site, and UR
   which allows you to divide each page on a separate directory where 
   you can also keep the images and resources specific to that page.
 
-## Any subdir of `/content` that has an "_index.md" is a **section**[^2]
+## **Sections** are subdirs of `/content` that have an `_index.md` [^2]
 
 [^2]: In reality, the first level children of `/content` are always sections, regardless of whether
   they have `_index.md` or not. See the [Docs for Sections](https://gohugo.io/content-management/sections). 
   Also, in this section I'm also omitting that taxonomies can have a corresponding `_index.md`, 
   but those are not considered sections. In the end, the logic is almost the same.
 
-Thus in the previous example, `/`, `/blog`, `/presentations` and `/presentation/math`
-are **sections**. 
+In the previous example the sections were `/`, `/blog`, `/presentations` and `/presentation/math`.
 
 All the pages under a section's directory are called its children. 
-The children of `presentations` are, for example, `why-hugo`, `why-go` and `math`. 
 This definition will become important later on.
+The children of `presentations` are, for example, `why-hugo`, `why-go` and `math`. 
 
 Anything else is simply called a **regular page**.
 
 ## `/layouts` contains the HTML templates.
-Each page is rendered by inserting the variables and text from the content file into certain positions an HTML template. 
-Out of the many templates located in `/layouts`, a specific one is selected for each page using a [wide set of rules](https://gohugo.io/templates/lookup-order). 
+Each content file is matched with a specific template from `layouts`, with a [wide set of rules](https://gohugo.io/templates/lookup-order). 
 
 This is subset of rules I find convenient [^9]:
 
@@ -244,8 +251,7 @@ This is subset of rules I find convenient [^9]:
 * A section page like `content/somepath/**/_index.md` will be rendered using `layouts/somepath/list.html`.  
 * `layouts/_default/single.html` and `layouts/_default/list.html` are used if the others are missing.
 
-[^9]: Many other structures are possible, it's a matter of preference. 
-  The one I chose to is the easiest to learn.
+[^9]: There are many other ways to organize templates. It's a matter of preference. 
 
 ## Templates are `HTML` sprinkled with `{{...}}`
 
@@ -300,7 +306,7 @@ The dot stores "the current context", in other words all the variables that
 can be accessed from a given point in the program. That's why in the previous example
 `.Content` and `.Title` begin with a dot. 
 
-The dot might change meaning along the code, if _"the context is rebinded"_. More on this later.
+Note that the context --and thus the dot-- a might change along the code.
 
 ## Hugo-specific variables depend on front matter, config, or position. 
 
@@ -309,13 +315,12 @@ The dot might change meaning along the code, if _"the context is rebinded"_. Mor
 Some variables defined in the config can be accessed from any template (_global_ variables). `.Site.Author`, for example, can be defined in `config.yaml` as `author: John Doe`.
 
 Some variables, such as `.Pages`, are related to the position of the file 
-in `/content`. 
-`.Pages` is available in section pages[^3]; it's a slice[^4] of page variables of all the children 
+in `/content`. It's available in section pages[^3]; it's a slice[^4] of the page variables of all the children 
 of the section. 
 
-[^3]: And in taxonomy terms, taxonomy list, homepage and RSS pages. 
+[^3]: `.Pages` is also available in taxonomy terms, taxonomy list, homepage and RSS pages. 
   See [documentation on lists of content](https://gohugo.io/templates/lists/)
-[^4]: also known as "array" on other languages
+[^4]: slices are known as "array" in other languages
 
 For reference: [List of Site Variables](https://gohugo.io/variables/site), [List of Page Variables](https://gohugo.io/variables/page)
 
@@ -323,7 +328,7 @@ For reference: [List of Site Variables](https://gohugo.io/variables/site), [List
 
 The `range` block is used to iterate over slices and dicts[^5].
 
-[5]: also known as `maps`
+[^5]: also known as `maps`
 
 As an example, let's say that your website has a blog section at `www.example.com/blog`,
 and you want to list links to the posts so that the user can visit them.
@@ -363,13 +368,13 @@ This is what your project looks like, including the template:
 Inside the range block, the dot means "the current iteration". 
 As a result, `.Title` doesn't mean "the title of the current page" as usual, but 
 instead means "the title of the **current iteration** page". 
-This is called _rebinding_ the context.[^10]
+This is called **rebinding** the context.[^10]
 
-[^10]: 2.  When the context has been rebinded, you lose access to all the Page variables and so on.
-  In case you need them, then use the `$`. It's a variable that is set to the initial value of 
+[^10]: When the context has been rebinded, you lose access to all the Page variables.
+  In case you need them within the range, use the variable `$`. It's set to the initial value of 
   the dot. Here's how it looks: `{{$.Site.Title}}`. See [Use $ to access the global context](https://gohugo.io/templates/introduction/#2-use--to-access-the-global-context)
 
-See the result at `/public/blog/index.html`:
+This is the result at `/public/blog/index.html`:
 
 ```html
 <html>
@@ -389,7 +394,7 @@ Welcome to the blog! See the posts:
 </body>
 ```
 
-## Non-Hugo-specific variables are accessed via `.Params`
+## Access Non-Hugo-specific variables with `.Params`
 
 When you write a variable on the config or the front matter that **doesn't** have a special meaning to Hugo, you have access to it through the `.Params` dictionary. 
 
@@ -419,7 +424,7 @@ Then in any template:
 <p> The value is: {{.Site.Params.my_custom_variable}} </p>
 ```
 
-## Declare a template variable with `:=`, change its value with `=`
+## Declare a template variable with `‎ := ‎`, change its value with `‎ = ‎`
 
 For convenience during template writing, you can declare internal variables with:
 
@@ -429,12 +434,13 @@ For convenience during template writing, you can declare internal variables with
 {{ $a }}
 ```
 
-In the first line, $a is declared and set to "hello". Then, it changes its value to "HELLO". Finally, it's printed on the template. 
+In the first line, `$a` is declared and set to `"hello"`. Then, it changes its value to "HELLO". Finally, it's printed on the template. 
 
 ## Two pitfalls with template variables
 
-It's an error to use `=` to a variable that hasn't been `:=`'d before. 
-Another common error is to use `:=` twice for the same name in different contexts: 
+It's an error to use `=` to a variable that hasn't been declared with `:=` before. 
+
+Another common error is to accidentally define a variable twice in different contexts: 
 
 ```go-template-html
 {{ $a := 0 }}
@@ -444,42 +450,72 @@ Another common error is to use `:=` twice for the same name in different context
 {{ end }}
 {{ a }}
 ```
-The result here is 0, instead of the expected 3. The reason is that `$a` is declared in the normal context, and then another, _different_ `$a` gets declared in the context of the range.
+The result here is 0, instead of the expected 3. The reason is that `$a` is declared in the initial
+ context, and then another, _different_ `$a` gets declared in the context of the range.
 The third line should be changed to `$a = .`
 
-It's difficult to understand when you start with Hugo, the difference is subtle and it's very difficult to search in the documentation. I just hope that you never run into this.
+It's difficult to understand when you start with Hugo, the difference is subtle and
+ it's very difficult to search in the documentation. I just hope that you never run into this.
 
-## Handling missing values with `if`, `with`, and `default`
+## Handle missing values with `if`, `with`, and `default`
 
 The previous example is a bit fragile, because the templates are called using many different content files. If `my_custom_variable` doesn't exist in one of them, the whole build fails.
 
 Here are three methods to avoid that: 
 
-* `if`: This example is just to show how `if`-`else` works. For this it's sufficient to know that the `isset` function returns `true` or `false`. See [the documentation for `isset`]((https://gohugo.io/functions/isset)) if you want.
+[^10]:  See [the documentation for `isset`]((https://gohugo.io/functions/isset)) if you want.
+
+* `if`: This example is just to show how the `if` statement works. 
+  For this it's sufficient to know that the `isset` function[^10] returns `true` or `false`. 
   ```go-template-html
   {{ if (isset .Params "my_custom_variable") }}
      <p> The value is: {{ .Param.my_custom_variable }} </p>
   {{ end }}
   ```
 * `with`: The block is run if `.Params.my_custom_param` is set, and **not** run if it's
-  missing. `with` rebinds the context: inside the block, the dot means "the variable", in this case "my_custom_param".
+  missing. `with` rebinds the context: inside the block, the dot means "the variable next to `with`", in this case `my_custom_param`.
   ```go-template-html
   {{ with .Params.my_custom_param }}
     <p> The value is: {{.}} </p>
   {{ end }}
   ```
-* [`default`](https://gohugo.io/functions/default/) : This is a very common idiom to set defaults.
+* [`default`](https://gohugo.io/functions/default/) : This is a very common function to set defaults. 
+  If `.Param.my_custom_variable` doesn't exist, it takes the value of `"a default value just in case"`
   ```go-template-html
-  {{ default "a default value just in case" .Param.my_custom_variable }}
+  {{ $variable := default "a default value just in case" .Param.my_custom_variable }}
+  {{ $variable }}
   ```
 
-## As usual, parenthesis clarify how the functions are applied. 
-If a long sequence of functions need to be applied, parenthesis are used to disambiguate the order
+## Parenthesis clarify how the functions are applied 
+
+If a long sequence of functions need to be applied, parenthesis are used to disambiguate 
+the order of application
 
 ```go-template-html
-{{ upper "hello" }}
+{{ markdownify (upper (emojify "## hello :‎smiley:")) }}
 ```
 
-## The pipe operator `|` can save us many parenthesis.
+In this case: 
+1. `emojify` is applied to `"## hello :‎smiley:"` which results in `"## hello 😀"`
+2. `upper` is applied to `"## hello 😀"` which results in `"## HELLO 😀"`
+3. `markdownify` is applied to `"## HELLO 😀"`, which turns it into `"<h2> HELLO 😀</h2>"`
 
-As in unix, the pipe operator 
+## Use the pipe operator `|` to save some parenthesis.
+
+The pipe operator `|` is a syntactic sugar that passes the output from the left of the operator to 
+the function to the right of the operator the **last argument**. 
+
+The previous example would be written as: 
+
+``` go-template-html
+{{ "## hello :smiley:" | emojify | upper | markdownify }}
+```
+
+The output is exactly the same. Notice that there are less parenthesis used. 
+
+## Partials are like custom functions for templates
+
+## Shortcodes are like custom functions for markdown
+
+
+

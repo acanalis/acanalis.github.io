@@ -34,7 +34,7 @@
   
     
   
-  <meta name="description" content="Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 20 key points.">
+  <meta name="description" content="Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 25 key points.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://acanalis.github.io/drafts/fast-hugo-intro/">
@@ -258,8 +258,8 @@
   
   <meta property="og:site_name" content="ΔY">
   <meta property="og:url" content="https://acanalis.github.io/drafts/fast-hugo-intro/">
-  <meta property="og:title" content="Hugo: What is What | ΔY">
-  <meta property="og:description" content="Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 20 key points."><meta property="og:image" content="https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png">
+  <meta property="og:title" content="Fundamentals of Hugo | ΔY">
+  <meta property="og:description" content="Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 25 key points."><meta property="og:image" content="https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png">
   <meta property="twitter:image" content="https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -291,7 +291,7 @@
     "@type": "WebPage",
     "@id": "https://acanalis.github.io/drafts/fast-hugo-intro/"
   },
-  "headline": "Hugo: What is What",
+  "headline": "Fundamentals of Hugo",
   
   "datePublished": "2021-01-13T11:00:00-03:00",
   "dateModified": "2021-01-13T11:00:00-03:00",
@@ -309,7 +309,7 @@
       "url": "https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_192x192_fill_box_center_2.png"
     }
   },
-  "description": "Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 20 key points."
+  "description": "Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation Read these 25 key points."
 }
 </script>
 
@@ -327,7 +327,7 @@
 
 
 
-  <title>Hugo: What is What | ΔY</title>
+  <title>Fundamentals of Hugo | ΔY</title>
 
 </head>
 
@@ -501,8 +501,10 @@
   
   
 <div class="article-container pt-3">
-  <h1>Hugo: What is What</h1>
+  <h1>Fundamentals of Hugo</h1>
 
+  
+  <p class="page-subtitle">what is what</p>
   
 
   
@@ -567,16 +569,19 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>Starting with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> <em>The world’s fastest framework for building websites</em> , it&rsquo;s a bit difficult to make sense of all the new
-vocabulary and concepts. Usual way to learn is to install Hugo, try out the 
-<a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">Quick start</a>, and then navigate the 
-documentation until everything makes sense. That is difficult because there&rsquo;s no general summary
-of Hugo concepts in the docs. You need to visit the page of each topic 
-in order to see the wider picture.</p>
-<p>This article is an attempt to condense all the essential information in 20 key points. 
-The objective is to explain 90% of how Hugo works and to make the rest of the learning easier.</p>
-<p>This article is for people with some background on Web design (HTML/CSS/JS) but beginners to Hugo.
-Some exceptions and special rules are omitted for the sake of clarity, but I&rsquo;ll put them in footnotes.
+      <p>Starting with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> <em>The world’s fastest framework for building websites</em>, 
+it&rsquo;s difficult to make sense of all the new vocabulary and concepts. 
+The usual way to learn is to install Hugo, try out the 
+<a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">Quick start</a>, and then navigate enough
+documentation pages until you eventually to see the wider picture. everything makes sense.</p>
+<p>The Hugo Docs, while very precise, don&rsquo;t provide a learning order. Tutorials 
+usually are written to achieve a certain goal (<em>how to do X with Hugo</em>) but don&rsquo;t go into 
+depth on how Hugo works.</p>
+<p>This article is an attempt to give beginners a &ldquo;what is what&rdquo; introduction to Hugo that seems to 
+be missing. The objective is to explain 90% of how Hugo works in 25 key points, with the hope of
+making the rest of the learning experience easier.</p>
+<p>This article is for beginners to Hugo. This is not the place for me to mention exceptions and special
+rules; if necessary, I&rsquo;ll put them in footnotes.
 Visit <a href="https://gohugo.io/documentation" target="_blank" rel="noopener">Hugo Docs</a> for the most precise and up-to-date explanations.</p>
 <details class="toc-inpage d-print-none  " open>
   <summary class="font-weight-bold">Table of Contents</summary>
@@ -584,41 +589,44 @@ Visit <a href="https://gohugo.io/documentation" target="_blank" rel="noopener">H
   <ul>
     <li><a href="#hugo-is-a-static-site-generator">Hugo is a static site generator</a></li>
     <li><a href="#hugo-is-a-cli-program">Hugo is a CLI program</a></li>
-    <li><a href="#hugos-value-is-in-separating-content-from-layouts">Hugo&rsquo;s value is in separating content from layouts</a></li>
-    <li><a href="#society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme users and Theme writers.</a></li>
-    <li><a href="#hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure.</a></li>
-    <li><a href="#content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown.</a></li>
-    <li><a href="#the-generated-site-mirrors-the-structure-of-content">The generated site mirrors the structure of <code>/content</code></a></li>
-    <li><a href="#any-subdir-of-content-that-has-an-_indexmd-is-a-section2">Any subdir of <code>/content</code> that has an &ldquo;_index.md&rdquo; is a <strong>section</strong></a></li>
+    <li><a href="#hugos-separates-content-from-layouts">Hugo&rsquo;s separates content from layouts</a></li>
+    <li><a href="#society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme Users and Theme Writers.</a></li>
+    <li><a href="#hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure</a></li>
+    <li><a href="#bring-other-hugo-projects-into-your-own-with-modules">Bring other Hugo projects into your own with Modules</a></li>
+    <li><a href="#content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown</a></li>
+    <li><a href="#the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></a></li>
+    <li><a href="#sections-are-subdirs-of-content-that-have-an-_indexmd-2"><strong>Sections</strong> are subdirs of <code>/content</code> that have an <code>_index.md</code> </a></li>
     <li><a href="#layouts-contains-the-html-templates"><code>/layouts</code> contains the HTML templates.</a></li>
     <li><a href="#templates-are-html-sprinkled-with-">Templates are <code>HTML</code> sprinkled with <code>{{...}}</code></a></li>
     <li><a href="#the-dot-contains-the-available-variables">The dot contains the available variables</a></li>
     <li><a href="#hugo-specific-variables-depend-on-front-matter-config-or-position">Hugo-specific variables depend on front matter, config, or position.</a></li>
     <li><a href="#list-all-the-pages-in-a-section-with-range-and-pages">List all the pages in a section with <code>range</code> and <code>.Pages</code></a></li>
-    <li><a href="#non-hugo-specific-variables-are-accessed-via-params">Non-Hugo-specific variables are accessed via <code>.Params</code></a></li>
-    <li><a href="#declare-a-template-variable-with--change-its-value-with-">Declare a template variable with <code>:=</code>, change its value with <code>=</code></a></li>
+    <li><a href="#access-non-hugo-specific-variables-with-params">Access Non-Hugo-specific variables with <code>.Params</code></a></li>
+    <li><a href="#declare-a-template-variable-with----change-its-value-with---">Declare a template variable with <code>‎ := ‎</code>, change its value with <code>‎ = ‎</code></a></li>
     <li><a href="#two-pitfalls-with-template-variables">Two pitfalls with template variables</a></li>
-    <li><a href="#handling-missing-values-with-if-with-and-default">Handling missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
-    <li><a href="#as-usual-parenthesis-clarify-how-the-functions-are-applied">As usual, parenthesis clarify how the functions are applied.</a></li>
-    <li><a href="#the-pipe-operator--can-save-us-many-parenthesis">The pipe operator <code>|</code> can save us many parenthesis.</a></li>
+    <li><a href="#handle-missing-values-with-if-with-and-default">Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
+    <li><a href="#parenthesis-clarify-how-the-functions-are-applied">Parenthesis clarify how the functions are applied</a></li>
+    <li><a href="#use-the-pipe-operator--to-save-some-parenthesis">Use the pipe operator <code>|</code> to save some parenthesis.</a></li>
+    <li><a href="#partials-are-like-custom-functions-for-templates">Partials are like custom functions for templates</a></li>
+    <li><a href="#shortcodes-are-like-custom-functions-for-markdown">Shortcodes are like custom functions for markdown</a></li>
   </ul>
 </nav>
 </details>
 
 <h2 id="hugo-is-a-static-site-generator">Hugo is a static site generator</h2>
 <p>A static site is one which can be served from a static server. A static server&rsquo;s only 
-job is to provide the necessary <code>*.html, *.js, *.css, etc</code> files to the clients.</p>
+job is to provide the necessary files <code>*.html, *.js, *.css, etc</code>  to the clients.</p>
 <p>Every client gets the same files: there&rsquo;s no server-side intelligence or interaction.
 Interaction is possible, but using JavaScript on the client-side.</p>
 <h2 id="hugo-is-a-cli-program">Hugo is a CLI program</h2>
-<p>Hugo itself is an executable file with which you interact via the 
-command line (PowerShell, cmd, bash).</p>
-<p>With Hugo installed, and with a Hugo project in the current directory, 
-you can run <code>hugo</code>, which generates the site, or <code>hugo server</code>, which 
-hosts the site in a local server so that you can see it in your browser. These are the two most important commands.</p>
+<p>Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash).</p>
+<p>After you <a href="https://gohugo.io/getting-started/installing/" target="_blank" rel="noopener">install Hugo</a>
+you can run <code>hugo</code>, or <code>hugo server</code>, the two most important commands. If there&rsquo;s a 
+valid Hugo project in the current directory, <code>hugo</code> will generate the site, and <code>hugo server</code>
+will host it on a local server so that you can see it in your browser.</p>
 <p>The <code>-h</code> flag displays help for any given command.</p>
 <p>Some familiarity with command line interface programs is needed.</p>
-<h2 id="hugos-value-is-in-separating-content-from-layouts">Hugo&rsquo;s value is in separating content from layouts</h2>
+<h2 id="hugos-separates-content-from-layouts">Hugo&rsquo;s separates content from layouts</h2>
 <p>In principle, you can write HTML/CSS/JS by hand to do a static site. This is inconvenient:</p>
 <ul>
 <li>HTML is tedious to write. For a simple link you will type an extra 57 characters: <code>&lt;a href=&quot;example.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;example.com&lt;/a&gt;</code>.
@@ -631,20 +639,20 @@ but now you are in a sidequest trying to figure out which CSS property centers y
 expertise, it will take a lot of learning to make a production-grade website. That&rsquo;s not a top priority 
 for everyone.</li>
 </ul>
-<p>Hugo allows you to treat content and layout into two distinct activities.</p>
+<p>This is the problem that Hugo aims to solve by allowing you to separate web design into 
+two activities: content writing and template writing.</p>
 <p>Content is written in <a href="https://commonmark.org" target="_blank" rel="noopener">markdown</a>, which conceptually is a condensed
 syntactic sugar for HTML. Markdown is very simple to understand and use.</p>
-<p>Hugo will turn those files into HTML by the rendering markdown 
-and inserting it into the layout templates written in a special templating language.</p>
-<h2 id="society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme users and Theme writers.</h2>
-<p>If you just want to use a nice theme you saw at the <a href="https://themes.gohugo.io/" target="_blank" rel="noopener">Hugo Themes Page</a>,
-you can start with the example site (every theme has one) and then use your intuition to add files
-and configurations. No knowledge of the templates or even Web Design is required, you&rsquo;ll just 
-write all your content in markdown, and browse the <a href="https://gohugo.io/content-management" target="_blank" rel="noopener">Content Management</a> part of the Docs and
-the documentation of the chosen theme every once in a while.</p>
-<p>But if you need to tinker with the themes or you want to write your own, 
-you will need to know about the underlying system.</p>
-<h2 id="hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure.</h2>
+<p>Hugo will turn those files into HTML and insert them it into the templates written in a 
+special templating language.</p>
+<h2 id="society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme Users and Theme Writers.</h2>
+<p>If you just want to use a nice theme from the <a href="https://themes.gohugo.io/" target="_blank" rel="noopener">Hugo Themes Page</a>,
+you can start with the example site - every theme has one - and then use your intuition to add files
+and configurations. No knowledge of the templates or even Web Design is required, all you need is 
+to write all your content in markdown and browse <a href="https://gohugo.io/content-management" target="_blank" rel="noopener">Content Management Docs</a> and
+the theme documentation every once in a while.</p>
+<p>But the day will come that you&rsquo;ll you need to tinker with the themes or write your own.</p>
+<h2 id="hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure</h2>
 <p>The top level of a Hugo project may have these:</p>
 
 
@@ -670,21 +678,21 @@ you will need to know about the underlying system.</p>
 </ul>
 
 </div>
-<p>Each one has a specific use. The config file (<code>/config.yaml,toml,json</code>) is mandatory<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, 
-and the rest directories are optional and added as needed.</p>
-<p><code>/public</code> is the default<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> output directory: it is created to store the generated files.
+<p>Each one has a specific use. A config file is mandatory<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, 
+and the rest directories are optional and added as needed. 
+The folders can be configured with different names, although this is not common.</p>
+<p><code>/public</code> is the default output directory: it is created to store the generated files.
 It stands on its own: you can upload just those files to the static server and forget that you ever used Hugo to create them.</p>
-<h2 id="content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown.</h2>
-<p>Any markdown <code>.md</code>[^8] file inside <code>/content</code> is called a <strong>content file</strong>. 
+<h2 id="bring-other-hugo-projects-into-your-own-with-modules">Bring other Hugo projects into your own with Modules</h2>
+<h2 id="content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown</h2>
+<p>Any markdown <code>.md</code> file inside <code>/content</code> is called a <strong>content file</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. 
 A corresponding page will rendered with the information contained in it.</p>
-<p>[^8] Files other than markdown can be used, including html, pandoc, etc.
-<a href="https://gohugo.io/content-management/formats/#list-of-content-formats" target="_blank" rel="noopener">See the list of content formats</a></p>
-<p>Content files start with a <strong>front matter</strong>, a section written YAML, JSON, or TOML that defines 
-metadata variables of the page. Typically title and date are defined, among others. 
+<p>Content files start with a part written YAML, JSON, or TOML that is called <strong>front matter</strong> and 
+defines metadata variables of the page. Typically title and date are defined, among others. 
 Markdown is used for the rest of the file.</p>
-<p>Front matter variables have different effects on the generated page. 
-Some are Hugo-specific, and some are Theme-specific. 
-A big part of working with Hugo is figuring out which variables to set to do what you want.</p>
+<p>Front matter variables have different effects on the generated page, some are Hugo-specific, 
+and some are theme-specific. 
+A big part of working with Hugo is figuring out which variables do what you want.</p>
 <p>The following three versions of <code>/content/hello-world.md</code> have the same effect. Notice the different delimiters for each format:</p>
 <ul>
 <li>YAML Front Matter
@@ -712,8 +720,8 @@ date = &quot;2021-01-13T11:00:00-03:00&quot;
 </code></pre>
 </li>
 </ul>
-<h2 id="the-generated-site-mirrors-the-structure-of-content">The generated site mirrors the structure of <code>/content</code></h2>
-<p>If <code>/content</code> looks like this:</p>
+<h2 id="the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></h2>
+<p>Suppose <code>/content</code> looks like this:</p>
 
 
 
@@ -753,7 +761,7 @@ date = &quot;2021-01-13T11:00:00-03:00&quot;
 </ul>
 
 </div>
-<p>The output has the same shape:</p>
+<p>Then output has a similar structure:</p>
 
 
 
@@ -817,7 +825,7 @@ date = &quot;2021-01-13T11:00:00-03:00&quot;
 </ul>
 
 </div>
-<p>And the final site will look like this once it&rsquo;s hosted:</p>
+<p>And the final site will have these URLs available once it&rsquo;s hosted:</p>
 <pre><code class="language-none">https://example.com/
 https://example.com/blog/
 https://example.com/blog/hello-world/
@@ -830,16 +838,14 @@ https://example.com/presentations/math/cuadratics/
 https://example.com/presentations/math/linearalgebra/
 </code></pre>
 <p>There&rsquo;s a clear correspondence between <code>/content</code> structure, output site, and URL structure.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
-<h2 id="any-subdir-of-content-that-has-an-_indexmd-is-a-section2">Any subdir of <code>/content</code> that has an &ldquo;_index.md&rdquo; is a <strong>section</strong><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></h2>
-<p>Thus in the previous example, <code>/</code>, <code>/blog</code>, <code>/presentations</code> and <code>/presentation/math</code>
-are <strong>sections</strong>.</p>
+<h2 id="sections-are-subdirs-of-content-that-have-an-_indexmd-2"><strong>Sections</strong> are subdirs of <code>/content</code> that have an <code>_index.md</code> <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></h2>
+<p>In the previous example the sections were <code>/</code>, <code>/blog</code>, <code>/presentations</code> and <code>/presentation/math</code>.</p>
 <p>All the pages under a section&rsquo;s directory are called its children. 
-The children of <code>presentations</code> are, for example, <code>why-hugo</code>, <code>why-go</code> and <code>math</code>. 
-This definition will become important later on.</p>
+This definition will become important later on.
+The children of <code>presentations</code> are, for example, <code>why-hugo</code>, <code>why-go</code> and <code>math</code>.</p>
 <p>Anything else is simply called a <strong>regular page</strong>.</p>
 <h2 id="layouts-contains-the-html-templates"><code>/layouts</code> contains the HTML templates.</h2>
-<p>Each page is rendered by inserting the variables and text from the content file into certain positions an HTML template. 
-Out of the many templates located in <code>/layouts</code>, a specific one is selected for each page using a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">wide set of rules</a>.</p>
+<p>Each content file is matched with a specific template from <code>layouts</code>, with a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">wide set of rules</a>.</p>
 <p>This is subset of rules I find convenient <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>:</p>
 <ul>
 <li>A regular page like <code>content/somepath/**/foo.md</code> will be rendered using <code>layouts/somepath/single.html</code></li>
@@ -883,18 +889,16 @@ This means that, for example, <code>## Hello</code> turns into <code>&lt;h2&gt; 
 <p>The dot stores &ldquo;the current context&rdquo;, in other words all the variables that 
 can be accessed from a given point in the program. That&rsquo;s why in the previous example
 <code>.Content</code> and <code>.Title</code> begin with a dot.</p>
-<p>The dot might change meaning along the code, if <em>&ldquo;the context is rebinded&rdquo;</em>. More on this later.</p>
+<p>Note that the context &ndash;and thus the dot&ndash; a might change along the code.</p>
 <h2 id="hugo-specific-variables-depend-on-front-matter-config-or-position">Hugo-specific variables depend on front matter, config, or position.</h2>
 <p><code>.Title</code> is an example of Hugo-specific front matter-defined variables.</p>
 <p>Some variables defined in the config can be accessed from any template (<em>global</em> variables). <code>.Site.Author</code>, for example, can be defined in <code>config.yaml</code> as <code>author: John Doe</code>.</p>
 <p>Some variables, such as <code>.Pages</code>, are related to the position of the file 
-in <code>/content</code>. 
-<code>.Pages</code> is available in section pages<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>; it&rsquo;s a slice<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> of page variables of all the children 
+in <code>/content</code>. It&rsquo;s available in section pages<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>; it&rsquo;s a slice<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> of the page variables of all the children 
 of the section.</p>
 <p>For reference: <a href="https://gohugo.io/variables/site" target="_blank" rel="noopener">List of Site Variables</a>, <a href="https://gohugo.io/variables/page" target="_blank" rel="noopener">List of Page Variables</a></p>
 <h2 id="list-all-the-pages-in-a-section-with-range-and-pages">List all the pages in a section with <code>range</code> and <code>.Pages</code></h2>
-<p>The <code>range</code> block is used to iterate over slices and dicts[^5].</p>
-<p>[5]: also known as <code>maps</code></p>
+<p>The <code>range</code> block is used to iterate over slices and dicts<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>.</p>
 <p>As an example, let&rsquo;s say that your website has a blog section at <code>www.example.com/blog</code>,
 and you want to list links to the posts so that the user can visit them.</p>
 <p>This is what your project looks like, including the template: 
@@ -954,8 +958,8 @@ Welcome to the blog! See the posts:
 <p>Inside the range block, the dot means &ldquo;the current iteration&rdquo;. 
 As a result, <code>.Title</code> doesn&rsquo;t mean &ldquo;the title of the current page&rdquo; as usual, but 
 instead means &ldquo;the title of the <strong>current iteration</strong> page&rdquo;. 
-This is called <em>rebinding</em> the context.<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
-<p>See the result at <code>/public/blog/index.html</code>:</p>
+This is called <strong>rebinding</strong> the context.<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
+<p>This is the result at <code>/public/blog/index.html</code>:</p>
 <pre><code class="language-html">&lt;html&gt;
 &lt;head&gt; 
 &lt;title&gt; Blog &lt;/title&gt;
@@ -972,7 +976,7 @@ Welcome to the blog! See the posts:
 &lt;ol&gt;
 &lt;/body&gt;
 </code></pre>
-<h2 id="non-hugo-specific-variables-are-accessed-via-params">Non-Hugo-specific variables are accessed via <code>.Params</code></h2>
+<h2 id="access-non-hugo-specific-variables-with-params">Access Non-Hugo-specific variables with <code>.Params</code></h2>
 <p>When you write a variable on the config or the front matter that <strong>doesn&rsquo;t</strong> have a special meaning to Hugo, you have access to it through the <code>.Params</code> dictionary.</p>
 <p>Here&rsquo;s an example for a front matter defined variable:</p>
 <pre><code>---
@@ -991,16 +995,16 @@ params:
 <p>Then in any template:</p>
 <pre><code class="language-go-html-template">&lt;p&gt; The value is: {{.Site.Params.my_custom_variable}} &lt;/p&gt;
 </code></pre>
-<h2 id="declare-a-template-variable-with--change-its-value-with-">Declare a template variable with <code>:=</code>, change its value with <code>=</code></h2>
+<h2 id="declare-a-template-variable-with----change-its-value-with---">Declare a template variable with <code>‎ := ‎</code>, change its value with <code>‎ = ‎</code></h2>
 <p>For convenience during template writing, you can declare internal variables with:</p>
 <pre><code class="language-go-template-html">{{ $a := &quot;hello&quot; }}
 {{ $a = &quot;HELLO&quot; }}
 {{ $a }}
 </code></pre>
-<p>In the first line, $a is declared and set to &ldquo;hello&rdquo;. Then, it changes its value to &ldquo;HELLO&rdquo;. Finally, it&rsquo;s printed on the template.</p>
+<p>In the first line, <code>$a</code> is declared and set to <code>&quot;hello&quot;</code>. Then, it changes its value to &ldquo;HELLO&rdquo;. Finally, it&rsquo;s printed on the template.</p>
 <h2 id="two-pitfalls-with-template-variables">Two pitfalls with template variables</h2>
-<p>It&rsquo;s an error to use <code>=</code> to a variable that hasn&rsquo;t been <code>:=</code>&rsquo;d before. 
-Another common error is to use <code>:=</code> twice for the same name in different contexts:</p>
+<p>It&rsquo;s an error to use <code>=</code> to a variable that hasn&rsquo;t been declared with <code>:=</code> before.</p>
+<p>Another common error is to accidentally define a variable twice in different contexts:</p>
 <pre><code class="language-go-template-html">{{ $a := 0 }}
 {{ range (slice 1 2 3) }}
   {{ $a := . }}
@@ -1008,37 +1012,56 @@ Another common error is to use <code>:=</code> twice for the same name in differ
 {{ end }}
 {{ a }}
 </code></pre>
-<p>The result here is 0, instead of the expected 3. The reason is that <code>$a</code> is declared in the normal context, and then another, <em>different</em> <code>$a</code> gets declared in the context of the range.
+<p>The result here is 0, instead of the expected 3. The reason is that <code>$a</code> is declared in the initial
+context, and then another, <em>different</em> <code>$a</code> gets declared in the context of the range.
 The third line should be changed to <code>$a = .</code></p>
-<p>It&rsquo;s difficult to understand when you start with Hugo, the difference is subtle and it&rsquo;s very difficult to search in the documentation. I just hope that you never run into this.</p>
-<h2 id="handling-missing-values-with-if-with-and-default">Handling missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
+<p>It&rsquo;s difficult to understand when you start with Hugo, the difference is subtle and
+it&rsquo;s very difficult to search in the documentation. I just hope that you never run into this.</p>
+<h2 id="handle-missing-values-with-if-with-and-default">Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
 <p>The previous example is a bit fragile, because the templates are called using many different content files. If <code>my_custom_variable</code> doesn&rsquo;t exist in one of them, the whole build fails.</p>
 <p>Here are three methods to avoid that:</p>
 <ul>
-<li><code>if</code>: This example is just to show how <code>if</code>-<code>else</code> works. For this it&rsquo;s sufficient to know that the <code>isset</code> function returns <code>true</code> or <code>false</code>. See <a href="%28https://gohugo.io/functions/isset%29">the documentation for <code>isset</code></a> if you want.
+<li><code>if</code>: This example is just to show how the <code>if</code> statement works. 
+For this it&rsquo;s sufficient to know that the <code>isset</code> function<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup> returns <code>true</code> or <code>false</code>.
 <pre><code class="language-go-template-html">{{ if (isset .Params &quot;my_custom_variable&quot;) }}
    &lt;p&gt; The value is: {{ .Param.my_custom_variable }} &lt;/p&gt;
 {{ end }}
 </code></pre>
 </li>
 <li><code>with</code>: The block is run if <code>.Params.my_custom_param</code> is set, and <strong>not</strong> run if it&rsquo;s
-missing. <code>with</code> rebinds the context: inside the block, the dot means &ldquo;the variable&rdquo;, in this case &ldquo;my_custom_param&rdquo;.
+missing. <code>with</code> rebinds the context: inside the block, the dot means &ldquo;the variable next to <code>with</code>&rdquo;, in this case <code>my_custom_param</code>.
 <pre><code class="language-go-template-html">{{ with .Params.my_custom_param }}
   &lt;p&gt; The value is: {{.}} &lt;/p&gt;
 {{ end }}
 </code></pre>
 </li>
-<li><a href="https://gohugo.io/functions/default/" target="_blank" rel="noopener"><code>default</code></a> : This is a very common idiom to set defaults.
-<pre><code class="language-go-template-html">{{ default &quot;a default value just in case&quot; .Param.my_custom_variable }}
+<li><a href="https://gohugo.io/functions/default/" target="_blank" rel="noopener"><code>default</code></a> : This is a very common function to set defaults. 
+If <code>.Param.my_custom_variable</code> doesn&rsquo;t exist, it takes the value of <code>&quot;a default value just in case&quot;</code>
+<pre><code class="language-go-template-html">{{ $variable := default &quot;a default value just in case&quot; .Param.my_custom_variable }}
+{{ $variable }}
 </code></pre>
 </li>
 </ul>
-<h2 id="as-usual-parenthesis-clarify-how-the-functions-are-applied">As usual, parenthesis clarify how the functions are applied.</h2>
-<p>If a long sequence of functions need to be applied, parenthesis are used to disambiguate the order</p>
-<pre><code class="language-go-template-html">{{ upper &quot;hello&quot; }}
+<h2 id="parenthesis-clarify-how-the-functions-are-applied">Parenthesis clarify how the functions are applied</h2>
+<p>If a long sequence of functions need to be applied, parenthesis are used to disambiguate 
+the order of application</p>
+<pre><code class="language-go-template-html">{{ markdownify (upper (emojify &quot;## hello :‎smiley:&quot;)) }}
 </code></pre>
-<h2 id="the-pipe-operator--can-save-us-many-parenthesis">The pipe operator <code>|</code> can save us many parenthesis.</h2>
-<p>As in unix, the pipe operator</p>
+<p>In this case:</p>
+<ol>
+<li><code>emojify</code> is applied to <code>&quot;## hello :‎smiley:&quot;</code> which results in <code>&quot;## hello 😀&quot;</code></li>
+<li><code>upper</code> is applied to <code>&quot;## hello 😀&quot;</code> which results in <code>&quot;## HELLO 😀&quot;</code></li>
+<li><code>markdownify</code> is applied to <code>&quot;## HELLO 😀&quot;</code>, which turns it into <code>&quot;&lt;h2&gt; HELLO 😀&lt;/h2&gt;&quot;</code></li>
+</ol>
+<h2 id="use-the-pipe-operator--to-save-some-parenthesis">Use the pipe operator <code>|</code> to save some parenthesis.</h2>
+<p>The pipe operator <code>|</code> is a syntactic sugar that passes the output from the left of the operator to 
+the function to the right of the operator the <strong>last argument</strong>.</p>
+<p>The previous example would be written as:</p>
+<pre><code class="language-go-template-html">{{ &quot;## hello 😃&quot; | emojify | upper | markdownify }}
+</code></pre>
+<p>The output is exactly the same. Notice that there are less parenthesis used.</p>
+<h2 id="partials-are-like-custom-functions-for-templates">Partials are like custom functions for templates</h2>
+<h2 id="shortcodes-are-like-custom-functions-for-markdown">Shortcodes are like custom functions for markdown</h2>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -1047,7 +1070,8 @@ missing. <code>with</code> rebinds the context: inside the block, the dot means 
 <a href="https://gohugo.io/getting-started/configuration/#configuration-directory" target="_blank" rel="noopener">Configuration Directory Documentation</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>the output directory can be changed using the <code>publishDir</code> configuration variable: in <code>config.yaml</code>: <code>publishDir: docs</code>. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Files other than markdown can be used, including html, pandoc, etc.
+<a href="https://gohugo.io/content-management/formats/#list-of-content-formats" target="_blank" rel="noopener">See the list of content formats</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
 <p>This is a general rule. You can force the URLs to be different, which you can see in 
@@ -1065,23 +1089,23 @@ Also, in this section I&rsquo;m also omitting that taxonomies can have a corresp
 but those are not considered sections. In the end, the logic is almost the same. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p>Many other structures are possible, it&rsquo;s a matter of preference. 
-The one I chose to is the easiest to learn. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>There are many other ways to organize templates. It&rsquo;s a matter of preference. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>And in taxonomy terms, taxonomy list, homepage and RSS pages. 
+<p><code>.Pages</code> is also available in taxonomy terms, taxonomy list, homepage and RSS pages. 
 See <a href="https://gohugo.io/templates/lists/" target="_blank" rel="noopener">documentation on lists of content</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p>also known as &ldquo;array&rdquo; on other languages <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>slices are known as &ldquo;array&rdquo; in other languages <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<ol start="2">
-<li>When the context has been rebinded, you lose access to all the Page variables and so on.
-In case you need them, then use the <code>$</code>. It&rsquo;s a variable that is set to the initial value of 
-the dot. Here&rsquo;s how it looks: <code>{{$.Site.Title}}</code>. See <a href="https://gohugo.io/templates/introduction/#2-use--to-access-the-global-context" target="_blank" rel="noopener">Use $ to access the global context</a></li>
-</ol>
- <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+<p>also known as <code>maps</code> <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9" role="doc-endnote">
+<p>When the context has been rebinded, you lose access to all the Page variables.
+In case you need them within the range, use the variable <code>$</code>. It&rsquo;s set to the initial value of 
+the dot. Here&rsquo;s how it looks: <code>{{$.Site.Title}}</code>. See <a href="https://gohugo.io/templates/introduction/#2-use--to-access-the-global-context" target="_blank" rel="noopener">Use $ to access the global context</a> <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </section>
 
