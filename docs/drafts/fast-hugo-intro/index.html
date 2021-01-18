@@ -717,17 +717,20 @@ if they were your own. Note that only these folders are merged: <code>archetypes
 <code>assets</code>, <code>content</code>, <code>data</code>, <code>i18n</code>, <code>layouts</code>, <code>static</code>.</p>
 <p>The advantages of doing this:</p>
 <ul>
-<li>You can update easily with the command <code>hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke</code></li>
-<li>Your files override the other project&rsquo;s file when they have the same name, which allows you
-to tinker around.</li>
+<li>You can update easily with the command
+<pre><code class="language-console">hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
+</code></pre>
+</li>
+<li>When two files are in conflict (have the same path and name) your files are used. 
+You can always override a theme file with one of your own.</li>
 <li>You can <a href="https://gohugo.io/hugo-modules/configuration/#module-config-mounts" target="_blank" rel="noopener">mount specific directories</a> instead of the whole project.[^14]</li>
 </ul>
 <h2 id="content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown</h2>
 <p>Any markdown <code>.md</code> file inside <code>/content</code> is called a <strong>content file</strong><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>. 
 A corresponding page will rendered with the information contained in it.</p>
-<p>Content files start with a part written YAML, JSON, or TOML that is called <strong>front matter</strong> and 
-defines metadata variables of the page. Typically title and date are defined, among others. 
-Markdown is used for the rest of the file.</p>
+<p>Content files start with metadata variables defined in YAML, JSON, or TOML. This part of the file
+is called <strong>front matter</strong>. Typical variables are title and date, among others. 
+The rest of the file is in markdown.</p>
 <p>Front matter variables have different effects on the generated page, some are Hugo-specific, 
 and some are theme-specific. 
 A big part of working with Hugo is figuring out which variables do what you want.</p>
@@ -762,7 +765,13 @@ In this article, I will...
 </li>
 </ul>
 <h2 id="shortcodes-extend-markdown">Shortcodes extend markdown</h2>
-<p>Markdown falls short in some aspects.</p>
+<p>Markdown falls short in some aspects. Some page elements like galleries, or iframes can&rsquo;t
+be conveniently represented.</p>
+<p>While the specification of markdown says that pure <code>HTML</code> is valid, Hugo skips it for safety
+reasons. In practice this means that if you write &ldquo;<h2> Hello </h2>&rdquo; in a content file, you&rsquo;ll get
+<code>&lt;!-- raw HTML omitted --&gt;</code>
+See <a href="https://gohugo.io/getting-started/configuration-markup#goldmark" target="_blank" rel="noopener">Configure Markup</a> 
+if you want to enable it.</p>
 <h2 id="the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></h2>
 <p>Suppose <code>/content</code> looks like this:</p>
 

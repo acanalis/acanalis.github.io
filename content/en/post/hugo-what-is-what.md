@@ -152,9 +152,12 @@ if they were your own. Note that only these folders are merged: `archetypes`,
 `assets`, `content`, `data`, `i18n`, `layouts`, `static`. 
 
 The advantages of doing this:
-  * You can update easily with the command `hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke`
-  * Your files override the other project's file when they have the same name, which allows you
-    to tinker around.
+  * You can update easily with the command 
+    ```console
+    hugo mod get -u github.com/theNewDynamic/gohugo-theme-ananke
+    ```
+  * When two files are in conflict (have the same path and name) your files are used. 
+    You can always override a theme file with one of your own.
   * You can [mount specific directories](https://gohugo.io/hugo-modules/configuration/#module-config-mounts) instead of the whole project.[^14]
   
 ## Content files are "front matter" + markdown
@@ -165,9 +168,9 @@ A corresponding page will rendered with the information contained in it.
 [^8]: Files other than markdown can be used, including html, pandoc, etc.
   [See the list of content formats](https://gohugo.io/content-management/formats/#list-of-content-formats)
 
-Content files start with a part written YAML, JSON, or TOML that is called **front matter** and 
-defines metadata variables of the page. Typically title and date are defined, among others. 
-Markdown is used for the rest of the file.
+Content files start with metadata variables defined in YAML, JSON, or TOML. This part of the file
+is called **front matter**. Typical variables are title and date, among others. 
+The rest of the file is in markdown.
 
 Front matter variables have different effects on the generated page, some are Hugo-specific, 
 and some are theme-specific. 
@@ -205,8 +208,58 @@ The following three versions of `/content/hello-world.md` have the same effect. 
 
 ## Shortcodes extend markdown
 
-Markdown falls short in some aspects.
+Markdown falls short in some aspects. Some page elements like galleries, or iframes can't
+be conveniently represented. 
 
+While the specification of markdown says that pure `HTML` is valid, Hugo skips it for safety
+reasons. If you write `<h2> Hello </h2>` in a content file, you'll get
+`<!-- raw HTML omitted -->` at the generated file. You can 
+ [configure markup](https://gohugo.io/getting-started/configuration-markup#goldmark)
+to make it "unsafe" and then add all the elements you need. 
+
+But this isn't ideal because the we were writing markdown was to avoid plain HTML in the first place. 
+
+A better option is to use **shortcodes**: functions you can call from the content files 
+that insert HTML into the page.  
+
+Hugo comes with many built-in shortcodes and you can define your own. 
+A shortcode definition is a template written in the same templating language as everything else. 
+Here's an example using the built-in `youtube` shortcode:
+
+```yaml
+---
+title: Hello
+date: 2021-01-13T11:00:00-03:00
+---
+## Hello World!
+
+Before we start, see this video:
+
+{‎{< youtube w7Ft2ymGmfc >}‎}
+
+```
+
+Upon finding that line Hugo runs the shortcode template and produces the typical 
+embedded code for Youtube videos: 
+
+```html
+<!--...-->
+<p>Before we start, see this video:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/w7Ft2ymGmfc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+<!--...-->
+```
+
+Many details can be mentioned like named/unnamed parameters, markdown/raw string inner paramenter, self-closing, 
+ect, but for the purpose of this article is enough to know that markdown can be extended to make 
+the user experience of content writing much easier.
+
+For reference, the documentation on shortcodes is split in three pages: 
+* [Shortcodes - Content management](https://gohugo.io/content-management/shortcodes/) for shortcode users
+* [Shortcodes - Templates](https://gohugo.io/templates/shortcode-templates/) for shortcode writers
+* [Shortcode - Variables](https://gohugo.io/variables/shortcodes/) for shortcode writers as well. 
 
 ## The generated site has the structure of `/content`
 
@@ -280,7 +333,7 @@ There's a clear correspondence between `/content` structure, output site, and UR
 
 # Info for Theme Writers 
 
-## **Sections** are subdirs of `/content` that have an `_index.md` [^2]
+## Sections are subdirs of `/content` that have an `_index.md` [^2]
 
 [^2]: In reality, the first level children of `/content` are always sections, regardless of whether
   they have `_index.md` or not. See the [Docs for Sections](https://gohugo.io/content-management/sections). 
