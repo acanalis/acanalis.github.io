@@ -208,7 +208,7 @@ The following three versions of `/content/hello-world.md` have the same effect. 
 
 ## Shortcodes extend markdown
 
-Markdown falls short in some aspects. Some page elements like galleries, or iframes can't
+Markdown falls short in some aspects. Some page elements like galleries or iframes can't
 be conveniently represented. 
 
 While the specification of markdown says that pure `HTML` is valid, Hugo skips it for safety
@@ -219,11 +219,9 @@ to make it "unsafe" and then add all the elements you need.
 
 But this isn't ideal because the we were writing markdown was to avoid plain HTML in the first place. 
 
-A better option is to use **shortcodes**: functions you can call from the content files 
+A friendlier option is to use **shortcodes**: functions you can call from the content files 
 that insert HTML into the page.  
 
-Hugo comes with many built-in shortcodes and you can define your own. 
-A shortcode definition is a template written in the same templating language as everything else. 
 Here's an example using the built-in `youtube` shortcode:
 
 ```yaml
@@ -239,25 +237,48 @@ Before we start, see this video:
 
 ```
 
-Upon finding that line Hugo runs the shortcode template and produces the typical 
+Upon finding that shortcode call Hugo runs the template and produces the typical 
 embedded code for Youtube videos: 
 
 ```html
-<!--...-->
 <p>Before we start, see this video:</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/w7Ft2ymGmfc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
-<!--...-->
 ```
+Some shortcodes are called differently:
+* with named parameters
+  ```none
+  {‎{< youtube id="w7Ft2ymGmfc" autoplay="true" >}‎}
+  ```
+* raw string parameter
+  ```none
+  {‎{<  myshortcode `This is some <b>HTML</b>,
+  and a new line with a "quoted string".` >}‎}
+  ```
+* enclosing text, result is inserted into page directly
+  ```none
+  {‎{< highlight go >}‎} A bunch of code here {‎{< /highlight >}‎}
+  ```
+* enclosing text, result is inserted to content file, and then gets rendered as markdown.
+  ```none
+  {‎{% mdshortcode %}‎} Stuff to `process` in the *center*. {‎{% /mdshortcode %}‎}
+  ```
+* self-closing (the following are equivalent)
+  ```none
+  {‎{< highlight >}‎}{‎{</ highlight >}‎}
+  {‎{< highlight />}‎}
+  ``` 
 
-Many details can be mentioned like named/unnamed parameters, markdown/raw string inner paramenter, self-closing, 
-ect, but for the purpose of this article is enough to know that markdown can be extended to make 
-the user experience of content writing much easier.
+The documentation of each shortcode will specify which are the appropriate ways of calling it. 
 
-For reference, the documentation on shortcodes is split in three pages: 
-* [Shortcodes - Content management](https://gohugo.io/content-management/shortcodes/) for shortcode users
+Hugo comes with many built-in shortcodes and you can define your own by adding templates 
+to `/layouts/shortcodes`. 
+
+For reference: 
+* [Shortcodes - Content management](https://gohugo.io/content-management/shortcodes/) 
+  for shortcode users. Includes complete list of built-in shortcodes.
 * [Shortcodes - Templates](https://gohugo.io/templates/shortcode-templates/) for shortcode writers
 * [Shortcode - Variables](https://gohugo.io/variables/shortcodes/) for shortcode writers as well. 
 
@@ -335,29 +356,28 @@ There's a clear correspondence between `/content` structure, output site, and UR
 
 ## Sections are subdirs of `/content` that have an `_index.md` [^2]
 
-[^2]: In reality, the first level children of `/content` are always sections, regardless of whether
-  they have `_index.md` or not. See the [Docs for Sections](https://gohugo.io/content-management/sections). 
-  Also, in this section I'm also omitting that taxonomies can have a corresponding `_index.md`, 
-  but those are not considered sections. In the end, the logic is almost the same.
+[^2]: As a special case, the first level children of `/content` are always sections. See the [Docs for Sections](https://gohugo.io/content-management/sections). 
+  Also, in this section I'm omitting that taxonomy lists and terms have a corresponding `_index.md`, 
+  but those are not considered sections. 
 
-In the previous example the sections were `/`, `/blog`, `/presentations` and `/presentation/math`.
+In the previous example `/`, `/blog`, `/presentations` and `/presentation/math` were sections.
 
-All the pages under a section's directory are called its children. 
-This definition will become important later on.
+All the pages under a section's directory (including other sections) are called its children. 
 The children of `presentations` are, for example, `why-hugo`, `why-go` and `math`. 
+This definition will become important later on.
 
-Anything else is simply called a **regular page**.
+Non-section pages are simply called a **regular pages**.
 
 ## `/layouts` contains the HTML templates.
-Each content file is matched with a specific template from `layouts`, with a [wide set of rules](https://gohugo.io/templates/lookup-order). 
+Each content file is matched with a specific template from `layouts`, with a [set of rules](https://gohugo.io/templates/lookup-order). 
 
-This is subset of rules I find convenient [^9]:
+This is a subset of rules I find convenient [^9]:
 
 * A regular page like `content/somepath/**/foo.md` will be rendered using `layouts/somepath/single.html`
 * A section page like `content/somepath/**/_index.md` will be rendered using `layouts/somepath/list.html`.  
 * `layouts/_default/single.html` and `layouts/_default/list.html` are used if the others are missing.
 
-[^9]: There are many other ways to organize templates. It's a matter of preference. 
+[^9]: There are many other ways to organize templates, see [Template Lookup Order](https://gohugo.io/templates/lookup-order). It's a matter of preference. 
 
 ## Templates are `HTML` sprinkled with `{{...}}`
 

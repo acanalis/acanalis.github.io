@@ -20,9 +20,9 @@ markup:
   highlight: 
     codeFences: false  
   tableOfContents:
-    startLevel : 2
-    endLevel : 3
-
+    startLevel : 1
+    ordered: true
+    endLevel : 2
 
 defaultContentLanguage: en
 languages: 

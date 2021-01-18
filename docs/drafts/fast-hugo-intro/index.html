@@ -531,7 +531,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    14 min read
+    16 min read
   </span>
   
 
@@ -586,36 +586,42 @@ Visit <a href="https://gohugo.io/documentation" target="_blank" rel="noopener">H
 <details class="toc-inpage d-print-none  " open>
   <summary class="font-weight-bold">Table of Contents</summary>
   <nav id="TableOfContents">
-  <ul>
-    <li><a href="#hugo-is-a-static-site-generator">Hugo is a static site generator</a></li>
-    <li><a href="#hugo-is-a-cli-program">Hugo is a CLI program</a></li>
-    <li><a href="#hugos-separates-content-from-layouts">Hugo&rsquo;s separates content from layouts</a></li>
-    <li><a href="#society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme Users and Theme Writers.</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure</a></li>
-    <li><a href="#merge-other-hugo-projects-to-yours-with-modules">Merge other Hugo projects to yours with Modules</a></li>
-    <li><a href="#content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown</a></li>
-    <li><a href="#shortcodes-extend-markdown">Shortcodes extend markdown</a></li>
-    <li><a href="#the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#sections-are-subdirs-of-content-that-have-an-_indexmd-2"><strong>Sections</strong> are subdirs of <code>/content</code> that have an <code>_index.md</code> </a></li>
-    <li><a href="#layouts-contains-the-html-templates"><code>/layouts</code> contains the HTML templates.</a></li>
-    <li><a href="#templates-are-html-sprinkled-with-">Templates are <code>HTML</code> sprinkled with <code>{{...}}</code></a></li>
-    <li><a href="#the-dot-contains-the-available-variables">The dot contains the available variables</a></li>
-    <li><a href="#hugo-specific-variables-depend-on-front-matter-config-or-position">Hugo-specific variables depend on front matter, config, or position.</a></li>
-    <li><a href="#list-all-the-pages-in-a-section-with-range-and-pages">List all the pages in a section with <code>range</code> and <code>.Pages</code></a></li>
-    <li><a href="#access-non-hugo-specific-variables-with-params">Access Non-Hugo-specific variables with <code>.Params</code></a></li>
-    <li><a href="#declare-a-template-variable-with----change-its-value-with---">Declare a template variable with <code>‎ := ‎</code>, change its value with <code>‎ = ‎</code></a></li>
-    <li><a href="#two-pitfalls-with-template-variables">Two pitfalls with template variables</a></li>
-    <li><a href="#handle-missing-values-with-if-with-and-default">Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
-    <li><a href="#parenthesis-clarify-how-the-functions-are-applied">Parenthesis clarify how the functions are applied</a></li>
-    <li><a href="#use-the-pipe-operator--to-save-some-parenthesis">Use the pipe operator <code>|</code> to save some parenthesis.</a></li>
-    <li><a href="#partials-are-like-custom-functions-for-templates">Partials are like custom functions for templates</a></li>
-  </ul>
+  <ol>
+    <li><a href="#info-for-everyone">Info for Everyone</a>
+      <ol>
+        <li><a href="#hugo-is-a-static-site-generator">Hugo is a static site generator</a></li>
+        <li><a href="#hugo-is-a-cli-program">Hugo is a CLI program</a></li>
+        <li><a href="#hugos-separates-content-from-layouts">Hugo&rsquo;s separates content from layouts</a></li>
+        <li><a href="#society-is-divided-into-theme-users-and-theme-writers">Society is divided into Theme Users and Theme Writers.</a></li>
+      </ol>
+    </li>
+    <li><a href="#info-for-theme-users">Info for Theme Users</a>
+      <ol>
+        <li><a href="#hugo-projects-have-a-definite-directory-structure">Hugo projects have a definite directory structure</a></li>
+        <li><a href="#merge-other-hugo-projects-to-yours-with-modules">Merge other Hugo projects to yours with Modules</a></li>
+        <li><a href="#content-files-are-front-matter--markdown">Content files are &ldquo;front matter&rdquo; + markdown</a></li>
+        <li><a href="#shortcodes-extend-markdown">Shortcodes extend markdown</a></li>
+        <li><a href="#the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></a></li>
+      </ol>
+    </li>
+    <li><a href="#info-for-theme-writers">Info for Theme Writers</a>
+      <ol>
+        <li><a href="#sections-are-subdirs-of-content-that-have-an-_indexmd-2">Sections are subdirs of <code>/content</code> that have an <code>_index.md</code> </a></li>
+        <li><a href="#layouts-contains-the-html-templates"><code>/layouts</code> contains the HTML templates.</a></li>
+        <li><a href="#templates-are-html-sprinkled-with-">Templates are <code>HTML</code> sprinkled with <code>{{...}}</code></a></li>
+        <li><a href="#the-dot-contains-the-available-variables">The dot contains the available variables</a></li>
+        <li><a href="#hugo-specific-variables-depend-on-front-matter-config-or-position">Hugo-specific variables depend on front matter, config, or position.</a></li>
+        <li><a href="#list-all-the-pages-in-a-section-with-range-and-pages">List all the pages in a section with <code>range</code> and <code>.Pages</code></a></li>
+        <li><a href="#access-non-hugo-specific-variables-with-params">Access Non-Hugo-specific variables with <code>.Params</code></a></li>
+        <li><a href="#declare-a-template-variable-with----change-its-value-with---">Declare a template variable with <code>‎ := ‎</code>, change its value with <code>‎ = ‎</code></a></li>
+        <li><a href="#two-pitfalls-with-template-variables">Two pitfalls with template variables</a></li>
+        <li><a href="#handle-missing-values-with-if-with-and-default">Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
+        <li><a href="#parenthesis-clarify-how-the-functions-are-applied">Parenthesis clarify how the functions are applied</a></li>
+        <li><a href="#use-the-pipe-operator--to-save-some-parenthesis">Use the pipe operator <code>|</code> to save some parenthesis.</a></li>
+        <li><a href="#partials-are-like-custom-functions-for-templates">Partials are like custom functions for templates</a></li>
+      </ol>
+    </li>
+  </ol>
 </nav>
 </details>
 
@@ -765,13 +771,71 @@ In this article, I will...
 </li>
 </ul>
 <h2 id="shortcodes-extend-markdown">Shortcodes extend markdown</h2>
-<p>Markdown falls short in some aspects. Some page elements like galleries, or iframes can&rsquo;t
+<p>Markdown falls short in some aspects. Some page elements like galleries or iframes can&rsquo;t
 be conveniently represented.</p>
 <p>While the specification of markdown says that pure <code>HTML</code> is valid, Hugo skips it for safety
-reasons. In practice this means that if you write &ldquo;<h2> Hello </h2>&rdquo; in a content file, you&rsquo;ll get
-<code>&lt;!-- raw HTML omitted --&gt;</code>
-See <a href="https://gohugo.io/getting-started/configuration-markup#goldmark" target="_blank" rel="noopener">Configure Markup</a> 
-if you want to enable it.</p>
+reasons. If you write <code>&lt;h2&gt; Hello &lt;/h2&gt;</code> in a content file, you&rsquo;ll get
+<code>&lt;!-- raw HTML omitted --&gt;</code> at the generated file. You can 
+<a href="https://gohugo.io/getting-started/configuration-markup#goldmark" target="_blank" rel="noopener">configure markup</a>
+to make it &ldquo;unsafe&rdquo; and then add all the elements you need.</p>
+<p>But this isn&rsquo;t ideal because the we were writing markdown was to avoid plain HTML in the first place.</p>
+<p>A friendlier option is to use <strong>shortcodes</strong>: functions you can call from the content files 
+that insert HTML into the page.</p>
+<p>Here&rsquo;s an example using the built-in <code>youtube</code> shortcode:</p>
+<pre><code class="language-yaml">---
+title: Hello
+date: 2021-01-13T11:00:00-03:00
+---
+## Hello World!
+
+Before we start, see this video:
+
+{‎{&lt; youtube w7Ft2ymGmfc &gt;}‎}
+
+</code></pre>
+<p>Upon finding that shortcode call Hugo runs the template and produces the typical 
+embedded code for Youtube videos:</p>
+<pre><code class="language-html">&lt;p&gt;Before we start, see this video:&lt;/p&gt;
+
+&lt;div style=&quot;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/w7Ft2ymGmfc&quot; style=&quot;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&quot; allowfullscreen title=&quot;YouTube Video&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Some shortcodes are called differently:</p>
+<ul>
+<li>with named parameters
+<pre><code class="language-none">{‎{&lt; youtube id=&quot;w7Ft2ymGmfc&quot; autoplay=&quot;true&quot; &gt;}‎}
+</code></pre>
+</li>
+<li>raw string parameter
+<pre><code class="language-none">{‎{&lt;  myshortcode `This is some &lt;b&gt;HTML&lt;/b&gt;,
+and a new line with a &quot;quoted string&quot;.` &gt;}‎}
+</code></pre>
+</li>
+<li>enclosing text, result is inserted into page directly
+<pre><code class="language-none">{‎{&lt; highlight go &gt;}‎} A bunch of code here {‎{&lt; /highlight &gt;}‎}
+</code></pre>
+</li>
+<li>enclosing text, result is inserted to content file, and then gets rendered as markdown.
+<pre><code class="language-none">{‎{% mdshortcode %}‎} Stuff to `process` in the *center*. {‎{% /mdshortcode %}‎}
+</code></pre>
+</li>
+<li>self-closing (the following are equivalent)
+<pre><code class="language-none">{‎{&lt; highlight &gt;}‎}{‎{&lt;/ highlight &gt;}‎}
+{‎{&lt; highlight /&gt;}‎}
+</code></pre>
+</li>
+</ul>
+<p>The documentation of each shortcode will specify which are the appropriate ways of calling it.</p>
+<p>Hugo comes with many built-in shortcodes and you can define your own by adding templates 
+to <code>/layouts/shortcodes</code>.</p>
+<p>For reference:</p>
+<ul>
+<li><a href="https://gohugo.io/content-management/shortcodes/" target="_blank" rel="noopener">Shortcodes - Content management</a> 
+for shortcode users. Includes complete list of built-in shortcodes.</li>
+<li><a href="https://gohugo.io/templates/shortcode-templates/" target="_blank" rel="noopener">Shortcodes - Templates</a> for shortcode writers</li>
+<li><a href="https://gohugo.io/variables/shortcodes/" target="_blank" rel="noopener">Shortcode - Variables</a> for shortcode writers as well.</li>
+</ul>
 <h2 id="the-generated-site-has-the-structure-of-content">The generated site has the structure of <code>/content</code></h2>
 <p>Suppose <code>/content</code> looks like this:</p>
 
@@ -891,15 +955,15 @@ https://example.com/presentations/math/linearalgebra/
 </code></pre>
 <p>There&rsquo;s a clear correspondence between <code>/content</code> structure, output site, and URL structure.<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <h1 id="info-for-theme-writers">Info for Theme Writers</h1>
-<h2 id="sections-are-subdirs-of-content-that-have-an-_indexmd-2"><strong>Sections</strong> are subdirs of <code>/content</code> that have an <code>_index.md</code> <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></h2>
-<p>In the previous example the sections were <code>/</code>, <code>/blog</code>, <code>/presentations</code> and <code>/presentation/math</code>.</p>
-<p>All the pages under a section&rsquo;s directory are called its children. 
-This definition will become important later on.
-The children of <code>presentations</code> are, for example, <code>why-hugo</code>, <code>why-go</code> and <code>math</code>.</p>
-<p>Anything else is simply called a <strong>regular page</strong>.</p>
+<h2 id="sections-are-subdirs-of-content-that-have-an-_indexmd-2">Sections are subdirs of <code>/content</code> that have an <code>_index.md</code> <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></h2>
+<p>In the previous example <code>/</code>, <code>/blog</code>, <code>/presentations</code> and <code>/presentation/math</code> were sections.</p>
+<p>All the pages under a section&rsquo;s directory (including other sections) are called its children. 
+The children of <code>presentations</code> are, for example, <code>why-hugo</code>, <code>why-go</code> and <code>math</code>. 
+This definition will become important later on.</p>
+<p>Non-section pages are simply called a <strong>regular pages</strong>.</p>
 <h2 id="layouts-contains-the-html-templates"><code>/layouts</code> contains the HTML templates.</h2>
-<p>Each content file is matched with a specific template from <code>layouts</code>, with a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">wide set of rules</a>.</p>
-<p>This is subset of rules I find convenient <sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>:</p>
+<p>Each content file is matched with a specific template from <code>layouts</code>, with a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">set of rules</a>.</p>
+<p>This is a subset of rules I find convenient <sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>:</p>
 <ul>
 <li>A regular page like <code>content/somepath/**/foo.md</code> will be rendered using <code>layouts/somepath/single.html</code></li>
 <li>A section page like <code>content/somepath/**/_index.md</code> will be rendered using <code>layouts/somepath/list.html</code>.</li>
@@ -1147,13 +1211,12 @@ which allows you to divide each page on a separate directory where
 you can also keep the images and resources specific to that page. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p>In reality, the first level children of <code>/content</code> are always sections, regardless of whether
-they have <code>_index.md</code> or not. See the <a href="https://gohugo.io/content-management/sections" target="_blank" rel="noopener">Docs for Sections</a>. 
-Also, in this section I&rsquo;m also omitting that taxonomies can have a corresponding <code>_index.md</code>, 
-but those are not considered sections. In the end, the logic is almost the same. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>As a special case, the first level children of <code>/content</code> are always sections. See the <a href="https://gohugo.io/content-management/sections" target="_blank" rel="noopener">Docs for Sections</a>. 
+Also, in this section I&rsquo;m omitting that taxonomy lists and terms have a corresponding <code>_index.md</code>, 
+but those are not considered sections. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<p>There are many other ways to organize templates. It&rsquo;s a matter of preference. <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>There are many other ways to organize templates, see <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">Template Lookup Order</a>. It&rsquo;s a matter of preference. <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:9" role="doc-endnote">
 <p><code>.Pages</code> is also available in taxonomy terms, taxonomy list, homepage and RSS pages. 
