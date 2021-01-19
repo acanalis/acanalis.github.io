@@ -1,6 +1,6 @@
 ---
-title: Hugo What is What
-subtitle: Fundamentals of Hugo
+title: Concepts of Hugo
+subtitle: a what-is-what introduction
 date: 2021-01-13T11:00:00-03:00
 _build:
   list: never
@@ -20,7 +20,7 @@ The Hugo Docs, while very precise, don't provide a learning order. Tutorials
 usually are written to achieve a certain goal (_how to do X with Hugo_) but don't go into 
 depth on how Hugo works. 
 
-This article is an attempt to give beginners a "what is what" introduction to Hugo that seems to 
+This article is an attempt to give beginners the "what is what" introduction to Hugo that seems to 
 be missing. The objective is to explain 90% of how Hugo works in 25 key points, with the hope of
 making the rest of the learning experience easier.
 
@@ -42,10 +42,12 @@ Interaction is possible, but using JavaScript on the client-side.
 ## 1.2. Hugo is a CLI program
 Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash). 
  
-After you [install Hugo](https://gohugo.io/getting-started/installing/)
-you can run `hugo`, or `hugo server`, the two most important commands. If there's a 
-valid Hugo project in the current directory, `hugo` will generate the site, and `hugo server`
-will host it on a local server so that you can see it in your browser. 
+See [Install Hugo Docs](https://gohugo.io/getting-started/installing/).
+
+The two most important commands are `hugo`, and `hugo server`. 
+If there's a valid Hugo project in the current directory, 
+`hugo` will generate the site, and 
+`hugo server` will host it on a local server so that you can see it in your browser. 
 
 The `-h` flag displays help for any given command.
 
@@ -68,11 +70,11 @@ For many reasons this is inconvenient:
 Hugo makes This is the problem that Hugo aims to solve by allowing you to separate web design into 
 two activities: content writing and template writing.
 
-Content is written in [markdown](https://commonmark.org), which conceptually is a condensed
+Content is written in [markdown](https://commonmark.org), which conceptually is a
 syntactic sugar for HTML. Markdown is very easy to use. 
 
-Templates are written in a special templating language, and Hugo will use them 
-to turn your content files into the HTML your static site needs. 
+Templates are written in a special templating language. Hugo generates the site by 
+inserting the data from your content files into those templates. 
 
 ## 1.4. Society is divided into Theme Users and Theme Writers. 
 
@@ -110,7 +112,7 @@ A config file is mandatory[^1], and the rest directories are optional and added 
 [^15]: The folders can be configured to have dferent names, although this is not common.
 
 [^1]: This isn't 100% true. The configs can be set at `/config` as pointed out in the
-  [Configuration Directory Documentation](https://gohugo.io/getting-started/configuration/#configuration-directory).
+  [Configuration Directory Docs](https://gohugo.io/getting-started/configuration/#configuration-directory).
 
 `/public` is created to store the generated files.
 The files stands on their own: you can upload them to the static server and forget 
@@ -130,7 +132,7 @@ But a cleaner method, more maintainable method is to:
 [^13]: If you **do** expect people to import your project then put the path that everyone
   will use to import your project. This is how it would look like: 
   `hugo mod init github.com/johndoe/my_module_project`. 
-  See [Documentation on Using Modules](https://gohugo.io/hugo-modules/use-modules/) 
+  See [Using Modules Docs](https://gohugo.io/hugo-modules/use-modules/) 
 
 1. Run the command `hugo mod init path/to/your/project` which will initialize your project as a Hugo Module. If you don't 
   intend people to import your project, then `path/to/your/project` doesn't matter, you can put a `_`
@@ -289,7 +291,7 @@ Suppose `/content` looks like this:
   * \d blog
     * \f _index.md
     * \f hello-world.md
-    * \f bye-world.md
+    * \f see-you-later-world.md
   * \d presentations
     * \f _index.md
     * \f why-hugo.md
@@ -297,7 +299,7 @@ Suppose `/content` looks like this:
     * \d math
       * \f _index.md
       * \f cuadratics.md
-      * \f linearalgebra.md
+      * \f linear-algebra.md
 {{%/ dir %}}
 
 Then output has a similar structure:
@@ -309,7 +311,7 @@ Then output has a similar structure:
     * \f index.html
     * \d hello-world
       * \f index.html
-    * \d bye-world
+    * \d see-you-later-world
       * \f index.html
   * \d presentations
     * \f index.html
@@ -321,7 +323,7 @@ Then output has a similar structure:
       * \f index.html
       * \d cuadratics
         * \f index.html
-      * \d linearalgebra
+      * \d linear-algebra
         * \f index.html
 {{%/ dir %}}
 
@@ -331,27 +333,53 @@ And the final site will have these URLs available once it's hosted:
 https://example.com/
 https://example.com/blog/
 https://example.com/blog/hello-world/
-https://example.com/blog/bye-world/
+https://example.com/blog/see-you-later-world/
 https://example.com/presentations/
 https://example.com/presentations/why-hugo/
 https://example.com/presentations/why-go/
 https://example.com/presentations/math/
 https://example.com/presentations/math/cuadratics/
-https://example.com/presentations/math/linearalgebra/
+https://example.com/presentations/math/linear-algebra/
 ```
 There's a clear correspondence between `/content` structure, output site, and URL structure.[^7]
 
 [^7]: This is a general rule. You can force the URLs to be different, which you can see in 
-  [the documentation of URL Management](https://gohugo.io/content-management/urls/). 
+  [URL Management Docs](https://gohugo.io/content-management/urls/). 
   Also, the pages don't need to be contained in a single `.md`. 
   There's another way to organize content files called 
   [Page Bundles](https://gohugo.io/content-management/page-bundles/) 
   which allows you to divide each page on a separate directory where 
   you can also keep the images and resources specific to that page.
 
+## 2.6. Pages are list pages or regular pages
+
+Knowing these definitions will make it easier to navigate the documentation.
+
+**List pages** are pages that _contain_ other pages and define the hierarchy of the site. 
+The pages inside a list page are called its **children**.
+
+In the previous example: `presentations` is a list page with children `presentations/why-hugo`,
+`presentations/why-go`, and `presentations/math`.
+
+The content of a list page is defined by its corresponding `_index.md`. See [Lists of Content Docs](https://gohugo.io/templates/lists/)
+
+**Sections**, a special case of list pages, are subdirs of `/content` that have an `_index.md`.[^2]
+
+The children of a section are the pages under the section's directory, including other sections.
+In the previous example: `blog`, `presentations` and `presentation/math` are sections.
+
+[^2]: As a special case, the first level children of `/content` are always sections. 
+See [Sections Docs](https://gohugo.io/content-management/sections).
+
+**Regular pages** are pages that can never have children.
+
+In the previous example: `/hello-world`, `/see-you-later-world`,
+`presentations/why-go`, `presentations/why-hugo`, `presentations/math/cuadratics` 
+and `presentations/math/linear-algebra` are regular pages.
+
 # 3. Info for Theme Writers 
 
-## 3.1. Templates are `HTML` sprinkled with `{{...}}`
+## 3.1. Templates are `HTML` with `{{...}}`
 
 Hugo's template language is borrowed from [Go Templates](https://pkg.go.dev/text/template/). 
 It has types, variables, functions, and `if`, `with`, `range`, `define` and `block` statements. 
@@ -388,9 +416,9 @@ See this commented example:
       In the line 3, the [`upper`](https://gohugo.io/functions/upper) function receives the `.Title` variable as an argument.
       The value of `.Title` is set in the front matter of the content file. 
 
-      In line 5, the variable `.Content` is inserted, which stores the content itself 
-      of the content file, but with the markdown already rendered to HTML.
-      This means that, for example, `## Hello World!!` turns into `<h2> Hello World!!</h2>`. 
+      Line 5 inserts the variable `.Content`, which is the output of converting 
+      the markdown content to HTML. 
+      Thus, `## Hello World!!` turns into `<h2> Hello World!!</h2>` and so on. 
 * \d public
   * \d blog
     * \d hello-world
@@ -408,28 +436,11 @@ See this commented example:
         This is the final result
 {{%/ dir %}}
 
-
-
-
-
-
-## 3.2. **Sections** are subdirs of `/content` that have an `_index.md` [^2]
-
-[^2]: As a special case, the first level children of `/content` are always sections. See the [Docs for Sections](https://gohugo.io/content-management/sections). 
-  Also, I'm omitting that taxonomy lists and terms have a corresponding `_index.md`, 
-  but those are not considered sections. 
-
-In the previous example `/`, `/blog`, `/presentations` and `/presentation/math` were sections.
-
-All the pages under a section's directory (including other sections) are called its **children**. 
-The children of `presentations` are, for example, `why-hugo`, `why-go` and `math`. 
-
-Non-section pages are simply called a **regular pages**.
-
 ## 3.3. `/layouts` contains the HTML templates.
-Each content file is matched with a specific template from `layouts`, with a [set of rules](https://gohugo.io/templates/lookup-order). 
+Each content file is rendered with a specific template from `/layouts` that is chosen 
+with by [set of rules](https://gohugo.io/templates/lookup-order). 
 
-This is a subset of rules I find convenient [^9]:
+A subset of rules I find convenient [^9] is:
 
 * A regular page like `content/my_type/**/foo.md` will be rendered using `layouts/my_type/single.html`
 * A section page like `content/my_type/**/_index.md` will be rendered using `layouts/my_type/list.html`.  
@@ -437,16 +448,16 @@ This is a subset of rules I find convenient [^9]:
 
 [^9]: There are many other ways to organize templates, see [Template Lookup Order](https://gohugo.io/templates/lookup-order). It's a matter of preference. 
 
-## 3.4.The dot contains the available variables
+## 3.4. The dot contains the available variables
 
 The dot stores "the current context", in other words all the variables that 
 can be accessed at a given point in the program. That's why in the previous example
 `.Content` and `.Title` begin with a dot. 
 
-The dot most frequently changes meaning inside `range` and `with` blocks. 
-The variables available inside and outside the blocks are different.
+The dot changes meaning inside `range` and `with` blocks. 
+The variables available inside and outside of the blocks are different.
 
-## 3.5.Hugo-specific variables depend on front matter, config, or position. 
+## 3.5. Hugo-specific variables depend on front matter, config, or position. 
 
 `.Title` is an example of Hugo-specific front matter-defined variables. 
 
@@ -454,28 +465,35 @@ Some variables defined in the config can be accessed from any template (_global_
 
 Some variables are related to the position of the file in `/content`.
 
-For example, non-regular pages[^3] have a `.Pages` variable that is a slice[^4] that contains 
+For example, list pages[^3] have a `.Pages` variable that is a slice[^4] that contains 
 the page variables of all the children of the page.
 
-[^3]: `.Pages` is available for section pages, taxonomy terms, taxonomy list, homepage and RSS pages. See [documentation on lists of content](https://gohugo.io/templates/lists/)
 [^4]: slices are known as "array" in other languages
 
-See the complete lists of variables: 
-* [List of Site Variables](https://gohugo.io/variables/site) 
-* [List of Page Variables](https://gohugo.io/variables/page)
+See the complete lists of variables at
+[Site Variables](https://gohugo.io/variables/site) and
+[Page Variables](https://gohugo.io/variables/page)
 
-## 3.6.`range` and `.Pages` are useful to list pages.
+## 3.6. `range` and `.Pages` are useful to list links
 
-The `range` block is used to iterate over slices and dicts[^5].
+In the following example, the writer of the site wants her section page of the blog 
+at `https://example.com/blog` to list all the links to the posts so that the users 
+can visit them.
+
+To do this she'll need: 
+  * `.Pages`, and `.Title` discussed previously
+  * the `range` block, which iterates over slices and dicts[^5].
+  * `.Permalink`, a page variable that contains the full URL to the page.
 
 [^5]: also known as `maps`
 
-As an example, let's say that your website has a blog section at `www.example.com/blog`,
-and you want to include links to the posts so that the users can visit them.
+Here's the full example:
 
-This is what your project would look like: 
 {{% dir %}}
 * \f config.yaml
+  ```yaml
+  baseURL: https://example.com/
+  ``` 
 * \d content 
   * \f _index.md
   * \d blog 
@@ -523,13 +541,14 @@ This is what your project would look like:
       ```  
       Inside the range block, the dot means "the current iteration". 
 
-      As a result, `.Title` doesn't mean "the title of the current page" as usual, but 
+      As a result, `.Title` doesn't mean "the title of the current page", but 
       instead means "the title of the _current iteration_ page". 
       This is called **rebinding** the context.[^10]
 
-      [^10]: When the context has been rebinded, you lose access to all the Page variables.
-        In case you need them within the range, use the variable `$`. It's set to the initial value of 
-        the dot. Here's how it looks: `{{$.Site.Title}}`. See [Use $ to access the global context](https://gohugo.io/templates/introduction/#2-use--to-access-the-global-context)
+      [^10]: When the context has been rebinded, you lose access to the original Page variables.
+        Conveniently, the variable `$` is set to the initial value of the dot. 
+        You use it from inside the block as `{{$.Title}}` to get the variables back.
+        See [Use $ to access the global context](https://gohugo.io/templates/introduction/#2-use--to-access-the-global-context)
 
 * \d public
   * \d blog 
@@ -543,17 +562,17 @@ This is what your project would look like:
       Welcome to the blog! See the posts:
       <ol>
         <li>
-        <a href="/hello-world">Hello World!</a>
+        <a href="https://example.com/blog/hello-world">Hello World!</a>
         </li>
         <li>
-        <a href="/see-you-later-world">See you later World!</a>
+        <a href="https://example.com/blog/see-you-later-world">See you later World!</a>
         </li>
       <ol>
       </body>
       ```
 {{%/ dir %}}
 
-## 3.7.`.Params` stores the Non-Hugo-specific variables
+## 3.7. `.Params` stores the Non-Hugo-specific variables
 
 Some variables on the config or the front matter that **don't** have a special meaning to Hugo.
 You can access those variables through the `.Params` dictionary. 
@@ -629,7 +648,7 @@ on the config, and they are stored in `.Site.Params`.
         ``` 
 {{%/ dir %}}
 
-## 3.8.Template variables are declared with `‎ := ‎` and updated with `‎ = ‎`
+## 3.8. Template variables are declared with `‎ := ‎` and updated with `‎ = ‎`
 
 For convenience during template writing, you can declare internal variables with:
 
@@ -652,12 +671,13 @@ It's an error to use `=` to a variable that hasn't been declared with `:=` befor
     {{ end }}
     {{ a }}
     ```
-    The result here is 0, instead of the expected 3. The reason is that `$a` is declared in the initial
-    context, and then a _different_ `$a` gets declared inside the range block.
+    The result here is "1 2 3 0", instead of "1 2 3 3". `$a` is declared in the initial
+    context, and then a _different_ `$a` gets declared inside the range block. This can lead
+    to unexpected results.
     
-    The third line should be changed to `$a = . `. This problem is very difficult to search for.
+    To get the "1 2 3 3" version, put `$a = . ` at the fourth line. 
 
-## 3.9.Handle missing values with `if`, `with`, and `default`
+## 3.9. Handle missing values with `if`, `with`, and `default`
 
 The previous example is a bit fragile, because the templates are called using many 
 different content files. If `my_custom_variable` doesn't exist in one of them, 
@@ -665,7 +685,7 @@ the whole build fails.
 
 Here are three methods to avoid that: 
 
-[^11]:  See [the documentation for `isset`]((https://gohugo.io/functions/isset)).
+[^11]:  See [`isset` Docs]((https://gohugo.io/functions/isset)).
 
 ### 3.9.1 if
 ```go-template-html
@@ -708,29 +728,34 @@ Like in math, parenthesis are used to disambiguate the order of application in
 2. `upper` is applied to `"## hello 😀"` which results in `"## HELLO 😀"`
 3. `markdownify` is applied to `"## HELLO 😀"`, which turns it into `"<h2> HELLO 😀</h2>"`
 
-## 3.11. With pipe operator `‎ | ‎` less parenthesis are typed.
+## 3.11. Pipe operator = less parenthesis
 
 The pipe operator `‎ | ‎` is a syntactic sugar that passes the output from the left of the operator to 
 the function to the right, as the last argument. 
 
-The previous example would be written as: 
+This is equivalent to the previous example: 
 
 ```go-template-html
 {{ "## hello :smiley:" | emojify | upper | markdownify }}
 ```
-
 The output is exactly the same as before. Notice that there are less parenthesis used. 
 
-## 3.12. Partials are templates that can be called from other templates
+## 3.12. Partials keep templates DRY
 
-Certain elements such as a menu or footer appear on multiple templates. To avoid repetition
-they can be separated into their own **partial** template, that is, a template that can be 
-called from other templates. Partials are stored in `/layouts/partials`. 
+Certain elements of a site appear on multiple templates, such as menus or footers.
+It would be inconvenient to rewrite the same patterns across all templates. 
 
-See this full example:
+**Partials** allow you to reuse code. A partial is a template stored in `/layouts/partials` 
+that can be called from other templates. 
+
+In the following example, a footer is separated into its own partial so that it can be 
+used in many templates:
 
 {{% dir %}}
 * \f config.yaml
+  ```yaml
+  baseURL: https://example.com/
+  ```
 * \d content
   * \d blog
     * \f hello-world.md
@@ -782,11 +807,8 @@ See this full example:
         </body>
         <footer> 
         Site made with :heart: and Hugo.  
-        <a href="/"> Return to Homepage</a>
+        <a href="https://example.com/"> Return to Homepage</a>
         </footer>
         ```
 {{%/ dir %}}
-
-## 3.13. Base templates (coming soon)
-
 
