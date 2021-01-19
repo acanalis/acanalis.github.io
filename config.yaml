@@ -10,6 +10,7 @@ params:
   date_format: 2006/02/01
   main_menu:
     show_language: true
+  highlight: false
   
 enableEmoji: true
 markup:
@@ -18,7 +19,7 @@ markup:
     renderer:
       unsafe: true 
   highlight: 
-    codeFences: false  
+    style: monokailight
   tableOfContents:
     startLevel : 1
     ordered: true
