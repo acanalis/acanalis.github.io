@@ -533,7 +533,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    17 min read
+    18 min read
   </span>
   
 
@@ -692,7 +692,7 @@ and the theme documentation every once in a while.</p>
 <p>You can read about each of them at <a href="https://gohugo.io/getting-started/directory-structure/" target="_blank" rel="noopener">Directory Structure Docs</a>. 
 A config file is mandatory<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, and the rest directories are optional and added as needed.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p><code>/public</code> is created to store the generated files.
-The files stands on their own: you can upload them to the static server and forget 
+The files stand on their own: you can upload them to the static server and forget 
 that you ever used Hugo to create them.</p>
 <h2 id="22-merge-other-hugo-projects-to-yours-with-modules">2.2. Merge other Hugo projects to yours with Modules</h2>
 <p><a href="https://gohugo.io/hugo-modules/" target="_blank" rel="noopener">Hugo Modules</a> offer a very flexible and understandable way of 
@@ -758,8 +758,8 @@ In this article, I will...
 </code></pre></li>
 <li>JSON Front Matter
 <pre><code>{
-  title : &quot;Hello World&quot;,
-  date : &quot;2021-01-13T11:00:00-03:00&quot;
+  &quot;title&quot; : &quot;Hello World&quot;,
+  &quot;date&quot; : &quot;2021-01-13T11:00:00-03:00&quot;
 }
 ## Hello World!!
 In this article, I will...
@@ -779,7 +779,6 @@ to insert HTML into the page.</p>
 <p>Here&rsquo;s an example using the built-in <code>youtube</code> shortcode:</p>
 <pre><code class="language-none" data-lang="none">---
 title: Hello World
-date: 2021-01-13T11:00:00-03:00
 ---
 ## Hello World!!
 Before we start, see this video:
@@ -798,18 +797,20 @@ embedded code for Youtube videos:</p>
 <pre><code class="language-none" data-lang="none">{‎{&lt; youtube id=&quot;w7Ft2ymGmfc&quot; autoplay=&quot;true&quot; &gt;}‎}
 </code></pre></li>
 <li>raw string parameter
-<pre><code class="language-none" data-lang="none">{‎{&lt;  myshortcode `This is some &lt;b&gt;HTML&lt;/b&gt;,
+<pre><code class="language-none" data-lang="none">{‎{&lt;  rawstringshortcode `This is some &lt;b&gt;HTML&lt;/b&gt;,
 and a new line with a &quot;quoted string&quot;.` &gt;}‎}
 </code></pre></li>
 <li>enclosing text, result is inserted into page directly
 <pre><code class="language-none" data-lang="none">{‎{&lt; highlight go &gt;}‎} A bunch of code here {‎{&lt; /highlight &gt;}‎}
 </code></pre></li>
 <li>enclosing text, result is inserted to content file, and then gets rendered as markdown.
-<pre><code class="language-none" data-lang="none">{‎{% mdshortcode %}‎} Stuff to `process` in the *center*. {‎{% /mdshortcode %}‎}
+<pre><code class="language-none" data-lang="none">{‎{% markdownshortcode %}‎}
+Stuff to `process` in the *center*. 
+{‎{% /markdownshortcode %}‎}
 </code></pre></li>
 <li>self-closing (the following are equivalent)
-<pre><code class="language-none" data-lang="none">{‎{&lt; highlight &gt;}‎}{‎{&lt;/ highlight &gt;}‎}
-{‎{&lt; highlight /&gt;}‎}
+<pre><code class="language-none" data-lang="none">{‎{&lt;myshortcode&gt;}‎}{‎{&lt;/myshortcode&gt;}‎}
+{‎{&lt; myshortcode /&gt;}‎}
 </code></pre></li>
 </ul>
 <p>Hugo comes with many built-in shortcodes and you can define your own by adding templates 
@@ -848,7 +849,7 @@ for shortcode users. Includes complete list of built-in shortcodes.</li>
 <li><i class="far fa-folder-open  pr-1 fa-fw"></i> math
 <ul>
 <li><i class="far fa-file  pr-1 fa-fw"></i> _index.md</li>
-<li><i class="far fa-file  pr-1 fa-fw"></i> cuadratics.md</li>
+<li><i class="far fa-file  pr-1 fa-fw"></i> quadratics.md</li>
 <li><i class="far fa-file  pr-1 fa-fw"></i> linear-algebra.md</li>
 </ul>
 </li>
@@ -900,7 +901,7 @@ for shortcode users. Includes complete list of built-in shortcodes.</li>
 <li><i class="far fa-folder-open  pr-1 fa-fw"></i> math
 <ul>
 <li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> cuadratics
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> quadratics
 <ul>
 <li><i class="far fa-file  pr-1 fa-fw"></i> index.html</li>
 </ul>
@@ -927,22 +928,22 @@ https://example.com/presentations/
 https://example.com/presentations/why-hugo/
 https://example.com/presentations/why-go/
 https://example.com/presentations/math/
-https://example.com/presentations/math/cuadratics/
+https://example.com/presentations/math/quadratics/
 https://example.com/presentations/math/linear-algebra/
 </code></pre><p>There&rsquo;s a clear correspondence between <code>/content</code> structure, output site, and URL structure.<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <h2 id="26-pages-are-list-pages-or-regular-pages">2.6. Pages are list pages or regular pages</h2>
 <p>Knowing these definitions will make it easier to navigate the documentation.</p>
 <p><strong>List pages</strong> are pages that <em>contain</em> other pages and define the hierarchy of the site. 
+The content file of a list page is its corresponding <code>_index.md</code>. See <a href="https://gohugo.io/templates/lists/" target="_blank" rel="noopener">Lists of Content Docs</a>
 The pages inside a list page are called its <strong>children</strong>.</p>
-<p>In the previous example: <code>presentations</code> is a list page with children <code>presentations/why-hugo</code>,
+<p>In the previous example <code>presentations</code> is a list page with children <code>presentations/why-hugo</code>,
 <code>presentations/why-go</code>, and <code>presentations/math</code>.</p>
-<p>The content of a list page is defined by its corresponding <code>_index.md</code>. See <a href="https://gohugo.io/templates/lists/" target="_blank" rel="noopener">Lists of Content Docs</a></p>
-<p><strong>Sections</strong>, a special case of list pages, are subdirs of <code>/content</code> that have an <code>_index.md</code>.<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
-<p>The children of a section are the pages under the section&rsquo;s directory, including other sections.
-In the previous example: <code>blog</code>, <code>presentations</code> and <code>presentation/math</code> are sections.</p>
+<p><strong>Sections</strong>, a special case of list pages, are subdirs of <code>/content</code> that have an <code>_index.md</code>.<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>
+Its children are the pages under the section&rsquo;s directory, including other sections.</p>
+<p>In the previous example <code>blog</code>, <code>presentations</code> and <code>presentation/math</code> are sections.</p>
 <p><strong>Regular pages</strong> are pages that can never have children.</p>
-<p>In the previous example: <code>/hello-world</code>, <code>/see-you-later-world</code>,
-<code>presentations/why-go</code>, <code>presentations/why-hugo</code>, <code>presentations/math/cuadratics</code> 
+<p>In the previous example <code>/hello-world</code>, <code>/see-you-later-world</code>,
+<code>presentations/why-go</code>, <code>presentations/why-hugo</code>, <code>presentations/math/quadratics</code> 
 and <code>presentations/math/linear-algebra</code> are regular pages.</p>
 <h1 id="3-info-for-theme-writers">3. Info for Theme Writers</h1>
 <h2 id="31-templates-are-html-with-">3.1. Templates are <code>HTML</code> with <code>{{...}}</code></h2>
@@ -966,7 +967,7 @@ It has types, variables, functions, and <code>if</code>, <code>with</code>, <cod
 title: Hello World
 ---
 ## Hello World!!
-In this article, I will...
+In **this** article, I will...
 </code></pre></li>
 </ul>
 </li>
@@ -985,13 +986,14 @@ In this article, I will...
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span> 
 <span style="color:#75715e">{{</span><span style="color:#75af00">.Content</span><span style="color:#75715e">}}</span> 
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 </code></pre></div><p>This is the template that will be used to render <code>hello-world.md</code>.
 The <code>{{...}}</code> are placeholders.</p>
 <p>In the line 3, the <a href="https://gohugo.io/functions/upper" target="_blank" rel="noopener"><code>upper</code></a> function receives the <code>.Title</code> variable as an argument.
 The value of <code>.Title</code> is set in the front matter of the content file.</p>
 <p>Line 5 inserts the variable <code>.Content</code>, which is the output of converting 
 the markdown content to HTML. 
-Thus, <code>## Hello World!!</code> turns into <code>&lt;h2&gt; Hello World!!&lt;/h2&gt;</code> and so on.</p>
+Thus, <code>**this**</code> turns into <code>&lt;strong&gt;this&lt;/strong&gt;</code> and so on.</p>
 </li>
 </ul>
 </li>
@@ -1003,17 +1005,19 @@ Thus, <code>## Hello World!!</code> turns into <code>&lt;h2&gt; Hello World!!&lt
 <ul>
 <li><i class="far fa-folder-open  pr-1 fa-fw"></i> hello-world
 <ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> index.html
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html   <br>
+This is the final result:
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span> HELLO WORLD <span style="color:#111">&lt;/</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span> 
-<span style="color:#111">&lt;</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span> Hello World!! <span style="color:#111">&lt;/</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> In this article, I will...<span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">h2</span> <span style="color:#75af00">id</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;hello-world&#34;</span><span style="color:#111">&gt;</span>Hello World!!<span style="color:#111">&lt;/</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>In <span style="color:#111">&lt;</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;</span>this<span style="color:#111">&lt;/</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;</span> article, I will<span style="color:#111">&amp;hellip;</span><span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+        
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-</code></pre></div><p>This is the final result</p>
-</li>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -1047,10 +1051,10 @@ the page variables of all the children of the page.</p>
 <a href="https://gohugo.io/variables/site" target="_blank" rel="noopener">Site Variables</a> and
 <a href="https://gohugo.io/variables/page" target="_blank" rel="noopener">Page Variables</a></p>
 <h2 id="36-range-and-pages-are-useful-to-list-links">3.6. <code>range</code> and <code>.Pages</code> are useful to list links</h2>
-<p>In the following example, the writer of the site wants her section page of the blog 
+<p>In the following example, suppose that you want the section page of the blog 
 at <code>https://example.com/blog</code> to list all the links to the posts so that the users 
 can visit them.</p>
-<p>To do this she&rsquo;ll need:</p>
+<p>To do this use:</p>
 <ul>
 <li><code>.Pages</code>, and <code>.Title</code> discussed previously</li>
 <li>the <code>range</code> block, which iterates over slices and dicts<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>.</li>
@@ -1116,11 +1120,12 @@ In this article, I will...
 &lt;ol&gt;
 {{ range .Pages }}
   &lt;li&gt;
-  &lt;a href=&quot;{{ .RelPermalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;
+  &lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;
   &lt;/li&gt;
 {{ end }}
-&lt;ol&gt;
+&lt;/ol&gt;
 &lt;/body&gt;
+&lt;/html&gt;
 </code></pre><p>Inside the range block, the dot means &ldquo;the current iteration&rdquo;.</p>
 <p>As a result, <code>.Title</code> doesn&rsquo;t mean &ldquo;the title of the current page&rdquo;, but 
 instead means &ldquo;the title of the <em>current iteration</em> page&rdquo;. 
@@ -1137,20 +1142,25 @@ This is called <strong>rebinding</strong> the context.<sup id="fnref:11"><a href
 <ul>
 <li><i class="far fa-file  pr-1 fa-fw"></i> index.html
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span> 
+<span style="color:#111">&lt;</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span> Blog <span style="color:#111">&lt;/</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-Welcome to the blog! See the posts:
+<span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>Welcome to the blog! See the posts:<span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+
 <span style="color:#111">&lt;</span><span style="color:#f92672">ol</span><span style="color:#111">&gt;</span>
+
   <span style="color:#111">&lt;</span><span style="color:#f92672">li</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/blog/hello-world&#34;</span><span style="color:#111">&gt;</span>Hello World!<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/blog/hello-world/&#34;</span><span style="color:#111">&gt;</span>Hello World!<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
   <span style="color:#111">&lt;/</span><span style="color:#f92672">li</span><span style="color:#111">&gt;</span>
+
   <span style="color:#111">&lt;</span><span style="color:#f92672">li</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/blog/see-you-later-world&#34;</span><span style="color:#111">&gt;</span>See you later World!<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/blog/see-you-later-world/&#34;</span><span style="color:#111">&gt;</span>See you later World!<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
   <span style="color:#111">&lt;/</span><span style="color:#f92672">li</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">ol</span><span style="color:#111">&gt;</span>
+
+<span style="color:#111">&lt;/</span><span style="color:#f92672">ol</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -1160,7 +1170,7 @@ Welcome to the blog! See the posts:
 </div>
 <h2 id="37-params-stores-the-non-hugo-specific-variables">3.7. <code>.Params</code> stores the Non-Hugo-specific variables</h2>
 <p>Some variables on the config or the front matter that <strong>don&rsquo;t</strong> have a special meaning to Hugo.
-You can access those variables through the <code>.Params</code> dictionary.</p>
+You can access those variables through either the <code>.Params</code> or <code>.Site.Params</code> dictionaries.</p>
 <h3 id="371-how-to-use-variables-defined-on-the-front-matter-of-a-page">3.7.1 How to use Variables defined on the Front matter of a page</h3>
 <style>
     div.dirs ul {
@@ -1210,6 +1220,7 @@ In this article, I will...
   <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
     <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
   <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -1232,7 +1243,7 @@ on the config, and they are stored in <code>.Site.Params</code>.</p>
 <li><i class="far fa-file  pr-1 fa-fw"></i> config.yaml
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">baseURL</span><span style="color:#111">:</span> <span style="color:#ae81ff">https://example.com</span>
 <span style="color:#f92672">params</span><span style="color:#111">:</span> 
-  <span style="color:#f92672">my_custom_variable</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;im a custom variable&#34;</span>
+  <span style="color:#f92672">my_custom_variable</span><span style="color:#111">:</span> <span style="color:#ae81ff">im a custom variable</span>
 </code></pre></div></li>
 <li><i class="far fa-folder-open  pr-1 fa-fw"></i> content
 <ul>
@@ -1252,6 +1263,7 @@ on the config, and they are stored in <code>.Site.Params</code>.</p>
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
   <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: <span style="color:#75715e">{{</span><span style="color:#75af00">.Site.Params.my_custom_variable</span><span style="color:#75715e">}}</span> <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -1268,6 +1280,7 @@ on the config, and they are stored in <code>.Site.Params</code>.</p>
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
   <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -1283,18 +1296,31 @@ on the config, and they are stored in <code>.Site.Params</code>.</p>
 {{ $a = &quot;HELLO&quot; }}
 {{ $a }}
 </code></pre><p>In the first line, <code>$a</code> is declared and set to <code>&quot;hello&quot;</code>. Then, it changes its value to &ldquo;HELLO&rdquo;. Finally, it&rsquo;s printed on the template.</p>
-<p>It&rsquo;s an error to use <code>=</code> to a variable that hasn&rsquo;t been declared with <code>:=</code> before. <sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup></p>
-<h2 id="39-handle-missing-values-with-if-with-and-default">3.9. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
+<p>It&rsquo;s an error to use <code>=</code> to a variable that hasn&rsquo;t been declared with <code>:=</code> before: <sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup></p>
+<pre><code class="language-go-template-html" data-lang="go-template-html">{{ $b }}
+</code></pre><pre><code class="language-console" data-lang="console">$ hugo
+Error: 
+add site dependencies: 
+load resources: 
+loading templates: &quot;C:\Users\agust\concepts-of-hugo\3.8-template-variables\layouts\blog\single.html:12:1&quot;:
+parse failed: 
+template: 
+blog/single.html:12: 
+undefined variable &quot;$b&quot;
+</code></pre><h2 id="39-handle-missing-values-with-if-with-and-default">3.9. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
 <p>The previous example is a bit fragile, because the templates are called using many 
 different content files. If <code>my_custom_variable</code> doesn&rsquo;t exist in one of them, 
 the whole build fails.</p>
 <p>Here are three methods to avoid that:</p>
 <h3 id="391-if">3.9.1 if</h3>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ if (isset .Params &quot;my_custom_variable&quot;) }}
-    &lt;p&gt; The value is: {{ .Param.my_custom_variable }} &lt;/p&gt;
+    &lt;p&gt; The value is: {{ .Params.my_custom_variable }} &lt;/p&gt;
+{{ else }} 
+  &lt;p&gt; my_custom_param not set &lt;/p&gt;
 {{ end }}
-</code></pre><p>This example is just to show how the <code>if</code> statement works. 
-For this it&rsquo;s sufficient to know that the <code>isset</code> function<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup> returns <code>true</code> or <code>false</code>.</p>
+</code></pre><p>This example is just to show how the <code>if</code> statement works. The <code>{{else}}</code> block is optional. 
+The <code>isset</code> function<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup> returns <code>true</code> if the 
+second argument is set in the first argument, and <code>false</code> otherwise.</p>
 <h3 id="392-with">3.9.2 with</h3>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ with .Params.my_custom_param }}
 &lt;p&gt; The value is: {{.}} &lt;/p&gt;
@@ -1302,11 +1328,11 @@ For this it&rsquo;s sufficient to know that the <code>isset</code> function<sup 
 </code></pre><p>The block is run if <code>.Params.my_custom_param</code> is set, and <strong>not</strong> run if it&rsquo;s
 missing. <code>with</code> rebinds the context: inside the block, the dot means &ldquo;the variable next to <code>with</code>&rdquo;, in this case <code>my_custom_param</code>.</p>
 <h3 id="393-default">3.9.3 default</h3>
-<pre><code class="language-go-template-html" data-lang="go-template-html">{{ $a := default &quot;my_default&quot; .Param.my_custom_variable }}
+<pre><code class="language-go-template-html" data-lang="go-template-html">{{ $a := default &quot;my_default&quot; .Params.my_custom_variable }}
 {{ $a }}
 </code></pre><p>The <a href="https://gohugo.io/functions/default/" target="_blank" rel="noopener">default</a> function outputs a default 
 value if a variable is not set.
-In this case, if <code>.Param.my_custom_variable</code> is not set, <code>$a</code> it takes the value of <code>&quot;my_default&quot;</code>.</p>
+In this case, if <code>.Params.my_custom_variable</code> is not set, so <code>$a</code> it takes the value of <code>&quot;my_default&quot;</code>.</p>
 <h2 id="310-parenthesis-clarify-how-the-functions-are-applied">3.10. Parenthesis clarify how the functions are applied</h2>
 <p>Like in math, parenthesis are used to disambiguate the order of application in
 a long sequence of functions:</p>
@@ -1320,7 +1346,7 @@ a long sequence of functions:</p>
 <p>The pipe operator <code>‎ | ‎</code> is a syntactic sugar that passes the output from the left of the operator to 
 the function to the right, as the last argument.</p>
 <p>This is equivalent to the previous example:</p>
-<pre><code class="language-go-template-html" data-lang="go-template-html">{{ &quot;## hello 😃&quot; | emojify | upper | markdownify }}
+<pre><code class="language-go-template-html" data-lang="go-template-html">{{ &quot;## hello :‎smiley‎:&quot; | emojify | upper | markdownify }}
 </code></pre><p>The output is exactly the same as before. Notice that there are less parenthesis used.</p>
 <h2 id="312-partials-keep-templates-dry">3.12. Partials keep templates DRY</h2>
 <p>Certain elements of a site appear on multiple templates, such as menus or footers.
@@ -1346,7 +1372,6 @@ used in many templates:</p>
 <li><i class="far fa-file  pr-1 fa-fw"></i> hello-world.md
 <pre><code class="language-none" data-lang="none">  ---
   title: Hello
-  date: 2021-01-13T11:00:00-03:00
   ---
   ## Hello World!
   In this article, I will...
@@ -1364,12 +1389,13 @@ used in many templates:</p>
 <p><i class="far fa-file  pr-1 fa-fw"></i> single.html</p>
 <pre><code class="language-go-template-html" data-lang="go-template-html">&lt;html&gt;
 &lt;head&gt; 
-  &lt;title&gt; {{.Title }} &lt;/title&gt;
+  &lt;title&gt; {{.Title}} &lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt; 
-  {{.Content}
+  {{.Content}}
 &lt;/body&gt;
-{‎{ partial &quot;my_footer.html&quot; . }‎}
+{{ partial &quot;my_footer.html&quot; . }}
+&lt;/html&gt;
 </code></pre><p>The first argument is the path to the template relative to <code>/layouts/partials</code>, and the second
 argument is the context passed. In other words, inside the partial template Hugo will use the 
 second argument as the dot.</p>
@@ -1394,17 +1420,19 @@ Site made with ❤️ and Hugo.
 <li><i class="far fa-file  pr-1 fa-fw"></i> index.html
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span> 
-  <span style="color:#111">&lt;</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span> Hello World <span style="color:#111">&lt;/</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span> Hello <span style="color:#111">&lt;/</span><span style="color:#f92672">title</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;/</span><span style="color:#f92672">head</span><span style="color:#111">&gt;</span>
 <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span> 
-  <span style="color:#111">&lt;</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span> Hello, World!! <span style="color:#111">&lt;/</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> In this article, I will... <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">h2</span> <span style="color:#75af00">id</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;hello-world&#34;</span><span style="color:#111">&gt;</span>Hello World!<span style="color:#111">&lt;/</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>In this article, I will<span style="color:#111">&amp;hellip;</span><span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+
 <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-<span style="display:block;width:100%;background-color:#e1e1e1"><span style="color:#111">&lt;</span><span style="color:#f92672">footer</span><span style="color:#111">&gt;</span> 
-</span><span style="display:block;width:100%;background-color:#e1e1e1">Site made with ❤️ and Hugo.  
-</span><span style="display:block;width:100%;background-color:#e1e1e1"><span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/&#34;</span><span style="color:#111">&gt;</span> Return to Homepage<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
-</span><span style="display:block;width:100%;background-color:#e1e1e1"><span style="color:#111">&lt;/</span><span style="color:#f92672">footer</span><span style="color:#111">&gt;</span>
-</span></code></pre></div></li>
+<span style="color:#111">&lt;</span><span style="color:#f92672">footer</span><span style="color:#111">&gt;</span> 
+Site made with ❤️ and Hugo.  
+<span style="color:#111">&lt;</span><span style="color:#f92672">a</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://example.com/&#34;</span><span style="color:#111">&gt;</span> Return to Homepage<span style="color:#111">&lt;/</span><span style="color:#f92672">a</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">footer</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
 </ul>
 </li>
 </ul>

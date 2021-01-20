@@ -115,7 +115,7 @@ A config file is mandatory[^1], and the rest directories are optional and added 
   [Configuration Directory Docs](https://gohugo.io/getting-started/configuration/#configuration-directory).
 
 `/public` is created to store the generated files.
-The files stands on their own: you can upload them to the static server and forget 
+The files stand on their own: you can upload them to the static server and forget 
 that you ever used Hugo to create them. 
 
 ## 2.2. Merge other Hugo projects to yours with Modules
@@ -202,8 +202,8 @@ The following three versions of `/content/hello-world.md` render the same page. 
 * JSON Front Matter
   ```
   {
-    title : "Hello World",
-    date : "2021-01-13T11:00:00-03:00"
+    "title" : "Hello World",
+    "date" : "2021-01-13T11:00:00-03:00"
   }
   ## Hello World!!
   In this article, I will...
@@ -230,7 +230,6 @@ Here's an example using the built-in `youtube` shortcode:
 ```none
 ---
 title: Hello World
-date: 2021-01-13T11:00:00-03:00
 ---
 ## Hello World!!
 Before we start, see this video:
@@ -255,7 +254,7 @@ Some shortcodes are called differently:
   ```
 * raw string parameter
   ```none
-  {‎{<  myshortcode `This is some <b>HTML</b>,
+  {‎{<  rawstringshortcode `This is some <b>HTML</b>,
   and a new line with a "quoted string".` >}‎}
   ```
 * enclosing text, result is inserted into page directly
@@ -264,12 +263,14 @@ Some shortcodes are called differently:
   ```
 * enclosing text, result is inserted to content file, and then gets rendered as markdown.
   ```none
-  {‎{% mdshortcode %}‎} Stuff to `process` in the *center*. {‎{% /mdshortcode %}‎}
+  {‎{% markdownshortcode %}‎}
+  Stuff to `process` in the *center*. 
+  {‎{% /markdownshortcode %}‎}
   ```
 * self-closing (the following are equivalent)
   ```none
-  {‎{< highlight >}‎}{‎{</ highlight >}‎}
-  {‎{< highlight />}‎}
+  {‎{<myshortcode>}‎}{‎{</myshortcode>}‎}
+  {‎{< myshortcode />}‎}
   ``` 
 
 Hugo comes with many built-in shortcodes and you can define your own by adding templates 
@@ -298,7 +299,7 @@ Suppose `/content` looks like this:
     * \f why-go.md
     * \d math
       * \f _index.md
-      * \f cuadratics.md
+      * \f quadratics.md
       * \f linear-algebra.md
 {{%/ dir %}}
 
@@ -321,7 +322,7 @@ Then output has a similar structure:
       * \f index.html
     * \d math
       * \f index.html
-      * \d cuadratics
+      * \d quadratics
         * \f index.html
       * \d linear-algebra
         * \f index.html
@@ -338,7 +339,7 @@ https://example.com/presentations/
 https://example.com/presentations/why-hugo/
 https://example.com/presentations/why-go/
 https://example.com/presentations/math/
-https://example.com/presentations/math/cuadratics/
+https://example.com/presentations/math/quadratics/
 https://example.com/presentations/math/linear-algebra/
 ```
 There's a clear correspondence between `/content` structure, output site, and URL structure.[^7]
@@ -356,25 +357,26 @@ There's a clear correspondence between `/content` structure, output site, and UR
 Knowing these definitions will make it easier to navigate the documentation.
 
 **List pages** are pages that _contain_ other pages and define the hierarchy of the site. 
+The content file of a list page is its corresponding `_index.md`. See [Lists of Content Docs](https://gohugo.io/templates/lists/)
 The pages inside a list page are called its **children**.
 
-In the previous example: `presentations` is a list page with children `presentations/why-hugo`,
+
+In the previous example `presentations` is a list page with children `presentations/why-hugo`,
 `presentations/why-go`, and `presentations/math`.
 
-The content of a list page is defined by its corresponding `_index.md`. See [Lists of Content Docs](https://gohugo.io/templates/lists/)
 
 **Sections**, a special case of list pages, are subdirs of `/content` that have an `_index.md`.[^2]
+Its children are the pages under the section's directory, including other sections.
 
-The children of a section are the pages under the section's directory, including other sections.
-In the previous example: `blog`, `presentations` and `presentation/math` are sections.
+In the previous example `blog`, `presentations` and `presentation/math` are sections.
 
 [^2]: As a special case, the first level children of `/content` are always sections. 
 See [Sections Docs](https://gohugo.io/content-management/sections).
 
 **Regular pages** are pages that can never have children.
 
-In the previous example: `/hello-world`, `/see-you-later-world`,
-`presentations/why-go`, `presentations/why-hugo`, `presentations/math/cuadratics` 
+In the previous example `/hello-world`, `/see-you-later-world`,
+`presentations/why-go`, `presentations/why-hugo`, `presentations/math/quadratics` 
 and `presentations/math/linear-algebra` are regular pages.
 
 # 3. Info for Theme Writers 
@@ -396,7 +398,7 @@ See this commented example:
       title: Hello World
       ---
       ## Hello World!!
-      In this article, I will...
+      In **this** article, I will...
       ```
 * \d layouts
   * \d blog
@@ -409,6 +411,7 @@ See this commented example:
       <body> 
       {{.Content}} 
       </body>
+      </html>
       ``` 
       This is the template that will be used to render `hello-world.md`.
       The `{{...}}` are placeholders.
@@ -418,22 +421,24 @@ See this commented example:
 
       Line 5 inserts the variable `.Content`, which is the output of converting 
       the markdown content to HTML. 
-      Thus, `## Hello World!!` turns into `<h2> Hello World!!</h2>` and so on. 
+      Thus, `**this**` turns into `<strong>this</strong>` and so on. 
 * \d public
   * \d blog
     * \d hello-world
       * \f index.html      
+        This is the final result:
         ```html
         <html>
         <head>
         <title> HELLO WORLD </title>
         </head>
         <body> 
-        <h2> Hello World!! </h2>
-        <p> In this article, I will...</p>
+        <h2 id="hello-world">Hello World!!</h2>
+        <p>In <strong>this</strong> article, I will&hellip;</p>
+        
         </body>
+        </html>
         ```
-        This is the final result
 {{%/ dir %}}
 
 ## 3.3. `/layouts` contains the HTML templates.
@@ -476,11 +481,11 @@ See the complete lists of variables at
 
 ## 3.6. `range` and `.Pages` are useful to list links
 
-In the following example, the writer of the site wants her section page of the blog 
+In the following example, suppose that you want the section page of the blog 
 at `https://example.com/blog` to list all the links to the posts so that the users 
 can visit them.
 
-To do this she'll need: 
+To do this use: 
   * `.Pages`, and `.Title` discussed previously
   * the `range` block, which iterates over slices and dicts[^5].
   * `.Permalink`, a page variable that contains the full URL to the page.
@@ -523,7 +528,7 @@ Here's the full example:
   * \d blog
     * \f single.html
     * \f list.html
-      ``` go-template-html
+      ```go-template-html
       <html>
       <head>
       <title> {{ .Title }} </title>
@@ -533,12 +538,13 @@ Here's the full example:
       <ol>
       {{ range .Pages }}
         <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
-      <ol>
+      </ol>
       </body>
-      ```  
+      </html>
+      ```
       Inside the range block, the dot means "the current iteration". 
 
       As a result, `.Title` doesn't mean "the title of the current page", but 
@@ -555,27 +561,32 @@ Here's the full example:
     * \f index.html
       ```html
       <html>
-      <head> 
+      <head>
       <title> Blog </title>
       </head>
       <body>
-      Welcome to the blog! See the posts:
+      <p>Welcome to the blog! See the posts:</p>
+
       <ol>
+
         <li>
-        <a href="https://example.com/blog/hello-world">Hello World!</a>
+        <a href="https://example.com/blog/hello-world/">Hello World!</a>
         </li>
+
         <li>
-        <a href="https://example.com/blog/see-you-later-world">See you later World!</a>
+        <a href="https://example.com/blog/see-you-later-world/">See you later World!</a>
         </li>
-      <ol>
+
+      </ol>
       </body>
+      </html>
       ```
 {{%/ dir %}}
 
 ## 3.7. `.Params` stores the Non-Hugo-specific variables
 
 Some variables on the config or the front matter that **don't** have a special meaning to Hugo.
-You can access those variables through the `.Params` dictionary. 
+You can access those variables through either the `.Params` or `.Site.Params` dictionaries. 
 
 ### 3.7.1 How to use Variables defined on the Front matter of a page
 
@@ -609,6 +620,7 @@ You can access those variables through the `.Params` dictionary.
           <body>
             <p> The value is: i'm a custom variable </p>
           </body>
+          </html>
         ``` 
 {{%/ dir %}}
 
@@ -622,7 +634,7 @@ on the config, and they are stored in `.Site.Params`.
   ```yaml
   baseURL: https://example.com
   params: 
-    my_custom_variable: "im a custom variable"
+    my_custom_variable: im a custom variable
   ```
 * \d content
   * \d blog
@@ -635,6 +647,7 @@ on the config, and they are stored in `.Site.Params`.
       <body>
         <p> The value is: {{.Site.Params.my_custom_variable}} </p>
       </body>
+      </html>
       ```
 * \d public
   * \d blog
@@ -645,6 +658,7 @@ on the config, and they are stored in `.Site.Params`.
         <body>
           <p> The value is: i'm a custom variable </p>
         </body>
+        </html>
         ``` 
 {{%/ dir %}}
 
@@ -660,7 +674,22 @@ For convenience during template writing, you can declare internal variables with
 
 In the first line, `$a` is declared and set to `"hello"`. Then, it changes its value to "HELLO". Finally, it's printed on the template. 
 
-It's an error to use `=` to a variable that hasn't been declared with `:=` before. [^18]
+It's an error to use `=` to a variable that hasn't been declared with `:=` before: [^18]
+
+```go-template-html
+{{ $b }}
+```
+```console {wrap}
+$ hugo
+Error: 
+add site dependencies: 
+load resources: 
+loading templates: "C:\Users\agust\concepts-of-hugo\3.8-template-variables\layouts\blog\single.html:12:1":
+parse failed: 
+template: 
+blog/single.html:12: 
+undefined variable "$b"
+```
 
 [^18]: Another common error is to accidentally define a variable twice in different contexts: 
     ```go-template-html
@@ -690,11 +719,14 @@ Here are three methods to avoid that:
 ### 3.9.1 if
 ```go-template-html
 {{ if (isset .Params "my_custom_variable") }}
-    <p> The value is: {{ .Param.my_custom_variable }} </p>
+    <p> The value is: {{ .Params.my_custom_variable }} </p>
+{{ else }} 
+  <p> my_custom_param not set </p>
 {{ end }}
 ```
-This example is just to show how the `if` statement works. 
-For this it's sufficient to know that the `isset` function[^11] returns `true` or `false`. 
+This example is just to show how the `if` statement works. The `{{else}}` block is optional. 
+The `isset` function[^11] returns `true` if the 
+second argument is set in the first argument, and `false` otherwise. 
   
 ### 3.9.2 with
 ```go-template-html
@@ -707,12 +739,12 @@ missing. `with` rebinds the context: inside the block, the dot means "the variab
 
 ### 3.9.3 default
 ```go-template-html
-{{ $a := default "my_default" .Param.my_custom_variable }}
+{{ $a := default "my_default" .Params.my_custom_variable }}
 {{ $a }}
 ```
 The [default](https://gohugo.io/functions/default/) function outputs a default 
 value if a variable is not set.
-In this case, if `.Param.my_custom_variable` is not set, `$a` it takes the value of `"my_default"`.
+In this case, if `.Params.my_custom_variable` is not set, so `$a` it takes the value of `"my_default"`.
   
 
 ## 3.10. Parenthesis clarify how the functions are applied 
@@ -736,7 +768,7 @@ the function to the right, as the last argument.
 This is equivalent to the previous example: 
 
 ```go-template-html
-{{ "## hello :smiley:" | emojify | upper | markdownify }}
+{{ "## hello :‎smiley‎:" | emojify | upper | markdownify }}
 ```
 The output is exactly the same as before. Notice that there are less parenthesis used. 
 
@@ -762,7 +794,6 @@ used in many templates:
       ```none
         ---
         title: Hello
-        date: 2021-01-13T11:00:00-03:00
         ---
         ## Hello World!
         In this article, I will...
@@ -771,15 +802,16 @@ used in many templates:
   * \d partials
   * \d blog
     * \f single.html
-      ```go-template-html {hl_lines=[8]}
+      ```go-template-html
       <html>
       <head> 
-        <title> {{.Title }} </title>
+        <title> {{.Title}} </title>
       </head>
       <body> 
-        {{.Content}
+        {{.Content}}
       </body>
-      {‎{ partial "my_footer.html" . }‎}
+      {{ partial "my_footer.html" . }}
+      </html>
       ```
       The first argument is the path to the template relative to `/layouts/partials`, and the second
       argument is the context passed. In other words, inside the partial template Hugo will use the 
@@ -796,19 +828,21 @@ used in many templates:
   * \d blog
     * \d hello-world
       * \f index.html
-        ```html  {hl_lines=["9-12"]}
+        ```html
         <html>
         <head> 
-          <title> Hello World </title>
+          <title> Hello </title>
         </head>
         <body> 
-          <h2> Hello, World!! </h2>
-          <p> In this article, I will... </p>
+          <h2 id="hello-world">Hello World!</h2>
+        <p>In this article, I will&hellip;</p>
+
         </body>
         <footer> 
-        Site made with :heart: and Hugo.  
+        Site made with ❤️ and Hugo.  
         <a href="https://example.com/"> Return to Homepage</a>
         </footer>
+        </html>
         ```
 {{%/ dir %}}
 
