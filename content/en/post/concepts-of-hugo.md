@@ -5,28 +5,23 @@ date: 2021-01-13T11:00:00-03:00
 _build:
   list: never
 
-url: /drafts/fast-hugo-intro
-summary: Learn [Hugo](https://gohugo.io) efficiently! Before you go on a quest to read the whole documentation
-  Read these 25 key points.
+aliases: /drafts/fast-hugo-intro
+summary: Learn [Hugo](https://gohugo.io) efficiently! 90% of Hugo explained in less than 25 key points.
 ---
 
-Starting with [Hugo](https://gohugo.io) _The world’s fastest framework for building websites_, 
+When you start with [Hugo](https://gohugo.io) _The world’s fastest framework for building websites_, 
 it's difficult to make sense of all the new vocabulary and concepts. 
-The usual way to learn is to install Hugo, try out the 
-[Quick start](https://gohugo.io/getting-started/quick-start/), and then navigate enough
-documentation pages until everything makes sense.
 
-The Hugo Docs, while very precise, don't provide a learning order. Tutorials 
-usually are written to achieve a certain goal (_how to do X with Hugo_) but don't go into 
-depth on how Hugo works. 
+This article is an attempt to give Hugo beginners a _what is what_ introduction to Hugo that will 
+make the rest of the learning experience easier. 
+The objective is to explain 90% of how Hugo works in less than 25 key points.
 
-This article is an attempt to give beginners the "what is what" introduction to Hugo that seems to 
-be missing. The objective is to explain 90% of how Hugo works in 25 key points, with the hope of
-making the rest of the learning experience easier.
+Clarity is prioritized over precision, so always refer to the official [Hugo Docs](https://gohugo.io/documentation) 
+for the most precise and up-to-date information.
 
-This article is for beginners to Hugo. This is not the place to mention exceptions and special
- rules; if necessary, I'll put them in footnotes.
-Visit [Hugo Docs](https://gohugo.io/documentation) for the most precise and up-to-date explanations.
+All the examples have been tested at the repo [github.com/acanalis/concepts-of-hugo](https://github.com/acanalis/concepts-of-Hugo).
+If you find a mistake or want to give feedback, please let me know! Open an issue there or 
+[message me at the Hugo Discourse](http://discourse.gohugo.io/new-message?username=acanalis). 
 
 {{< toc >}}
 
@@ -846,3 +841,4 @@ used in many templates:
         ```
 {{%/ dir %}}
 
+# Footnotes
