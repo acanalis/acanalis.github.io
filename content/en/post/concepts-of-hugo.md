@@ -2,8 +2,6 @@
 title: Concepts of Hugo
 subtitle: a what-is-what introduction
 date: 2021-01-13T11:00:00-03:00
-_build:
-  list: never
 
 aliases: /drafts/fast-hugo-intro
 summary: Learn [Hugo](https://gohugo.io) efficiently! 90% of Hugo explained in less than 25 key points.
