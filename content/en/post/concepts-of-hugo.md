@@ -17,9 +17,8 @@ The objective is to explain 90% of how Hugo works in less than 25 key points.
 Clarity is prioritized over precision, so always refer to the official [Hugo Docs](https://gohugo.io/documentation) 
 for the most precise and up-to-date information.
 
-All the examples have been tested at the repo [github.com/acanalis/concepts-of-hugo](https://github.com/acanalis/concepts-of-Hugo).
-If you find a mistake or want to give feedback, please let me know! Open an issue there or 
-[message me at the Hugo Discourse](http://discourse.gohugo.io/new-message?username=acanalis). 
+All the examples have been tested at the repo [`github.com/acanalis/concepts-of-hugo`](https://github.com/acanalis/concepts-of-Hugo).
+If you find a mistake open an issue, if you want to give feedback, [message me at the Hugo Discourse!](http://discourse.gohugo.io/new-message?username=acanalis). 
 
 {{< toc >}}
 

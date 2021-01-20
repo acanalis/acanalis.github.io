@@ -24,9 +24,8 @@ make the rest of the learning experience easier.
 The objective is to explain 90% of how Hugo works in less than 25 key points.&lt;/p&gt;
 &lt;p&gt;Clarity is prioritized over precision, so always refer to the official &lt;a href=&#34;https://gohugo.io/documentation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Docs&lt;/a&gt; 
 for the most precise and up-to-date information.&lt;/p&gt;
-&lt;p&gt;All the examples have been tested at the repo &lt;a href=&#34;https://github.com/acanalis/concepts-of-Hugo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github.com/acanalis/concepts-of-hugo&lt;/a&gt;.
-If you find a mistake or want to give feedback, please let me know! Open an issue there or 
-&lt;a href=&#34;http://discourse.gohugo.io/new-message?username=acanalis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;message me at the Hugo Discourse&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All the examples have been tested at the repo &lt;a href=&#34;https://github.com/acanalis/concepts-of-Hugo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;github.com/acanalis/concepts-of-hugo&lt;/code&gt;&lt;/a&gt;.
+If you find a mistake open an issue, if you want to give feedback, &lt;a href=&#34;http://discourse.gohugo.io/new-message?username=acanalis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;message me at the Hugo Discourse!&lt;/a&gt;.&lt;/p&gt;
 &lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
