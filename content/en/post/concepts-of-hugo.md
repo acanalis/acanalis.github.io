@@ -17,15 +17,15 @@ The objective is to explain 90% of how Hugo works in less than 25 key points.
 Clarity is prioritized over precision, so always refer to the official [Hugo Docs](https://gohugo.io/documentation) 
 for the most precise and up-to-date information.
 
-All the examples have been tested at the repo [`github.com/acanalis/concepts-of-hugo`](https://github.com/acanalis/concepts-of-Hugo).
-If you find a mistake open an issue, if you want to give feedback, [message me at the Hugo Discourse!](http://discourse.gohugo.io/new-message?username=acanalis). 
+All the examples were tested at [`github.com/acanalis/concepts-of-hugo`](https://github.com/acanalis/concepts-of-Hugo).
+If you want to give feedback, [message me at the Hugo Discourse!](http://discourse.gohugo.io/new-message?username=acanalis)
 
 {{< toc >}}
 
 # 1. Info for Everyone
 
 ## 1.1. Hugo is a static site generator
-A static site is one which can be served from a static server. The only job of a static server's 
+A static site is one which can be served from a static server. The only job of a static server
 is to provide the necessary files `*.html, *.js, *.css, etc`  to the clients.
 
 Every client gets the same files: there's no server-side intelligence or interaction.
@@ -52,27 +52,24 @@ For many reasons this is inconvenient:
 
 * HTML is verbose compared to a plain document. For a link[^17] you will type 57 characters 
   plus the actual link. It's fine for one page, but it scales poorly.
-* Typically some parts of the code are the same for all the pages, like certain analytics, 
-  fonts, links, etc. Even if you copy and paste everything it'll be tedious to do
-* If you want to make a change you'll have to do it manually on every file.
+* Typically some parts of the code are the same for all the pages, like styles, 
+  fonts, links, etc. Even if you copy and paste everything it'll be tedious to do.
+* If you want to make a change you'll have to do it on every file.
 * Focus is divided between writing relatable content and handling the looks of the site. 
-* Web design is its own field of knowledge and not everyone wants to invert time and effort 
-  on that. 
+* Web design is its own field of knowledge and not everyone wants to invert time and effort on it. 
 
-Hugo makes This is the problem that Hugo aims to solve by allowing you to separate web design into 
-two activities: content writing and template writing.
+Hugo makes the process much easier by allowing you to separate static web design into two activities: content writing and template writing.
 
 Content is written in [markdown](https://commonmark.org), which conceptually is a
 syntactic sugar for HTML. Markdown is very easy to use. 
 
-Templates are written in a special templating language. Hugo generates the site by 
-inserting the data from your content files into those templates. 
+Templates are written in a HTML + a special templating language. Hugo generates the site by inserting the data from your content files into those templates. 
 
 ## 1.4. Society is divided into Theme Users and Theme Writers. 
 
 If you just want to use a nice theme from the [Hugo Themes Page](https://themes.gohugo.io/),
-you can start with the example site --every theme has one-- and then use your intuition to add files
-and configurations. No knowledge of the templates or even Web Design is required, all you need is 
+you can start with the example site --every theme has one-- and use your intuition to add files
+and configurations. No knowledge of the templates or even Web Design is required, all you need to do is 
 to write all your content in markdown and browse [Content Management Docs](https://gohugo.io/content-management) 
 and the theme documentation every once in a while.
 
@@ -211,10 +208,9 @@ reasons. If you write `<h2> Hello </h2>` in a content file, you'll get
 `<!-- raw HTML omitted -->` at the generated file. You can 
  [configure markup](https://gohugo.io/getting-started/configuration-markup#goldmark)
 to make it "unsafe" and then add all the elements you need. 
+But the advantage of markdown was to avoid writing plain HTML in the first place.
 
-But this isn't ideal because the we were writing markdown was to avoid plain HTML in the first place. 
-
-A friendlier option is to use **shortcodes**: templates you can call from the content files 
+Another option is to use **shortcodes**: templates you can call from the content files 
 to insert HTML into the page.  
 
 Here's an example using the built-in `youtube` shortcode:
@@ -229,8 +225,7 @@ Before we start, see this video:
 {‎{< youtube w7Ft2ymGmfc >}‎}
 ```
 
-This call produces the typical 
-embedded code for Youtube videos: 
+This produces the typical embedded code for Youtube videos: 
 
 ```html
 <p>Before we start, see this video:</p>
@@ -239,7 +234,7 @@ embedded code for Youtube videos:
   <iframe src="https://www.youtube.com/embed/w7Ft2ymGmfc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 ```
-Some shortcodes are called differently:
+There are different ways to use shortcodes:
 * with named parameters
   ```none
   {‎{< youtube id="w7Ft2ymGmfc" autoplay="true" >}‎}
@@ -320,21 +315,20 @@ Then output has a similar structure:
         * \f index.html
 {{%/ dir %}}
 
-And the final site will have these URLs available once it's hosted:
+And the final site will have these URLs once it's hosted:
 
-```none
-https://example.com/
-https://example.com/blog/
-https://example.com/blog/hello-world/
-https://example.com/blog/see-you-later-world/
-https://example.com/presentations/
-https://example.com/presentations/why-hugo/
-https://example.com/presentations/why-go/
-https://example.com/presentations/math/
-https://example.com/presentations/math/quadratics/
-https://example.com/presentations/math/linear-algebra/
-```
-There's a clear correspondence between `/content` structure, output site, and URL structure.[^7]
+* https://example.com/
+* https://example.com/blog/
+* https://example.com/blog/hello-world/
+* https://example.com/blog/see-you-later-world/
+* https://example.com/presentations/
+* https://example.com/presentations/why-hugo/
+* https://example.com/presentations/why-go/
+* https://example.com/presentations/math/
+* https://example.com/presentations/math/quadratics/
+* https://example.com/presentations/math/linear-algebra/
+
+There's a clear correspondence between `/content` structure, output files, and URL structure.[^7]
 
 [^7]: This is a general rule. You can force the URLs to be different, which you can see in 
   [URL Management Docs](https://gohugo.io/content-management/urls/). 
@@ -346,39 +340,41 @@ There's a clear correspondence between `/content` structure, output site, and UR
 
 ## 2.6. Pages are list pages or regular pages
 
-Knowing these definitions will make it easier to navigate the documentation.
+Some important definitions: 
 
-**List pages** are pages that _contain_ other pages and define the hierarchy of the site. 
-The content file of a list page is its corresponding `_index.md`. See [Lists of Content Docs](https://gohugo.io/templates/lists/)
-The pages inside a list page are called its **children**.
+**List pages** are pages that contain **children** pages, and define the hierarchy of the site. 
+The content file of a list page is its corresponding `_index.md`[^21].
 
-
-In the previous example `presentations` is a list page with children `presentations/why-hugo`,
-`presentations/why-go`, and `presentations/math`.
-
+[^21]: See [Lists of Content Docs](https://gohugo.io/templates/lists/).
 
 **Sections**, a special case of list pages, are subdirs of `/content` that have an `_index.md`.[^2]
 Its children are the pages under the section's directory, including other sections.
-
-In the previous example `blog`, `presentations` and `presentation/math` are sections.
 
 [^2]: As a special case, the first level children of `/content` are always sections. 
 See [Sections Docs](https://gohugo.io/content-management/sections).
 
 **Regular pages** are pages that can never have children.
 
-In the previous example `/hello-world`, `/see-you-later-world`,
-`presentations/why-go`, `presentations/why-hugo`, `presentations/math/quadratics` 
-and `presentations/math/linear-algebra` are regular pages.
+In the previous example `blog`, `presentations` and `presentation/math` are sections.
+The children of `presentations` are `presentations/why-hugo`,
+`presentations/why-go`, and `presentations/math`. 
+
+The regular pages are: 
+* `hello-world`
+* `see-you-later-world`
+* `presentations/why-go`
+* `presentations/why-hugo`
+* `presentations/math/quadratics` 
+* `presentations/math/linear-algebra`
 
 # 3. Info for Theme Writers 
 
 ## 3.1. Templates are `HTML` with `{{...}}`
 
 Hugo's template language is borrowed from [Go Templates](https://pkg.go.dev/text/template/). 
-It has types, variables, functions, and `if`, `with`, `range`, `define` and `block` statements. 
+It has types, variables, functions, and statements (`if`, `with`, `range`, `define` and `block`). 
 
-See this commented example: 
+In this example a template renders a single page:
 
 {{% dir %}}
 * \f config.yaml
@@ -405,15 +401,12 @@ See this commented example:
       </body>
       </html>
       ``` 
-      This is the template that will be used to render `hello-world.md`.
       The `{{...}}` are placeholders.
 
       In the line 3, the [`upper`](https://gohugo.io/functions/upper) function receives the `.Title` variable as an argument.
       The value of `.Title` is set in the front matter of the content file. 
 
-      Line 5 inserts the variable `.Content`, which is the output of converting 
-      the markdown content to HTML. 
-      Thus, `**this**` turns into `<strong>this</strong>` and so on. 
+      Line 5 inserts the variable `.Content`. It contains the markdown converted to HTML, so `**this**` becomes `<strong>this</strong>` in the variable. 
 * \d public
   * \d blog
     * \d hello-world
@@ -435,35 +428,36 @@ See this commented example:
 
 ## 3.3. `/layouts` contains the HTML templates.
 Each content file is rendered with a specific template from `/layouts` that is chosen 
-with by [set of rules](https://gohugo.io/templates/lookup-order). 
+using a [set of rules](https://gohugo.io/templates/lookup-order). 
 
 A subset of rules I find convenient [^9] is:
 
-* A regular page like `content/my_type/**/foo.md` will be rendered using `layouts/my_type/single.html`
-* A section page like `content/my_type/**/_index.md` will be rendered using `layouts/my_type/list.html`.  
-* `layouts/_default/single.html` and `layouts/_default/list.html` are used if the others are missing.
+* A regular page like `/content/my_type/**/foo.md` will be rendered using `/layouts/my_type/single.html`
+* A section page like `/content/my_type/**/_index.md` will be rendered using `/layouts/my_type/list.html`.  
+* `/layouts/_default/single.html` and `/layouts/_default/list.html` are used if the others are missing.
 
 [^9]: There are many other ways to organize templates, see [Template Lookup Order](https://gohugo.io/templates/lookup-order). It's a matter of preference. 
 
-## 3.4. The dot contains the available variables
+## 3.4. The dot has the current context
 
-The dot stores "the current context", in other words all the variables that 
-can be accessed at a given point in the program. That's why in the previous example
-`.Content` and `.Title` begin with a dot. 
+The dot stores the variables that can be accessed at a given point in the program. 
+That's why in the previous example `.Content` and `.Title` begin with a dot. 
 
 The dot changes meaning inside `range` and `with` blocks. 
-The variables available inside and outside of the blocks are different.
+The variables available inside and outside of those blocks are different.
 
-## 3.5. Hugo-specific variables depend on front matter, config, or position. 
+## 3.5. Variables depend on front matter, config, or position. 
 
 `.Title` is an example of Hugo-specific front matter-defined variables. 
 
-Some variables defined in the config can be accessed from any template (_global_ variables). `.Site.Author`, for example, can be defined in `config.yaml` as `author: John Doe`.
+Some variables can be accessed from any template (_global_ variables). 
+For example, if at `config.yaml` you define `author: John Doe`, you can use that variable
+in the templates as `.Site.Author`. 
 
-Some variables are related to the position of the file in `/content`.
+Other variables are related to the position of the file in `/content`.
 
-For example, list pages[^3] have a `.Pages` variable that is a slice[^4] that contains 
-the page variables of all the children of the page.
+For example, list pages have a `.Pages` variable that is a slice[^4] of page variables 
+of the children of the page.
 
 [^4]: slices are known as "array" in other languages
 
@@ -727,7 +721,7 @@ second argument is set in the first argument, and `false` otherwise.
 {{ end }}
 ```
 The block is run if `.Params.my_custom_param` is set, and **not** run if it's
-missing. `with` rebinds the context: inside the block, the dot means "the variable next to `with`", in this case `my_custom_param`.
+missing. `with` rebinds the context: inside the block, the dot means "the variable of the `with`", in this case `my_custom_param`.
 
 ### 3.9.3 default
 ```go-template-html
