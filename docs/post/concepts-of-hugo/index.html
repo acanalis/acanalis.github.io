@@ -533,7 +533,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    17 min read
+    18 min read
   </span>
   
 
@@ -604,17 +604,16 @@ If you want to give feedback, <a href="http://discourse.gohugo.io/new-message?us
     </li>
     <li><a href="#3-info-for-theme-writers">3. Info for Theme Writers</a>
       <ol>
-        <li><a href="#31-templates-are-html-with-">3.1. Templates are <code>HTML</code> with <code>{{...}}</code></a></li>
-        <li><a href="#33-layouts-contains-the-html-templates">3.3. <code>/layouts</code> contains the HTML templates.</a></li>
-        <li><a href="#34-the-dot-has-the-current-context">3.4. The dot has the current context</a></li>
-        <li><a href="#35-variables-depend-on-front-matter-config-or-position">3.5. Variables depend on front matter, config, or position.</a></li>
-        <li><a href="#36-range-and-pages-are-useful-to-list-links">3.6. <code>range</code> and <code>.Pages</code> are useful to list links</a></li>
-        <li><a href="#37-params-stores-the-non-hugo-specific-variables">3.7. <code>.Params</code> stores the Non-Hugo-specific variables</a></li>
-        <li><a href="#38-template-variables-are-declared-with----and-updated-with---">3.8. Template variables are declared with <code>‎ := ‎</code> and updated with <code>‎ = ‎</code></a></li>
-        <li><a href="#39-handle-missing-values-with-if-with-and-default">3.9. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
-        <li><a href="#310-parenthesis-clarify-how-the-functions-are-applied">3.10. Parenthesis clarify how the functions are applied</a></li>
-        <li><a href="#311-pipe-operator--less-parenthesis">3.11. Pipe operator = less parenthesis</a></li>
-        <li><a href="#312-partials-keep-templates-dry">3.12. Partials keep templates DRY</a></li>
+        <li><a href="#31-layouts-contains-the-html-templates">3.1. <code>/layouts</code> contains the HTML templates.</a></li>
+        <li><a href="#32-templates-are-html-with-">3.2. Templates are <code>HTML</code> with <code>{{...}}</code></a></li>
+        <li><a href="#33-the-dot-has-the-current-context">3.3. The dot has the current context</a></li>
+        <li><a href="#34-hugo-gives-to-variables-to-use-in-your-templates">3.4. Hugo gives to variables to use in your templates</a></li>
+        <li><a href="#35-range-and-pages-are-useful-to-list-links">3.5. <code>range</code> and <code>.Pages</code> are useful to list links</a></li>
+        <li><a href="#36-template-variables-are-declared-with----and-updated-with---">3.6. Template variables are declared with <code>‎ := ‎</code> and updated with <code>‎ = ‎</code></a></li>
+        <li><a href="#37-handle-missing-values-with-if-with-and-default">3.7. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></a></li>
+        <li><a href="#39-parenthesis-clarify-how-the-functions-are-applied">3.9. Parenthesis clarify how the functions are applied</a></li>
+        <li><a href="#310-pipe-operator--less-parenthesis">3.10. Pipe operator = less parenthesis</a></li>
+        <li><a href="#311-partials-keep-templates-dry">3.11. Partials keep templates DRY</a></li>
       </ol>
     </li>
     <li><a href="#footnotes">Footnotes</a></li>
@@ -629,8 +628,8 @@ is to provide the necessary files <code>*.html, *.js, *.css, etc</code>  to the 
 <p>Every client gets the same files: there&rsquo;s no server-side intelligence or interaction.
 Interaction is possible, but using JavaScript on the client-side.</p>
 <h2 id="12-hugo-is-a-cli-program">1.2. Hugo is a CLI program</h2>
-<p>Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash).</p>
-<p>See <a href="https://gohugo.io/getting-started/installing/" target="_blank" rel="noopener">Install Hugo Docs</a>.</p>
+<p>Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash).
+See <a href="https://gohugo.io/getting-started/installing/" target="_blank" rel="noopener">Install Hugo Docs</a>.</p>
 <p>The two most important commands are <code>hugo</code>, and <code>hugo server</code>.
 If there&rsquo;s a valid Hugo project in the current directory,
 <code>hugo</code> will generate the site, and
@@ -945,8 +944,17 @@ The children of <code>presentations</code> are <code>presentations/why-hugo</cod
 <li><code>presentations/math/linear-algebra</code></li>
 </ul>
 <h1 id="3-info-for-theme-writers">3. Info for Theme Writers</h1>
-<h2 id="31-templates-are-html-with-">3.1. Templates are <code>HTML</code> with <code>{{...}}</code></h2>
-<p>Hugo&rsquo;s template language is borrowed from <a href="https://pkg.go.dev/text/template/" target="_blank" rel="noopener">Go Templates</a>.
+<h2 id="31-layouts-contains-the-html-templates">3.1. <code>/layouts</code> contains the HTML templates.</h2>
+<p>Each content file is rendered with a specific template from <code>/layouts</code> that is chosen
+using a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">set of rules</a>.</p>
+<p>A subset of rules I find convenient <sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup> is:</p>
+<ul>
+<li>A regular page like <code>/content/my_type/**/foo.md</code> will be rendered using <code>/layouts/my_type/single.html</code></li>
+<li>A section page like <code>/content/my_type/**/_index.md</code> will be rendered using <code>/layouts/my_type/list.html</code>.</li>
+<li><code>/layouts/_default/single.html</code> and <code>/layouts/_default/list.html</code> are used if the others are missing.</li>
+</ul>
+<h2 id="32-templates-are-html-with-">3.2. Templates are <code>HTML</code> with <code>{{...}}</code></h2>
+<p>Hugo&rsquo;s templating language is borrowed from <a href="https://pkg.go.dev/text/template/" target="_blank" rel="noopener">Go Templates</a>.
 It has types, variables, functions, and statements (<code>if</code>, <code>with</code>, <code>range</code>, <code>define</code> and <code>block</code>).</p>
 <p>In this example a template renders a single page:</p>
 <style>
@@ -1022,32 +1030,162 @@ This is the final result:
 </li>
 </ul>
 </div>
-<h2 id="33-layouts-contains-the-html-templates">3.3. <code>/layouts</code> contains the HTML templates.</h2>
-<p>Each content file is rendered with a specific template from <code>/layouts</code> that is chosen
-using a <a href="https://gohugo.io/templates/lookup-order" target="_blank" rel="noopener">set of rules</a>.</p>
-<p>A subset of rules I find convenient <sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup> is:</p>
-<ul>
-<li>A regular page like <code>/content/my_type/**/foo.md</code> will be rendered using <code>/layouts/my_type/single.html</code></li>
-<li>A section page like <code>/content/my_type/**/_index.md</code> will be rendered using <code>/layouts/my_type/list.html</code>.</li>
-<li><code>/layouts/_default/single.html</code> and <code>/layouts/_default/list.html</code> are used if the others are missing.</li>
-</ul>
-<h2 id="34-the-dot-has-the-current-context">3.4. The dot has the current context</h2>
-<p>The dot stores the variables that can be accessed at a given point in the program.
+<h2 id="33-the-dot-has-the-current-context">3.3. The dot has the current context</h2>
+<p>The dot stores the variables that can be accessed at a given point in the program, which is called &ldquo;the context&rdquo;.
 That&rsquo;s why in the previous example <code>.Content</code> and <code>.Title</code> begin with a dot.</p>
 <p>The dot changes meaning inside <code>range</code> and <code>with</code> blocks.
-The variables available inside and outside of those blocks are different.</p>
-<h2 id="35-variables-depend-on-front-matter-config-or-position">3.5. Variables depend on front matter, config, or position.</h2>
-<p><code>.Title</code> is an example of Hugo-specific front matter-defined variables.</p>
-<p>Some variables can be accessed from any template (<em>global</em> variables).
-For example, if at <code>config.yaml</code> you define <code>author: John Doe</code>, you can use that variable
-in the templates as <code>.Site.Author</code>.</p>
-<p>Other variables are related to the position of the file in <code>/content</code>.</p>
-<p>For example, list pages have a <code>.Pages</code> variable that is a slice<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> of page variables
-of the children of the page.</p>
-<p>See the complete lists of variables at
-<a href="https://gohugo.io/variables/site" target="_blank" rel="noopener">Site Variables</a> and
-<a href="https://gohugo.io/variables/page" target="_blank" rel="noopener">Page Variables</a></p>
-<h2 id="36-range-and-pages-are-useful-to-list-links">3.6. <code>range</code> and <code>.Pages</code> are useful to list links</h2>
+The context inside and outside of those blocks is different.</p>
+<h2 id="34-hugo-gives-to-variables-to-use-in-your-templates">3.4. Hugo gives to variables to use in your templates</h2>
+<p>Hugo provides variables for you to use in your templates, like <code>.Title</code> and <code>.Content</code>. Variables depend on front matter, config, or the relationship between pages in the site.</p>
+<h3 id="341-how-to-access-front-matter-variables">3.4.1 How to access front matter variables</h3>
+<p>Some of the variables at the front matter of content files can be used. As seen before, the variable
+<code>title</code> is accessed as <code>.Title</code>. Read about the full list at <a href="https://gohugo.io/variables/page" target="_blank" rel="noopener">Page Variables</a>.</p>
+<p>The <code>title</code> example seems to suggest that any variable is used with the first letter uppercased.
+However, <code>my_custom_variable</code> <strong>cannot</strong> be accessed as <code>.My_custom_variable</code>, because it doesn&rsquo;t have a special meaning to Hugo.
+Anything that isn&rsquo;t Hugo-related will go to the <code>.Params</code> dictionary, so the correct way to use it in a
+template is <code>.Params.my_custom_variable</code>.</p>
+<p>Here&rsquo;s a full example:</p>
+<style>
+    div.dirs ul {
+        list-style: none;
+    }
+</style>
+<div class="dirs">
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> config.yaml</li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> content
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> hello-world.md
+<pre><code>---
+title: Hello
+my_custom_variable: im a custom variable
+---
+In this article, I will...
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> layouts
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> single.html
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: <span style="color:#75715e">{{</span><span style="color:#75af00">.Params.my_custom_variable</span><span style="color:#75715e">}}</span> <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> public
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> hello-world
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  <span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+    <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Custom front matter variables allow the theme writer to give a special configurations to the theme user.
+The theme documentation could say:</p>
+<blockquote>
+<p>You can set your page to night mode by setting <code>nightmode: true</code> in the front matter
+and then use <code>.Params.nightmode</code> to load the appropriate CSS. This is a very common pattern.</p>
+</blockquote>
+<h3 id="342-how-to-access-variables-from-the-config">3.4.2 How to access variables from the config</h3>
+<p>Again, some variables of the config can be accessed as listed in <a href="https://gohugo.io/variables/site" target="_blank" rel="noopener">Site Variables</a>. These variables are global so they can be used in any template. For example, if at <code>config.yaml</code> you define <code>author: John Doe</code>, you can use that variable in the templates as <code>.Site.Author</code>.</p>
+<p>The behaviour of custom variables is different from front matter params.
+Top level variables that don&rsquo;t have a Hugo-specified behaviour are ignored.
+Instead, custom variables must be defined under the <code>param</code> object and then
+used from the <code>.Site.Params</code> dictionary.</p>
+<p>Here&rsquo;s an example for a custom global variable:</p>
+<style>
+    div.dirs ul {
+        list-style: none;
+    }
+</style>
+<div class="dirs">
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> config.yaml
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">baseURL</span><span style="color:#111">:</span> <span style="color:#ae81ff">https://example.com</span>
+<span style="color:#f92672">params</span><span style="color:#111">:</span> 
+  <span style="color:#f92672">my_custom_variable</span><span style="color:#111">:</span> <span style="color:#ae81ff">im a custom variable</span>
+</code></pre></div></li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> content
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> hello-world.md</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> layouts
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> single.html
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: <span style="color:#75715e">{{</span><span style="color:#75af00">.Site.Params.my_custom_variable</span><span style="color:#75715e">}}</span> <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> public
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
+<ul>
+<li><i class="far fa-folder-open  pr-1 fa-fw"></i> hello-world
+<ul>
+<li><i class="far fa-file  pr-1 fa-fw"></i> index.html
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>As before, custom variables are used by theme writers for site configurations for the users. Using the same example, the theme documentation could say</p>
+<blockquote>
+<p>You can set your site to night mode by writing to your config:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">params</span><span style="color:#111">:</span> 
+  <span style="color:#f92672">nightmode</span><span style="color:#111">:</span> <span style="color:#00a8c8">true</span>
+</code></pre></div></blockquote>
+<p>And the theme writer uses <code>.Site.Params.nightmode</code> to adjust for each situation in the templates.</p>
+<h3 id="343-variables-that-expose-the-hierarchy">3.4.3 Variables that expose the hierarchy</h3>
+<p>The relationships between the pages are used to produce links so that the site can be
+navigated from one page to another.
+For example a blog page might list a summary of the different posts to persuade readers to click on the links and read the full post.</p>
+<p>The most important variables for this use is <code>.Pages</code>, that is a slice<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> of children of the current (list) page.</p>
+<h2 id="35-range-and-pages-are-useful-to-list-links">3.5. <code>range</code> and <code>.Pages</code> are useful to list links</h2>
 <p>In the following example, suppose that you want the section page of the blog
 at <code>https://example.com/blog</code> to list all the links to the posts so that the users
 can visit them.</p>
@@ -1165,129 +1303,7 @@ This is called <strong>rebinding</strong> the context.<sup id="fnref:12"><a href
 </li>
 </ul>
 </div>
-<h2 id="37-params-stores-the-non-hugo-specific-variables">3.7. <code>.Params</code> stores the Non-Hugo-specific variables</h2>
-<p>Some variables on the config or the front matter that <strong>don&rsquo;t</strong> have a special meaning to Hugo.
-You can access those variables through either the <code>.Params</code> or <code>.Site.Params</code> dictionaries.</p>
-<h3 id="371-how-to-use-variables-defined-on-the-front-matter-of-a-page">3.7.1 How to use Variables defined on the Front matter of a page</h3>
-<style>
-    div.dirs ul {
-        list-style: none;
-    }
-</style>
-<div class="dirs">
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> config.yaml</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> content
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> hello-world.md
-<pre><code>---
-title: Hello
-my_custom_variable: im a custom variable
----
-In this article, I will...
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> layouts
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> single.html
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: <span style="color:#75715e">{{</span><span style="color:#75af00">.Params.my_custom_variable</span><span style="color:#75715e">}}</span> <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> public
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> hello-world
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> index.html
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  <span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-    <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h3 id="372-how-to-use-site-variables-defined-in-the-config">3.7.2 How to use Site Variables defined in the config</h3>
-<p>For site variables defined in the config, you have to define them inside the <code>params</code> object
-on the config, and they are stored in <code>.Site.Params</code>.</p>
-<style>
-    div.dirs ul {
-        list-style: none;
-    }
-</style>
-<div class="dirs">
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> config.yaml
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">baseURL</span><span style="color:#111">:</span> <span style="color:#ae81ff">https://example.com</span>
-<span style="color:#f92672">params</span><span style="color:#111">:</span> 
-  <span style="color:#f92672">my_custom_variable</span><span style="color:#111">:</span> <span style="color:#ae81ff">im a custom variable</span>
-</code></pre></div></li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> content
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> hello-world.md</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> layouts
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> single.html
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: <span style="color:#75715e">{{</span><span style="color:#75af00">.Site.Params.my_custom_variable</span><span style="color:#75715e">}}</span> <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> public
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> blog
-<ul>
-<li><i class="far fa-folder-open  pr-1 fa-fw"></i> hello-world
-<ul>
-<li><i class="far fa-file  pr-1 fa-fw"></i> index.html
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-  <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span> The value is: i&#39;m a custom variable <span style="color:#111">&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;/</span><span style="color:#f92672">body</span><span style="color:#111">&gt;</span>
-<span style="color:#111">&lt;/</span><span style="color:#f92672">html</span><span style="color:#111">&gt;</span>
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="38-template-variables-are-declared-with----and-updated-with---">3.8. Template variables are declared with <code>‎ := ‎</code> and updated with <code>‎ = ‎</code></h2>
+<h2 id="36-template-variables-are-declared-with----and-updated-with---">3.6. Template variables are declared with <code>‎ := ‎</code> and updated with <code>‎ = ‎</code></h2>
 <p>For convenience during template writing, you can declare internal variables with:</p>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ $a := &quot;hello&quot; }}
 {{ $a = &quot;HELLO&quot; }}
@@ -1304,12 +1320,12 @@ parse failed:
 template: 
 blog/single.html:12: 
 undefined variable &quot;$b&quot;
-</code></pre><h2 id="39-handle-missing-values-with-if-with-and-default">3.9. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
+</code></pre><h2 id="37-handle-missing-values-with-if-with-and-default">3.7. Handle missing values with <code>if</code>, <code>with</code>, and <code>default</code></h2>
 <p>The previous example is a bit fragile, because the templates are called using many
 different content files. If <code>my_custom_variable</code> doesn&rsquo;t exist in one of them,
 the whole build fails.</p>
 <p>Here are three methods to avoid that:</p>
-<h3 id="391-if">3.9.1 if</h3>
+<h3 id="381-if">3.8.1 if</h3>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ if (isset .Params &quot;my_custom_variable&quot;) }}
     &lt;p&gt; The value is: {{ .Params.my_custom_variable }} &lt;/p&gt;
 {{ else }} 
@@ -1318,19 +1334,19 @@ the whole build fails.</p>
 </code></pre><p>This example is just to show how the <code>if</code> statement works. The <code>{{else}}</code> block is optional.
 The <code>isset</code> function<sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup> returns <code>true</code> if the
 second argument is set in the first argument, and <code>false</code> otherwise.</p>
-<h3 id="392-with">3.9.2 with</h3>
+<h3 id="382-with">3.8.2 with</h3>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ with .Params.my_custom_param }}
 &lt;p&gt; The value is: {{.}} &lt;/p&gt;
 {{ end }}
 </code></pre><p>The block is run if <code>.Params.my_custom_param</code> is set, and <strong>not</strong> run if it&rsquo;s
 missing. <code>with</code> rebinds the context: inside the block, the dot means &ldquo;the variable of the <code>with</code>&rdquo;, in this case <code>my_custom_param</code>.</p>
-<h3 id="393-default">3.9.3 default</h3>
+<h3 id="383-default">3.8.3 default</h3>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ $a := default &quot;my_default&quot; .Params.my_custom_variable }}
 {{ $a }}
 </code></pre><p>The <a href="https://gohugo.io/functions/default/" target="_blank" rel="noopener">default</a> function outputs a default
 value if a variable is not set.
 In this case, if <code>.Params.my_custom_variable</code> is not set, so <code>$a</code> it takes the value of <code>&quot;my_default&quot;</code>.</p>
-<h2 id="310-parenthesis-clarify-how-the-functions-are-applied">3.10. Parenthesis clarify how the functions are applied</h2>
+<h2 id="39-parenthesis-clarify-how-the-functions-are-applied">3.9. Parenthesis clarify how the functions are applied</h2>
 <p>Like in math, parenthesis are used to disambiguate the order of application in
 a long sequence of functions:</p>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ markdownify (upper (emojify &quot;## hello :‎smiley:&quot;)) }}
@@ -1339,13 +1355,13 @@ a long sequence of functions:</p>
 <li><code>upper</code> is applied to <code>&quot;## hello 😀&quot;</code> which results in <code>&quot;## HELLO 😀&quot;</code></li>
 <li><code>markdownify</code> is applied to <code>&quot;## HELLO 😀&quot;</code>, which turns it into <code>&quot;&lt;h2&gt; HELLO 😀&lt;/h2&gt;&quot;</code></li>
 </ol>
-<h2 id="311-pipe-operator--less-parenthesis">3.11. Pipe operator = less parenthesis</h2>
+<h2 id="310-pipe-operator--less-parenthesis">3.10. Pipe operator = less parenthesis</h2>
 <p>The pipe operator <code>‎ | ‎</code> is a syntactic sugar that passes the output from the left of the operator to
 the function to the right, as the last argument.</p>
 <p>This is equivalent to the previous example:</p>
 <pre><code class="language-go-template-html" data-lang="go-template-html">{{ &quot;## hello :‎smiley‎:&quot; | emojify | upper | markdownify }}
 </code></pre><p>The output is exactly the same as before. Notice that there are less parenthesis used.</p>
-<h2 id="312-partials-keep-templates-dry">3.12. Partials keep templates DRY</h2>
+<h2 id="311-partials-keep-templates-dry">3.11. Partials keep templates DRY</h2>
 <p>Certain elements of a site appear on multiple templates, such as menus or footers.
 It would be inconvenient to rewrite the same patterns across all templates.</p>
 <p><strong>Partials</strong> allow you to reuse code. A partial is a template stored in <code>/layouts/partials</code>

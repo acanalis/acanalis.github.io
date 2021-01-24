@@ -33,7 +33,6 @@ Interaction is possible, but using JavaScript on the client-side.
 
 ## 1.2. Hugo is a CLI program
 Hugo itself is an executable file. You interact with it via the command line (PowerShell, cmd, bash). 
- 
 See [Install Hugo Docs](https://gohugo.io/getting-started/installing/).
 
 The two most important commands are `hugo`, and `hugo server`. 
@@ -369,9 +368,21 @@ The regular pages are:
 
 # 3. Info for Theme Writers 
 
-## 3.1. Templates are `HTML` with `{{...}}`
+## 3.1. `/layouts` contains the HTML templates.
+Each content file is rendered with a specific template from `/layouts` that is chosen 
+using a [set of rules](https://gohugo.io/templates/lookup-order). 
 
-Hugo's template language is borrowed from [Go Templates](https://pkg.go.dev/text/template/). 
+A subset of rules I find convenient [^9] is:
+
+* A regular page like `/content/my_type/**/foo.md` will be rendered using `/layouts/my_type/single.html`
+* A section page like `/content/my_type/**/_index.md` will be rendered using `/layouts/my_type/list.html`.  
+* `/layouts/_default/single.html` and `/layouts/_default/list.html` are used if the others are missing.
+
+[^9]: There are many other ways to organize templates, see [Template Lookup Order](https://gohugo.io/templates/lookup-order). It's a matter of preference. 
+
+## 3.2. Templates are `HTML` with `{{...}}`
+
+Hugo's templating language is borrowed from [Go Templates](https://pkg.go.dev/text/template/). 
 It has types, variables, functions, and statements (`if`, `with`, `range`, `define` and `block`). 
 
 In this example a template renders a single page:
@@ -426,46 +437,134 @@ In this example a template renders a single page:
         ```
 {{%/ dir %}}
 
-## 3.3. `/layouts` contains the HTML templates.
-Each content file is rendered with a specific template from `/layouts` that is chosen 
-using a [set of rules](https://gohugo.io/templates/lookup-order). 
+## 3.3. The dot has the current context
 
-A subset of rules I find convenient [^9] is:
-
-* A regular page like `/content/my_type/**/foo.md` will be rendered using `/layouts/my_type/single.html`
-* A section page like `/content/my_type/**/_index.md` will be rendered using `/layouts/my_type/list.html`.  
-* `/layouts/_default/single.html` and `/layouts/_default/list.html` are used if the others are missing.
-
-[^9]: There are many other ways to organize templates, see [Template Lookup Order](https://gohugo.io/templates/lookup-order). It's a matter of preference. 
-
-## 3.4. The dot has the current context
-
-The dot stores the variables that can be accessed at a given point in the program. 
+The dot stores the variables that can be accessed at a given point in the program, which is called "the context". 
 That's why in the previous example `.Content` and `.Title` begin with a dot. 
 
 The dot changes meaning inside `range` and `with` blocks. 
-The variables available inside and outside of those blocks are different.
+The context inside and outside of those blocks is different.
 
-## 3.5. Variables depend on front matter, config, or position. 
+## 3.4. Hugo gives to variables to use in your templates 
 
-`.Title` is an example of Hugo-specific front matter-defined variables. 
+Hugo provides variables for you to use in your templates, like `.Title` and `.Content`. Variables depend on front matter, config, or the relationship between pages in the site.
 
-Some variables can be accessed from any template (_global_ variables). 
-For example, if at `config.yaml` you define `author: John Doe`, you can use that variable
-in the templates as `.Site.Author`. 
+### 3.4.1 How to access front matter variables
 
-Other variables are related to the position of the file in `/content`.
+Some of the variables at the front matter of content files can be used. As seen before, the variable 
+`title` is accessed as `.Title`. Read about the full list at [Page Variables](https://gohugo.io/variables/page). 
 
-For example, list pages have a `.Pages` variable that is a slice[^4] of page variables 
-of the children of the page.
+The `title` example seems to suggest that any variable is used with the first letter uppercased. 
+However, `my_custom_variable` **cannot** be accessed as `.My_custom_variable`, because it doesn't have a special meaning to Hugo. 
+Anything that isn't Hugo-related will go to the `.Params` dictionary, so the correct way to use it in a 
+template is `.Params.my_custom_variable`. 
+
+Here's a full example: 
+
+{{% dir %}}
+* \f config.yaml
+* \d content
+  * \d blog
+    * \f hello-world.md
+      ```
+      ---
+      title: Hello
+      my_custom_variable: im a custom variable
+      ---
+      In this article, I will...
+      ``` 
+* \d layouts
+  * \d blog
+    * \f single.html
+      ```go-html-template
+      <html>
+      <body>
+        <p> The value is: {{.Params.my_custom_variable}} </p>
+      </body>
+      ```
+* \d public
+  * \d blog
+    * \d hello-world
+      * \f index.html
+        ```html
+          <html>
+          <body>
+            <p> The value is: i'm a custom variable </p>
+          </body>
+          </html>
+        ``` 
+{{%/ dir %}}
+
+Custom front matter variables allow the theme writer to give a special configurations to the theme user. 
+The theme documentation could say:
+> You can set your page to night mode by setting `nightmode: true` in the front matter
+and then use `.Params.nightmode` to load the appropriate CSS. This is a very common pattern.
+
+### 3.4.2 How to access variables from the config
+
+Again, some variables of the config can be accessed as listed in [Site Variables](https://gohugo.io/variables/site). These variables are global so they can be used in any template. For example, if at `config.yaml` you define `author: John Doe`, you can use that variable in the templates as `.Site.Author`. 
+
+The behaviour of custom variables is different from front matter params. 
+Top level variables that don't have a Hugo-specified behaviour are ignored. 
+Instead, custom variables must be defined under the `param` object and then 
+used from the `.Site.Params` dictionary. 
+
+Here's an example for a custom global variable:
+
+{{% dir %}}
+* \f config.yaml
+  ```yaml
+  baseURL: https://example.com
+  params: 
+    my_custom_variable: im a custom variable
+  ```
+* \d content
+  * \d blog
+    * \f hello-world.md
+* \d layouts
+  * \d blog
+    * \f single.html
+      ```go-html-template
+      <html>
+      <body>
+        <p> The value is: {{.Site.Params.my_custom_variable}} </p>
+      </body>
+      </html>
+      ```
+* \d public
+  * \d blog
+    * \d hello-world
+      * \f index.html
+        ```html
+        <html>
+        <body>
+          <p> The value is: i'm a custom variable </p>
+        </body>
+        </html>
+        ``` 
+{{%/ dir %}}
+
+As before, custom variables are used by theme writers for site configurations for the users. Using the same example, the theme documentation could say  
+> You can set your site to night mode by writing to your config:
+>  ```yaml
+>  params: 
+>    nightmode: true
+>  ```
+
+And the theme writer uses `.Site.Params.nightmode` to adjust for each situation in the templates. 
+
+### 3.4.3 Variables that expose the hierarchy
+
+The relationships between the pages are used to produce links so that the site can be 
+navigated from one page to another. 
+For example a blog page might list a summary of the different posts to persuade readers to click on the links and read the full post. 
+
+The most important variables for this use is `.Pages`, that is a slice[^4] of children of the current (list) page. 
 
 [^4]: slices are known as "array" in other languages
 
-See the complete lists of variables at
-[Site Variables](https://gohugo.io/variables/site) and
-[Page Variables](https://gohugo.io/variables/page)
 
-## 3.6. `range` and `.Pages` are useful to list links
+## 3.5. `range` and `.Pages` are useful to list links
 
 In the following example, suppose that you want the section page of the blog 
 at `https://example.com/blog` to list all the links to the posts so that the users 
@@ -569,86 +668,7 @@ Here's the full example:
       ```
 {{%/ dir %}}
 
-## 3.7. `.Params` stores the Non-Hugo-specific variables
-
-Some variables on the config or the front matter that **don't** have a special meaning to Hugo.
-You can access those variables through either the `.Params` or `.Site.Params` dictionaries. 
-
-### 3.7.1 How to use Variables defined on the Front matter of a page
-
-{{% dir %}}
-* \f config.yaml
-* \d content
-  * \d blog
-    * \f hello-world.md
-      ```
-      ---
-      title: Hello
-      my_custom_variable: im a custom variable
-      ---
-      In this article, I will...
-      ``` 
-* \d layouts
-  * \d blog
-    * \f single.html
-      ```go-html-template
-      <html>
-      <body>
-        <p> The value is: {{.Params.my_custom_variable}} </p>
-      </body>
-      ```
-* \d public
-  * \d blog
-    * \d hello-world
-      * \f index.html
-        ```html
-          <html>
-          <body>
-            <p> The value is: i'm a custom variable </p>
-          </body>
-          </html>
-        ``` 
-{{%/ dir %}}
-
-### 3.7.2 How to use Site Variables defined in the config
-
-For site variables defined in the config, you have to define them inside the `params` object 
-on the config, and they are stored in `.Site.Params`.
-
-{{% dir %}}
-* \f config.yaml
-  ```yaml
-  baseURL: https://example.com
-  params: 
-    my_custom_variable: im a custom variable
-  ```
-* \d content
-  * \d blog
-    * \f hello-world.md
-* \d layouts
-  * \d blog
-    * \f single.html
-      ```go-html-template
-      <html>
-      <body>
-        <p> The value is: {{.Site.Params.my_custom_variable}} </p>
-      </body>
-      </html>
-      ```
-* \d public
-  * \d blog
-    * \d hello-world
-      * \f index.html
-        ```html
-        <html>
-        <body>
-          <p> The value is: i'm a custom variable </p>
-        </body>
-        </html>
-        ``` 
-{{%/ dir %}}
-
-## 3.8. Template variables are declared with `‎ := ‎` and updated with `‎ = ‎`
+## 3.6. Template variables are declared with `‎ := ‎` and updated with `‎ = ‎`
 
 For convenience during template writing, you can declare internal variables with:
 
@@ -692,7 +712,7 @@ undefined variable "$b"
     
     To get the "1 2 3 3" version, put `$a = . ` at the fourth line. 
 
-## 3.9. Handle missing values with `if`, `with`, and `default`
+## 3.7. Handle missing values with `if`, `with`, and `default`
 
 The previous example is a bit fragile, because the templates are called using many 
 different content files. If `my_custom_variable` doesn't exist in one of them, 
@@ -702,7 +722,7 @@ Here are three methods to avoid that:
 
 [^11]:  See [`isset` Docs]((https://gohugo.io/functions/isset)).
 
-### 3.9.1 if
+### 3.8.1 if
 ```go-template-html
 {{ if (isset .Params "my_custom_variable") }}
     <p> The value is: {{ .Params.my_custom_variable }} </p>
@@ -714,7 +734,7 @@ This example is just to show how the `if` statement works. The `{{else}}` block 
 The `isset` function[^11] returns `true` if the 
 second argument is set in the first argument, and `false` otherwise. 
   
-### 3.9.2 with
+### 3.8.2 with
 ```go-template-html
 {{ with .Params.my_custom_param }}
 <p> The value is: {{.}} </p>
@@ -723,7 +743,7 @@ second argument is set in the first argument, and `false` otherwise.
 The block is run if `.Params.my_custom_param` is set, and **not** run if it's
 missing. `with` rebinds the context: inside the block, the dot means "the variable of the `with`", in this case `my_custom_param`.
 
-### 3.9.3 default
+### 3.8.3 default
 ```go-template-html
 {{ $a := default "my_default" .Params.my_custom_variable }}
 {{ $a }}
@@ -733,7 +753,7 @@ value if a variable is not set.
 In this case, if `.Params.my_custom_variable` is not set, so `$a` it takes the value of `"my_default"`.
   
 
-## 3.10. Parenthesis clarify how the functions are applied 
+## 3.9. Parenthesis clarify how the functions are applied 
 
 Like in math, parenthesis are used to disambiguate the order of application in
  a long sequence of functions:
@@ -746,7 +766,7 @@ Like in math, parenthesis are used to disambiguate the order of application in
 2. `upper` is applied to `"## hello 😀"` which results in `"## HELLO 😀"`
 3. `markdownify` is applied to `"## HELLO 😀"`, which turns it into `"<h2> HELLO 😀</h2>"`
 
-## 3.11. Pipe operator = less parenthesis
+## 3.10. Pipe operator = less parenthesis
 
 The pipe operator `‎ | ‎` is a syntactic sugar that passes the output from the left of the operator to 
 the function to the right, as the last argument. 
@@ -758,7 +778,7 @@ This is equivalent to the previous example:
 ```
 The output is exactly the same as before. Notice that there are less parenthesis used. 
 
-## 3.12. Partials keep templates DRY
+## 3.11. Partials keep templates DRY
 
 Certain elements of a site appear on multiple templates, such as menus or footers.
 It would be inconvenient to rewrite the same patterns across all templates. 
