@@ -1,0 +1,11 @@
+[workspace]
+authors = ["A. Canalis <agustin.canalis@gmail.com>"]
+channels = ["conda-forge"]
+name = "pass-hammer"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.12.*"
