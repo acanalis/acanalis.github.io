@@ -2,9 +2,10 @@
 title: Concepts of Hugo
 subtitle: a what-is-what introduction
 date: 2021-01-13T11:00:00-03:00
-
 aliases: /drafts/fast-hugo-intro
 summary: Learn [Hugo](https://gohugo.io) efficiently! 90% of Hugo explained in less than 25 key points.
+ShowToc: true
+TocOpen: true
 ---
 
 When you start with [Hugo](https://gohugo.io) _The world’s fastest framework for building websites_, 
@@ -20,7 +21,6 @@ for the most precise and up-to-date information.
 All the examples were tested at [`github.com/acanalis/concepts-of-hugo`](https://github.com/acanalis/concepts-of-Hugo).
 If you want to give feedback, [message me at the Hugo Discourse!](http://discourse.gohugo.io/new-message?username=acanalis)
 
-{{< toc >}}
 
 # 1. Info for Everyone
 
@@ -685,7 +685,7 @@ It's an error to use `=` to a variable that hasn't been declared with `:=` befor
 ```go-template-html
 {{ $b }}
 ```
-```console {wrap}
+```console {class="wrap"}
 $ hugo
 Error: 
 add site dependencies: 
@@ -720,7 +720,7 @@ the whole build fails.
 
 Here are three methods to avoid that: 
 
-[^11]:  See [`isset` Docs]((https://gohugo.io/functions/isset)).
+[^11]:  See [`isset` Docs](https://gohugo.io/functions/isset).
 
 ### 3.8.1 if
 ```go-template-html

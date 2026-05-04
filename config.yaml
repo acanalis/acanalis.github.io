@@ -2,71 +2,60 @@ publishdir: docs
 title: ΔY
 baseurl: https://acanalis.github.io/
 
-module:
-  imports: 
-    - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy
+theme: PaperMod
 
-params:
-  date_format: 2006/02/01
-  main_menu:
-    show_language: true
-  highlight: false
-  
 enableEmoji: true
 markup:
-  defaultMarkdownHandler : goldmark
+  defaultMarkdownHandler: goldmark
   goldmark:
     renderer:
-      unsafe: true 
+      unsafe: true
     extensions:
       linkify: false
-  highlight: 
-    style: monokailight
+  highlight:
+    noClasses: false
   tableOfContents:
-    startLevel : 1
+    startLevel: 1
     ordered: true
-    endLevel : 2
+    endLevel: 2
+
+params:
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
 
 defaultContentLanguage: en
-languages: 
-  en: 
+languages:
+  en:
     languageCode: "en-us"
     contentDir: content/en
-    menu: 
+    menu:
       main:
-        - name : "Posts"
-          url : "post"
-          weight : 20
-        - name : "About @acanalis"
-          url : "about"
-          weight : 30
+        - name: Posts
+          url: post
+          weight: 20
+        - name: About
+          url: about
+          weight: 30
     params:
-      copyright_license:
-          enable: true
-          sharealike: true
-          allow_commercial: true
-          allow_derivatives: true
-          notice: "Except where otherwise noted, this website is licensed under {license}"
+      homeInfoParams:
+        Title: ΔY
+        Content: Programming, learning and teaching.
 
-  es: 
+  es:
     languageCode: "es-ar"
     contentDir: content/es
     menu:
       main:
-        - name : "Posts"
-          url : "post"
-          weight : 20
-        - name : "Acerca de @acanalis"
-          url : "about"
-          weight : 30
+        - name: Posts
+          url: post
+          weight: 20
+        - name: Acerca de @acanalis
+          url: about
+          weight: 30
     params:
-      copyright_license:
-        enable: true
-        sharealike: true
-        allow_commercial: true
-        allow_derivatives: true
-        notice: "Excepto indicación en contrario, este sitio está licenciado bajo {license}"
-
-       
-
-
+      homeInfoParams:
+        Title: ΔY
+        Content: Programación, aprendizaje y enseñanza.

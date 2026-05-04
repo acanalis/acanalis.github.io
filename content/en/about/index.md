@@ -1,8 +1,9 @@
 ---
-title: "About"  # Add a page title.
-summary: ""
-type: "widget_page"  # Page type is a Widget Page
-
-copyright_license: 
-  custom_notice: "{copyright} Agustin Canalis 2021. All rights reserved"
+title: "About @acanalis"
 ---
+
+# Agustin Canalis
+
+Born in Neuquén, Argentina :argentina: and now living in Denmark.
+
+[GitHub](https://github.com/acanalis)

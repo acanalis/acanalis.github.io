@@ -1,784 +1,360 @@
-<!DOCTYPE html><html lang="es-ar" >
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  
-  
-  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
-  
-
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-    
-    
-    
-  
-  
-
-  <meta name="author" content="Agustin Canalis">
-
-  
-  
-  
-    
-  
-  <meta name="description" content="Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow ([@soypat](https://github.com/soypat)), @acanalis, y [Women in Engineering ITBA](https://www.linkedin.com/company/wie-itba/).">
-
-  
-  <link rel="alternate" hreflang="es-ar" href="https://acanalis.github.io/es/presentation/curso-go/">
-
-  
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-  
-
-  
-  
-  
-  <meta name="theme-color" content="#1565c0">
-  
-
-  
-  
-
-  
-  
-  
-  
-    
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
-
-    
-    
-    
-      
-    
-    
-
-    
-
-    
-
-    
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-        
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-      
-
-      
-      
-
-      
-    
-
-  
-
-  
-  
-  
-
-  
-  
-  
-  
-  
-  <link rel="stylesheet" href="/css/wowchemy.a9f39fc62b2e10028b26914ec8546f11.css">
-
-  
-
-
-
-
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  <link rel="icon" type="image/png" href="/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_32x32_fill_box_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_192x192_fill_box_center_2.png">
-
-  <link rel="canonical" href="https://acanalis.github.io/es/presentation/curso-go/">
-
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <meta property="twitter:card" content="summary_large_image">
-  
+<!DOCTYPE html>
+<html lang="es" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Curso de Go - WIE | ΔY</title>
+<meta name="keywords" content="">
+<meta name="description" content="Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (@soypat), @acanalis, y Women in Engineering ITBA.">
+<meta name="author" content="">
+<link rel="canonical" href="https://acanalis.github.io/es/presentation/curso-go/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fa56127605ab465763b64ec999a1d3f506bdb50f1a411649ae47ffa479730062.css" integrity="sha256-&#43;lYSdgWrRldjtk7JmaHT9Qa9tQ8aQRZJrkf/pHlzAGI=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://acanalis.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://acanalis.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://acanalis.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://acanalis.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://acanalis.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="es" href="https://acanalis.github.io/es/presentation/curso-go/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://acanalis.github.io/es/presentation/curso-go/">
   <meta property="og:site_name" content="ΔY">
-  <meta property="og:url" content="https://acanalis.github.io/es/presentation/curso-go/">
-  <meta property="og:title" content="Curso de Go - WIE | ΔY">
-  <meta property="og:description" content="Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow ([@soypat](https://github.com/soypat)), @acanalis, y [Women in Engineering ITBA](https://www.linkedin.com/company/wie-itba/)."><meta property="og:image" content="https://acanalis.github.io/es/presentation/curso-go/featured.jpeg">
-  <meta property="twitter:image" content="https://acanalis.github.io/es/presentation/curso-go/featured.jpeg"><meta property="og:locale" content="es-ar">
-  
+  <meta property="og:title" content="Curso de Go - WIE">
+  <meta property="og:description" content="Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (@soypat), @acanalis, y Women in Engineering ITBA.">
+  <meta property="og:locale" content="es_ar">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="presentation">
+    <meta property="article:published_time" content="2020-12-04T19:00:00+00:00">
+    <meta property="article:modified_time" content="2020-12-04T19:00:00+00:00">
+      <meta property="og:image" content="https://acanalis.github.io/es/presentation/curso-go/featured.jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://acanalis.github.io/es/presentation/curso-go/featured.jpeg">
+  <meta name="twitter:title" content="Curso de Go - WIE">
+  <meta name="twitter:description" content="Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (@soypat), @acanalis, y Women in Engineering ITBA.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Presentaciones",
+      "item": "https://acanalis.github.io/es/presentation/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Curso de Go - WIE",
+      "item": "https://acanalis.github.io/es/presentation/curso-go/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Curso de Go - WIE",
+  "name": "Curso de Go - WIE",
+  "description": "Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (@soypat), @acanalis, y Women in Engineering ITBA.",
+  "keywords": [
     
-      <meta property="article:published_time" content="2020-12-04T19:00:00&#43;00:00">
-    
-    <meta property="article:modified_time" content="2020-12-04T19:00:00&#43;00:00">
-  
-
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-
-
-  <title>Curso de Go - WIE | ΔY</title>
-
+  ],
+  "articleBody": "Introducción Impulsados por Women in Engineering ITBA, el 4 de diciembre de 2020 dimos un curso virtual de Go en el ITBA, abierto a toda la comunidad.\nLas presentaciones son interactivas y permiten ejecutar y editar el código on-line, sin necesidad de bajar ninguna extensión. El foco estuvo en cubrir las características fundamentales del lenguaje de programación Go de manera escalonada, para que sirva de referencia tanto para personas que nunca habían programando (Parte 1) como para personas que ya tienen experiencia (Parte 2).\nQue lo disfruten y les sea útil,\nPatricio Whittinslow y Agustin Canalis\nAgradecimientos Gracias a Women in Engineering ITBA por ofrecernos el espacio y toda su ayuda para realizar el curso. Gracias a:\nElisabet del Pilar Crespo, WIE Chair Paula Oseroff, WIE Volunteer, Editor Solange Soler, WIE Volunteer María Inés Quihillalt, WIE Volunteer ¡Un gusto haber colaborado con ustedes!\nParte 1: Go desde 0 Introducción a Go para no programadores.\nPresentación Interactiva Parte 2: Go efectivo Introducción a Go para programadores de otros lenguajes.\nPresentación Interactiva Video del Curso ",
+  "wordCount" : "173",
+  "inLanguage": "es",
+  "image": "https://acanalis.github.io/es/presentation/curso-go/featured.jpeg","datePublished": "2020-12-04T19:00:00Z",
+  "dateModified": "2020-12-04T19:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://acanalis.github.io/es/presentation/curso-go/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ΔY",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://acanalis.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://acanalis.github.io/es/" accesskey="h" title="ΔY (Alt + H)">ΔY</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://acanalis.github.io/" title="En"
+                                aria-label="En">En</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://acanalis.github.io/es/post" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://acanalis.github.io/es/about" title="Acerca de @acanalis">
+                    <span>Acerca de @acanalis</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
 
-
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
-
-  
-  
-  
-  
-  
-  
-  
-  
-  <script src="/js/wowchemy-init.min.285803d21d0d9cbb186d08eed0a1bc9d.js"></script>
-
-  
-
-
-
-  <div class="page-header">
+<article class="post-single">
+  <header class="post-header">
     
-
-
-
-
-
-
-
-
-
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
-  <div class="container-xl">
-
-    
-    <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/es/">ΔY</a>
-    </div>
-    
-
-    
-    <button type="button" class="navbar-toggler" data-toggle="collapse"
-            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Barra de navegación">
-    <span><i class="fas fa-bars"></i></span>
-    </button>
-    
-
-    
-    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/es/">ΔY</a>
-    </div>
-    
-
-    
-    
-    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
-
-      
-      <ul class="navbar-nav d-md-inline-flex">
-        
-
-        
-
-        
-        
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-        
-
-        <li class="nav-item">
-          <a class="nav-link " href="/es/post"><span>Posts</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-        
-
-        <li class="nav-item">
-          <a class="nav-link " href="/es/about"><span>Acerca de @acanalis</span></a>
-        </li>
-
-        
-        
-
-      
-
-        
-      </ul>
-    </div>
-
-    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
-
-      
-      
-        
-      
-
-      
-      
-
-      
-      
-
-      
-
-    </ul>
-
-  </div>
-</nav>
-
-
-  </div>
-
-  <div class="page-body">
-    <article class="article">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-<div class="article-container pt-3">
-  <h1>Curso de Go - WIE</h1>
-
-  
-
-  
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2020/04/12
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-
-  
-  
+    <h1 class="post-title entry-hint-parent">
+      Curso de Go - WIE
+    </h1>
+    <div class="post-meta">
+
+<span title='2020-12-04 19:00:00 +0000 UTC'>4 de diciembre de 2020</span>&nbsp;·&nbsp;<span>1 min</span>
 
 </div>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 1018px;">
-  <div style="position: relative">
-    <img src="/es/presentation/curso-go/featured_hu182528e13f7c58b9c151b8041c19095b_264602_720x0_resize_q75_box.jpeg" alt="" class="featured-image">
-    
-  </div>
-</div>
-
-
-
-  <div class="article-container">
-
-    <div class="article-style">
-      <h2 id="introducción">Introducción</h2>
-<p>Impulsados por <a href="https://www.linkedin.com/company/wie-itba/" target="_blank" rel="noopener">Women in Engineering ITBA</a>, el 4 de diciembre de 2020 dimos un curso virtual de Go en el ITBA, abierto a toda la comunidad.</p>
-<p>Las presentaciones son interactivas y permiten ejecutar y editar el código on-line, sin necesidad de bajar ninguna extensión. El foco estuvo en cubrir las características fundamentales del <a href="https://go.dev" target="_blank" rel="noopener">lenguaje de programación Go</a> de manera escalonada, para que sirva de referencia tanto para personas que nunca habían programando (Parte 1) como para personas que ya tienen experiencia (Parte 2).</p>
+  </header> 
+  <div class="post-content md-content"><h2 id="introducción">Introducción<a hidden class="anchor" aria-hidden="true" href="#introducción">#</a></h2>
+<p>Impulsados por <a href="https://www.linkedin.com/company/wie-itba/">Women in Engineering ITBA</a>, el 4 de diciembre de 2020 dimos un curso virtual de Go en el ITBA, abierto a toda la comunidad.</p>
+<p>Las presentaciones son interactivas y permiten ejecutar y editar el código on-line, sin necesidad de bajar ninguna extensión. El foco estuvo en cubrir las características fundamentales del <a href="https://go.dev">lenguaje de programación Go</a> de manera escalonada, para que sirva de referencia tanto para personas que nunca habían programando (Parte 1) como para personas que ya tienen experiencia (Parte 2).</p>
 <p>Que lo disfruten y les sea útil,</p>
-<p><a href="https://github.com/soypat" target="_blank" rel="noopener">Patricio Whittinslow</a> y <a href="https://github.com/acanalis" target="_blank" rel="noopener">Agustin Canalis</a></p>
-<h2 id="agradecimientos">Agradecimientos</h2>
-<p>Gracias a <a href="https://www.linkedin.com/company/wie-itba/" target="_blank" rel="noopener">Women in Engineering ITBA</a> por ofrecernos el espacio y toda su ayuda para realizar el curso. Gracias a:</p>
+<p><a href="https://github.com/soypat">Patricio Whittinslow</a> y <a href="https://github.com/acanalis">Agustin Canalis</a></p>
+<h2 id="agradecimientos">Agradecimientos<a hidden class="anchor" aria-hidden="true" href="#agradecimientos">#</a></h2>
+<p>Gracias a <a href="https://www.linkedin.com/company/wie-itba/">Women in Engineering ITBA</a> por ofrecernos el espacio y toda su ayuda para realizar el curso. Gracias a:</p>
 <ul>
-<li><a href="https://www.linkedin.com/in/elisabet-del-pilar-crespo/" target="_blank" rel="noopener">Elisabet del Pilar Crespo</a>, WIE Chair</li>
-<li><a href="https://www.linkedin.com/in/paula-oseroff/" target="_blank" rel="noopener">Paula Oseroff</a>, WIE Volunteer, Editor</li>
+<li><a href="https://www.linkedin.com/in/elisabet-del-pilar-crespo/">Elisabet del Pilar Crespo</a>, WIE Chair</li>
+<li><a href="https://www.linkedin.com/in/paula-oseroff/">Paula Oseroff</a>, WIE Volunteer, Editor</li>
 <li>Solange Soler, WIE Volunteer</li>
 <li>María Inés Quihillalt, WIE Volunteer</li>
 </ul>
 <p>¡Un gusto haber colaborado con ustedes!</p>
-<h2 id="parte-1-go-desde-0">Parte 1: Go desde 0</h2>
+<h2 id="parte-1-go-desde-0">Parte 1: Go desde 0<a hidden class="anchor" aria-hidden="true" href="#parte-1-go-desde-0">#</a></h2>
 <p>Introducción a Go para no programadores.</p>
 <ul>
-<li><a href="go-desde-cero.html">Presentación Interactiva</a></li>
+<li><a href="">Presentación Interactiva</a></li>
 </ul>
-<h2 id="parte-2-go-efectivo">Parte 2: Go efectivo</h2>
+<h2 id="parte-2-go-efectivo">Parte 2: Go efectivo<a hidden class="anchor" aria-hidden="true" href="#parte-2-go-efectivo">#</a></h2>
 <p>Introducción a Go para programadores de otros lenguajes.</p>
 <ul>
-<li><a href="go-efectivo.html">Presentación Interactiva</a></li>
-<li><a href="https://www.youtube.com/watch?v=YK3z_mjS2JQ" target="_blank" rel="noopener">Video del Curso</a></li>
+<li><a href="">Presentación Interactiva</a></li>
+<li><a href="https://www.youtube.com/watch?v=YK3z_mjS2JQ">Video del Curso</a></li>
 </ul>
 
-    </div>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer>
 </article>
-  </div>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://acanalis.github.io/es/">ΔY</a></span> · 
 
-  <div class="page-footer">
     
     
-    <div class="container">
-      <footer class="site-footer">
-  
-
-  <p class="powered-by">
-    
-  </p>
-
-  
-  
-
-
-
- 
-
-  
-  
-  
-  
-
-  
-  
-  
-
-  
-
-  
-  <p class="powered-by copyright-license-text">
-    Excepto indicación en contrario, este sitio está licenciado bajo <a href="https://creativecommons.org/licenses/by/4.0" rel="noopener noreferrer" target="_blank">CC BY 4.0</a>
-  </p>
-  
-
-  <p class="powered-by footer-license-icons">
-    <a href="https://creativecommons.org/licenses/by/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
-      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
-      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
-      
-      
-    </a>
-  </p>
-
-
-
-
-
-
-  <p class="powered-by">
-    
-    
-    
-    Site built with 
-    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
-    and 
-    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>.
-    
-  </p>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
 
-    </div>
-    
-  </div>
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
 
-  
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Citar</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copiar
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Descargar
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
 
-      
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
 
-    
-    
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
 
-      
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
-      
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copiar';
 
-      
+        function copyingDone() {
+            copybutton.innerHTML = '¡copiado!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copiar';
+            }, 2000);
+        }
 
-      
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
 
-    
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
 
-    
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-    
-    
-
-    
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
-      
-      
-      
-      
-      
-      
-      
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <script src="/es/js/wowchemy.min.b942752327a2473a1e70e7fbe7fc0a95.js"></script>
-
-    
-
-
-
-
-
-
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
 </body>
+
 </html>

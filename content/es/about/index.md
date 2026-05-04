@@ -1,8 +1,8 @@
 ---
-title: "About"  # Add a page title.
-summary: ""
-type: "widget_page"  # Page type is a Widget Page
-
-copyright_license: 
-  custom_notice: "{copyright} Agustin Canalis 2021. Todos los derechos reservados"
+title: "Acerca de @acanalis"
+draft: true
 ---
+
+# Agustin Canalis
+
+Nací en Neuquén, Argentina :argentina: y vivo actualmente en Dinamarca.

@@ -1,69 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ΔY</title>
     <link>https://acanalis.github.io/es/</link>
-      <atom:link href="https://acanalis.github.io/es/index.xml" rel="self" type="application/rss+xml" />
-    <description>ΔY</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>es-ar</language><lastBuildDate>Fri, 08 Jan 2021 11:19:00 -0300</lastBuildDate>
-    <image>
-      <url>https://acanalis.github.io/images/icon_hu2e291f82b8453018a837d90130c1a2dd_9318_512x512_fill_box_center_2.png</url>
-      <title>ΔY</title>
-      <link>https://acanalis.github.io/es/</link>
-    </image>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://acanalis.github.io/es/post/hello-world/</link>
-      <pubDate>Fri, 08 Jan 2021 11:19:00 -0300</pubDate>
-      <guid>https://acanalis.github.io/es/post/hello-world/</guid>
-      <description>&lt;p&gt;Hello World! Bienvenidos a ΔY.&lt;/p&gt;
-&lt;p&gt;El nombre del sitio representa avanzar un paso a la vez.&lt;/p&gt;
-&lt;p&gt;La idea es hablar acerca de programar, aprender y enseñar.&lt;/p&gt;
-&lt;p&gt;Que lo disfruten.&lt;/p&gt;
-</description>
-    </item>
-    
+    <description>Recent content on ΔY</description>
+    <generator>Hugo</generator>
+    <language>es-ar</language>
+    <lastBuildDate>Fri, 04 Dec 2020 19:00:00 +0000</lastBuildDate>
+    <atom:link href="https://acanalis.github.io/es/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Curso de Go - WIE</title>
       <link>https://acanalis.github.io/es/presentation/curso-go/</link>
       <pubDate>Fri, 04 Dec 2020 19:00:00 +0000</pubDate>
       <guid>https://acanalis.github.io/es/presentation/curso-go/</guid>
-      <description>&lt;h2 id=&#34;introducción&#34;&gt;Introducción&lt;/h2&gt;
-&lt;p&gt;Impulsados por &lt;a href=&#34;https://www.linkedin.com/company/wie-itba/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Women in Engineering ITBA&lt;/a&gt;, el 4 de diciembre de 2020 dimos un curso virtual de Go en el ITBA, abierto a toda la comunidad.&lt;/p&gt;
-&lt;p&gt;Las presentaciones son interactivas y permiten ejecutar y editar el código on-line, sin necesidad de bajar ninguna extensión. El foco estuvo en cubrir las características fundamentales del &lt;a href=&#34;https://go.dev&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;lenguaje de programación Go&lt;/a&gt; de manera escalonada, para que sirva de referencia tanto para personas que nunca habían programando (Parte 1) como para personas que ya tienen experiencia (Parte 2).&lt;/p&gt;
-&lt;p&gt;Que lo disfruten y les sea útil,&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/soypat&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Patricio Whittinslow&lt;/a&gt; y &lt;a href=&#34;https://github.com/acanalis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Agustin Canalis&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;agradecimientos&#34;&gt;Agradecimientos&lt;/h2&gt;
-&lt;p&gt;Gracias a &lt;a href=&#34;https://www.linkedin.com/company/wie-itba/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Women in Engineering ITBA&lt;/a&gt; por ofrecernos el espacio y toda su ayuda para realizar el curso. Gracias a:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/elisabet-del-pilar-crespo/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Elisabet del Pilar Crespo&lt;/a&gt;, WIE Chair&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/paula-oseroff/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Paula Oseroff&lt;/a&gt;, WIE Volunteer, Editor&lt;/li&gt;
-&lt;li&gt;Solange Soler, WIE Volunteer&lt;/li&gt;
-&lt;li&gt;María Inés Quihillalt, WIE Volunteer&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;¡Un gusto haber colaborado con ustedes!&lt;/p&gt;
-&lt;h2 id=&#34;parte-1-go-desde-0&#34;&gt;Parte 1: Go desde 0&lt;/h2&gt;
-&lt;p&gt;Introducción a Go para no programadores.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;go-desde-cero.html&#34;&gt;Presentación Interactiva&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;parte-2-go-efectivo&#34;&gt;Parte 2: Go efectivo&lt;/h2&gt;
-&lt;p&gt;Introducción a Go para programadores de otros lenguajes.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;go-efectivo.html&#34;&gt;Presentación Interactiva&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=YK3z_mjS2JQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Video del Curso&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (&lt;a href=&#34;https://github.com/soypat&#34;&gt;@soypat&lt;/a&gt;), @acanalis, y &lt;a href=&#34;https://www.linkedin.com/company/wie-itba/&#34;&gt;Women in Engineering ITBA&lt;/a&gt;.</description>
     </item>
-    
     <item>
-      <title>About</title>
+      <title>Acerca de @acanalis</title>
       <link>https://acanalis.github.io/es/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://acanalis.github.io/es/about/</guid>
-      <description></description>
+      <description>&lt;h1 id=&#34;agustin-canalis&#34;&gt;Agustin Canalis&lt;/h1&gt;
+&lt;p&gt;Nací en Neuquén, Argentina &amp;#x1f1e6;&amp;#x1f1f7; y vivo actualmente en Dinamarca.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
