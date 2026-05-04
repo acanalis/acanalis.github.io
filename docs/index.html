@@ -157,6 +157,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Pass me the hammer: how python deals with errors
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Imagine three people building a house, A, B, and C. A finds and gives tools, C uses the tools, and B makes the logistics of passing things from A to C.
+If everything goes perfect, then:
+B to A: Can you please pass me the hammer?
+A to B: gives them the hammer
+A to C: here you go
+C: Thanks! works with the hammer
+class Hammer: pass class Screwdriver: pass class Nail: pass screwdriver = Screwdriver() nail = Nail() def A(): drawers = {&#34;screwdriver&#34;: screwdriver, &#34;nail&#34;: nail, &#34;hammer&#34;: Hammer()} thing = drawers[&#34;hammer&#34;] return thing def B(): thing = A() # get something from A C(thing) # give it to C # C finishes their work, so does A A(), B() and C(thing) are all functions. Hammer, Screwdriver and Nail are stand-ins for real objects with more interesting methods. But the world is, as you know, imperfect, so things can break at any point of the chain. Here you will find several cases one could possibly encounter in the wild and ask: What is best? More robust? Faster? Convenient?
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-04 00:00:00 +0000 UTC'>May 4, 2026</span>&nbsp;·&nbsp;<span>9 min</span></footer>
+  <a class="entry-link" aria-label="post link to Pass me the hammer: how python deals with errors" href="https://acanalis.github.io/post/pass-me-the-hammer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Concepts of Hugo
     </h2>
   </header>

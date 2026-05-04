@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://acanalis.github.io/post/concepts-of-hugo/</loc>
-    <lastmod>2021-01-13T11:00:00-03:00</lastmod>
+    <loc>https://acanalis.github.io/post/pass-me-the-hammer/</loc>
+    <lastmod>2026-05-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://acanalis.github.io/</loc>
-    <lastmod>2021-01-13T11:00:00-03:00</lastmod>
+    <lastmod>2026-05-04T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="es-ar"
@@ -18,6 +18,9 @@
                 href="https://acanalis.github.io/"
                 />
   </url><url>
+    <loc>https://acanalis.github.io/post/concepts-of-hugo/</loc>
+    <lastmod>2021-01-13T11:00:00-03:00</lastmod>
+  </url><url>
     <loc>https://acanalis.github.io/post/hello-world/</loc>
     <lastmod>2020-11-22T21:42:04-03:00</lastmod>
   </url><url>
@@ -25,16 +28,6 @@
     <lastmod>2020-11-22T21:42:04-03:00</lastmod>
   </url><url>
     <loc>https://acanalis.github.io/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ar"
-                href="https://acanalis.github.io/es/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://acanalis.github.io/about/"
-                />
   </url><url>
     <loc>https://acanalis.github.io/categories/</loc>
     <xhtml:link

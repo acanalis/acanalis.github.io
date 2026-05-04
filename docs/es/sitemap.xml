@@ -21,18 +21,6 @@
                 href="https://acanalis.github.io/es/"
                 />
   </url><url>
-    <loc>https://acanalis.github.io/es/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://acanalis.github.io/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ar"
-                href="https://acanalis.github.io/es/about/"
-                />
-  </url><url>
     <loc>https://acanalis.github.io/es/categories/</loc>
     <xhtml:link
                 rel="alternate"

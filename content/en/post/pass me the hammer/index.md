@@ -2,10 +2,10 @@
 title: "Pass me the hammer: how python deals with errors"
 date: 2026-05-04
 description: A collection of stories that illustrate how programmers deal with errors in python.
-draft: true
+draft: false
 ---
 
-Imagine three people building a house, A, B, and C. A finds and gives tools, C uses the tools, and A makes the logistics of passing things from A to C.
+Imagine three people building a house, A, B, and C. A finds and gives tools, C uses the tools, and B makes the logistics of passing things from A to C.
 
 If everything goes perfect, then:
 
@@ -36,14 +36,14 @@ def A():
     return thing
 
 def B():
-    thing = A() # get something from B
+    thing = A() # get something from A
     C(thing) # give it to C
     # C finishes their work, so does A
 ```
 
 A(), B() and C(thing) are all functions. `Hammer`, `Screwdriver` and `Nail` are stand-ins for real objects with more interesting methods. 
-But the world is, as we know, imperfect, so things can break at any point of the chain. 
-Here we will unpack several cases once could possibly encounter in the wild and ask: What is best? More robust? Faster? Convenient?
+But the world is, as you know, imperfect, so things can break at any point of the chain. 
+Here you will find several cases one could possibly encounter in the wild and ask: What is best? More robust? Faster? Convenient?
 
 A just goes through the motions, as they have done many times before, of getting the hammer. Reaches to the right place, grabs whatever it was there, and gives it back to B.
 However, for one reason or another, the hammer is not there. There's no immediate solution for that. What to do?
@@ -63,7 +63,7 @@ def A():
     return thing
 ```
 
-We can immediately tell by reading that this dictionary has no "hammer" key, so this will fail throwing a KeyError exception. This may not be that easy to tell if there were thousands of items in the dictionary.
+You can immediately tell by reading that this dictionary has no "hammer" key, so this will fail throwing a KeyError exception. This may not be that easy to tell if there were thousands of items in the dictionary.
 
 When the exception is not handled (in a dedicated try block), then A is implicitly re-raising that exception to B. And now B must deal with this. If B does not deal with it, then so will the caller of B, and so on.
 When poop is brought up, and no one deals with it, then the whole operation shuts down (the program crashes).
@@ -131,7 +131,7 @@ Well, C can't hammer with ✨nothing✨ and certainly will not be able to hammer
 
 C: "I wanted a hammer and you gave me a handwritten note saying 'I don't have a hammer'. I can't hammer with this!"
 
-Another instance where returning a value instead of throwing is when we want to leverage idempotency. Better shown with example:
+Another instance where returning a value instead of throwing is when you want to leverage idempotency. Better shown with example:
 
 ```python
 L = get_list_of_tools()
@@ -145,7 +145,7 @@ The opposite is the risky:
 
 ```python
 L = get_list_of_tools()
-first_tool = L[1] # may fail with index error!
+first_tool = L[0] # may fail with index error!
 print(f"The first tool is {first_tool}")
 ```
 
@@ -167,9 +167,9 @@ def B():
     C(thing)
 ```
 
-Now B is prepared to deal with A's sloppy behaviour. But the problem is that this defense is incomplete, only covering for when A might give you a "not hammer", while failing when A throws an exception as just we saw in [Muscle memory](#muscle-memory).
+Now B is prepared to deal with A's sloppy behaviour. But the problem is that this defense is incomplete, only covering for when A might give you a "not hammer", while failing when A throws an exception as we just saw in [Muscle memory](#muscle-memory).
 
-Esentially there are two different pipelines, the normal pipeline and the error pipeline. The error pipeline bubbles errors whether we like it or not. And you treat both of them with different syntaxes: writing an if...else for the former and a try...catch for the latter. 
+Essentially there are two different pipelines, the normal pipeline and the error pipeline. The error pipeline bubbles errors whether you like it or not. And you treat both of them with different syntaxes: writing an if...else for the former and a try...except for the latter. 
 
 ## Helpful unhelpful
 
@@ -182,7 +182,7 @@ The thing with returning an error instead of throwing is that B might not do the
 > B: Great, now I have to deal with this, but thanks for the info
 
 ```python
-class HammerNotFound(Exception)
+class HammerNotFound(Exception):
 
 def A():
     drawers = {"screwdriver": screwdriver, "nail": nail}
@@ -195,7 +195,7 @@ def A():
 
 `KeyError` does not mean anything in the context of making a house. Getting such an exception is unhelpful, because there's no practical way to deal with this without looking at the code from A.
 
-A `HammerNotFound` error is much more informative. There are specific reasons explaining why the drawers dictionary does not contain the right tools. Maybe we have to focus on the places where the drawers get filled up.
+A `HammerNotFound` error is much more informative. There are specific reasons explaining why the drawers dictionary does not contain the right tools. Maybe you have to focus on the places where the drawers get filled up.
 
 The information is not limited to just text. HammerNotFound is a class that, apart from inheriting all the properties of Exception, can contain arbitrary properties and methods. Maybe it can store the full context which produced the exception, like giving a copy of all the items they did have.
 
@@ -232,7 +232,7 @@ Printing is not an acceptable way of logging errors. The user might be using std
 import logging
 logger = logging.getLogger(__name__)
 
-logging.basicConfig{level = Error, stream= stdout}
+logging.basicConfig(level=logging.ERROR, stream=sys.stdout)
 
 def A():
     drawers = {"screwdriver": screwdriver, "nail": nail}
@@ -279,19 +279,19 @@ def A():
 
 Here the program just crashes, no stack trace. You have an indication that there was an error, through the error code (sys.exit(0) signals no error, any non-zero code means error) but no reference to a line of the source code, no stack trace, nothing.
 
-There's an even more nuclear version os._exit(0) stops everything on its tracks and does not clean up. For example a serial connection might remain open, hindering your ability to re-open it later.
+There's an even more nuclear version os._exit(0) stops everything in its tracks and does not clean up. For example a serial connection might remain open, hindering your ability to re-open it later.
 
 ## Epilogue
 
-Sorftware is libraries (using libraries)^n finally ending in a user-facing place (in the last step, the users are usually not programmers). Our actors played the part of people sitting in different parts of the stack. C uses results from -> B uses results from -> A.
+Software is libraries using libraries.. n times ..using libraries finally ending in a user-facing place (in the last step, the users are usually not programmers). Our actors played the part of people sitting in different parts of the stack. C uses results from -> B uses results from -> A.
 
-When importing a library, implicity or explicity we believe that it will work, it will be fast enough, it will have no vulnerabilities, etc. The library in turn expects us to use it properly, provide the right type of inputs, provide inputs that make sense and not edge cases, that the classes provided will be used as intended. Unexpected errors shatter this view. 
+When importing a library, implicitly or explicitly we believe that it will work, it will be fast enough, it will have no vulnerabilities, etc. The library in turn expects us to use it properly, provide the right type of inputs, provide inputs that make sense and not edge cases, that the classes provided will be used as intended. Unexpected errors shatter this view. 
 
-Commitment on both parts can bridge this. Library writers can work on the quality of documentation. Indeed, in a modern coding environment, just by hovering on top of a imported function users can read the documentation, "a message from the past". To go with, a carefully designed error interface puts the user and the library-writers in the same room when an error bubbles up. This was A's role.
+Library writers can work on the quality of documentation. Indeed, in a modern coding environment, just by hovering on top of a imported function users can read the documentation, "a message from the past". To go with, a carefully designed error interface puts the user and the library-writers in the same room when an error bubbles up. This was A's role.
 
-But A can never take responsibility for everything. Library-users must commit to cover for all (most? some?) concievable errors.
+But A is not there when the error happens. It's B the one who had a mission, who wanted to combine A and D, E, F's libraries into a combination that no one had seen before. So it's up to them, as library user, to debug, for hours perhaps, and cover for errors.
 
-B is a library you call.  Hopefully the authors gave you some informative errors that made your life easier. 
+Word count for the word "error": 20 times
 
 --- 
 
