@@ -1,7 +1,7 @@
 ---
-title: "Pass me the hammer: how python deals with errors"
-date: 2026-05-04
-description: A collection of stories that illustrate how programmers deal with errors in python.
+title: "Pass me the hammer: how people deal with errors in Python"
+date: 2026-05-05
+description: A collection of stories that illustrate how errors in programming represent communication between programmers far apart in time and space.
 draft: false
 ---
 
@@ -291,8 +291,10 @@ Library writers can work on the quality of documentation. Indeed, in a modern co
 
 But A is not there when the error happens. It's B the one who had a mission, who wanted to combine A and D, E, F's libraries into a combination that no one had seen before. So it's up to them, as library user, to debug, for hours perhaps, and cover for errors.
 
-Word count for the word "error": 20 times
+> Word count for the word "error": 20 times
 
 --- 
+
+Any corrections or comments? [Leave an issue](https://github.com/acanalis/acanalis.github.io/issues)!
 
 [Link to the snippets in full.](https://github.com/acanalis/acanalis.github.io/tree/master/content/en/post/pass%20me%20the%20hammer/code)

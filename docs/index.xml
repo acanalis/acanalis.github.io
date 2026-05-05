@@ -6,14 +6,14 @@
     <description>Recent content on ΔY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://acanalis.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Pass me the hammer: how python deals with errors</title>
+      <title>Pass me the hammer: how people deal with errors in Python</title>
       <link>https://acanalis.github.io/post/pass-me-the-hammer/</link>
-      <pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 05 May 2026 00:00:00 +0000</pubDate>
       <guid>https://acanalis.github.io/post/pass-me-the-hammer/</guid>
-      <description>A collection of stories that illustrate how programmers deal with errors in python.</description>
+      <description>A collection of stories that illustrate how errors in programming represent communication between programmers far apart in time and space.</description>
     </item>
     <item>
       <title>Concepts of Hugo</title>
