@@ -5,6 +5,8 @@ baseurl: https://acanalis.github.io/
 theme: PaperMod
 
 enableEmoji: true
+pygmentsUseClasses: true
+
 markup:
   defaultMarkdownHandler: goldmark
   goldmark:
@@ -20,7 +22,10 @@ markup:
     endLevel: 2
 
 params:
+  env: production
   ShowReadingTime: true
+  assets:
+    disableFingerprinting: true
   ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: false
