@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Go efectivo</title>
+    <meta charset="utf-8">
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="files/slides.js"></script>
+    <link href="files/prism-github-dark.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.889333);">
+
+      <article class="current">
+        <h1>Go efectivo</h1>
+        
+        <h3>20 November 2020</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Patricio Whittingslow
+  </p>
+  
+
+  
+  <p>
+    Agustín Canalis
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>¿Por que Go?</h3>
+        <ul>
+<li>Go está diseñado para ingeniería informática moderna</li>
+<li>Go es simple</li>
+<li>Go es rápido</li>
+<li>Escribir programas concurrentes es fácil</li>
+<li>El ecosistema Go</li>
+<li><a href="https://stackoverflow.blog/2020/11/02/go-golang-learn-fast-programming-languages/" target="_blank" rel="noopener">Más info</a></li>
+</ul>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Casos de uso</h3>
+        <ul>
+<li>
+<p>Web development</p>
+<ul>
+<li>Librerías: <a href="https://golang.org/pkg/net/http/" target="_blank" rel="noopener"><code>http</code></a>, <a href="https://github.com/pion/webrtc#readme" target="_blank" rel="noopener"><code>pion</code></a> (webrtc) y <a href="https://github.com/gorilla/" target="_blank" rel="noopener"><code>gorilla</code></a></li>
+<li>Framework. <a href="https://github.com/gin-gonic" target="_blank" rel="noopener"><code>gin</code></a> y <a href="https://gobuffalo.io/en/" target="_blank" rel="noopener"><code>buffalo</code></a></li>
+</ul>
+</li>
+<li>
+<p>Programas CLI</p>
+<ul>
+<li>Librerías: <a href="https://github.com/spf13/pflag#readme" target="_blank" rel="noopener"><code>pflags</code></a>, <a href="https://github.com/nsf/termbox-go#readme" target="_blank" rel="noopener"><code>termbox</code></a></li>
+<li>Frameworks: <a href="https://github.com/spf13/cobra#readme" target="_blank" rel="noopener"><code>cobra</code></a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/avelino/awesome-go#awesome-go" target="_blank" rel="noopener">Cientos de otras cosas</a></p>
+</li>
+</ul>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Hello World</h2>
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Hello World</h3>
+        
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build non-slide OMIT
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s <span class="token operator">:=</span> <span class="token string">"世界"</span>                 
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Hello, %v"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>
+/* FMT_S OMIT
+%v    valor: formato nativo              %d    entero: base 10
+%+v   valor: nativo c/ campos de struct  %b    entero: base 2
+%#v   valor: sintaxis de Go              %f    float:  decimal sin exponente
+%T    tipo:  sintaxis de Go              %e    float:  decimal con exponente
+%%    Un simbolo porcentaje              %9.2f float:  decimal ancho 9, precision 2
+*/ // FMT_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>El primer argumento de <code>Printf</code> es un string con el formato que queremos que imprima el resto de los argumentos.
+El <code>%v</code> indica que queremos que se inserte el siguiente argumento con formato de string, y en ese lugar.</p>
+<details><summary> Lista completa de verbos </summary>
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go"><span class="token operator">%</span>v    valor<span class="token punctuation">:</span> formato nativo              <span class="token operator">%</span>d    entero<span class="token punctuation">:</span> base <span class="token number">10</span>
+<span class="token operator">%</span><span class="token operator">+</span>v   valor<span class="token punctuation">:</span> nativo c<span class="token operator">/</span> campos de <span class="token keyword">struct</span>  <span class="token operator">%</span>b    entero<span class="token punctuation">:</span> base <span class="token number">2</span>
+<span class="token operator">%</span>#v   valor<span class="token punctuation">:</span> sintaxis de Go              <span class="token operator">%</span>f    float<span class="token punctuation">:</span>  decimal sin exponente
+<span class="token operator">%</span>T    tipo<span class="token punctuation">:</span>  sintaxis de Go              <span class="token operator">%</span>e    float<span class="token punctuation">:</span>  decimal con exponente
+<span class="token operator">%</span><span class="token operator">%</span>    Un simbolo porcentaje              <span class="token operator">%</span><span class="token number">9.2</span>f float<span class="token punctuation">:</span>  decimal ancho <span class="token number">9</span><span class="token punctuation">,</span> precision <span class="token number">2</span>
+</pre>
+</code></pre></div>
+</details>
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Tipos compuestos</h2>
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Tipos compuestos</h3>
+        <p>Un tipo compuesto es un tipo de dato que puede ser construido con los tipos primitivos de un lenguaje.</p>
+<ul>
+<li>Slices (listas/vector)</li>
+<li>Structs</li>
+<li>Maps (dicts)</li>
+<li>Interfaces</li>
+</ul>
+
+<div class="image">
+  <img src="files/gopher.png" height="200">
+</div>
+<figcaption>Diseño del <i>Gopher</i> hecho por <a href="https://instagram.com/reneefrench" target="_blank">Renee French</a></figcaption>
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Slices</h3>
+        <p>Un slice es un conjunto de datos del mismo tipo, ordenados secuencialmente.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    <span class="token comment">// Declaración y Asignación</span>
+    <span class="token keyword">var</span> beatles <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"John"</span><span class="token punctuation">,</span> <span class="token string">"Paul"</span><span class="token punctuation">,</span> <span class="token string">"George"</span><span class="token punctuation">,</span> <span class="token string">"Ringo"</span><span class="token punctuation">}</span>
+
+    <span class="token comment">// Uso</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>beatles<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>beatles<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// Modificación</span>
+    beatles<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Niki"</span>
+    beatles <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>beatles<span class="token punctuation">,</span> <span class="token string">"Nathy"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>beatles<span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+
+/* IDX_S OMIT
+beatles[0:5]
+beatles[0:]
+beatles[:5]
+beatles[:]
+beatles[:len(beatles)]
+*/ // IDX_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Maps (diccionarios)</h3>
+        <p>Un mapa es una relación entre valores de un tipo y valores de otro.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    <span class="token comment">// Declaración y Asignación</span>
+    memes <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token string">"carpincho"</span><span class="token punctuation">:</span> <span class="token number">2020</span><span class="token punctuation">,</span> <span class="token string">"over 9000"</span><span class="token punctuation">:</span> <span class="token number">2006</span><span class="token punctuation">,</span> <span class="token string">"doge"</span><span class="token punctuation">:</span> <span class="token number">2005</span><span class="token punctuation">}</span>
+
+    <span class="token comment">// Uso</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>memes<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>memes<span class="token punctuation">[</span><span class="token string">"carpincho"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    año<span class="token punctuation">,</span> ok <span class="token operator">:=</span> memes<span class="token punctuation">[</span><span class="token string">"not here"</span><span class="token punctuation">]</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>año<span class="token punctuation">,</span> ok<span class="token punctuation">)</span>
+
+    <span class="token comment">// Modificación</span>
+    memes<span class="token punctuation">[</span><span class="token string">"loss"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2008</span>
+    <span class="token function">delete</span><span class="token punctuation">(</span>memes<span class="token punctuation">,</span> <span class="token string">"carpincho"</span><span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Structs</h3>
+        <p>Un struct es una colección de campos. Un campo es una variable que tiene un determinado nombre y un determinado tipo.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import (
+	"fmt"
+)
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">type</span> Pelicula <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Nombre  <span class="token builtin">string</span>
+    Año <span class="token builtin">int</span>
+    Puntaje <span class="token builtin">float32</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Declaración y asignación</span>
+    p <span class="token operator">:=</span> Pelicula<span class="token punctuation">{</span>
+        Nombre<span class="token punctuation">:</span>  <span class="token string">"El Secreto de sus Ojos"</span><span class="token punctuation">,</span>
+        Año<span class="token punctuation">:</span> <span class="token number">2009</span><span class="token punctuation">,</span>
+        Puntaje<span class="token punctuation">:</span> <span class="token number">8.2</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Uso</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> p<span class="token punctuation">.</span>Puntaje<span class="token punctuation">)</span>
+    <span class="token comment">// Modificación</span>
+    p<span class="token punctuation">.</span>Nombre <span class="token operator">=</span> <span class="token string">"Die Hard 4"</span>
+    p<span class="token punctuation">.</span>Puntaje <span class="token operator">=</span> <span class="token number">7.9</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>func DeclarationExample() {
+	// DECL_S OMIT
+	// Forma común
+	p1 := Pelicula{Nombre: "Un Cuento Chino",Año: 2011, Puntaje: 7.3}
+	// Para más legibilidad separado en lineas
+	p2 := Pelicula{
+		Nombre:  "El Secreto de sus Ojos",
+		Año: 2009,
+		Puntaje: 8.2,
+	}
+	// DECL_E OMIT
+	fmt.Println(p1, p2)
+}
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Métodos</h2>
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Metodos: Declaración y uso</h3>
+        <p>Un método es una función que está ligada a un cierto tipo.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">type</span> Pelicula <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Nombre  <span class="token builtin">string</span>
+    Año     <span class="token builtin">int</span>
+    Puntaje <span class="token builtin">float32</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Primero va el receptor de método (p Pelicula)</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p Pelicula<span class="token punctuation">)</span> <span class="token function">Resumen</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    fstr <span class="token operator">:=</span> <span class="token string">"La película %v se estrenó en %v \nRecibió un puntaje de %0.1f/10"</span>
+    <span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span>fstr<span class="token punctuation">,</span> p<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> p<span class="token punctuation">.</span>Año<span class="token punctuation">,</span> p<span class="token punctuation">.</span>Puntaje<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    p <span class="token operator">:=</span> Pelicula<span class="token punctuation">{</span>
+        Nombre<span class="token punctuation">:</span>  <span class="token string">"El Secreto de sus Ojos"</span><span class="token punctuation">,</span>
+        Año<span class="token punctuation">:</span>     <span class="token number">2009</span><span class="token punctuation">,</span>
+        Puntaje<span class="token punctuation">:</span> <span class="token number">8.2</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">Resumen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Pasando referencias</h3>
+        <p>Las funciones (y métodos) reciben copias de los argumentos, 
+no los argumentos en sí. Por eso, modificarlos adentro de una función no
+ tiene ningún efecto. (Ver ejemplo sin asterisco)</p>
+<p>Si eso es lo que buscamos, hay que pasar <strong>referencias</strong> como argumentos, es decir, punteros.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+type Pelicula struct {
+	Nombre  string
+	Año     int
+	Puntaje float32
+}
+
+// Primero va el receptor de método (p Pelicula)
+func (p Pelicula) Resumen() string {
+	fstr := "La película %v se estrenó en %v y recibió un puntaje de %0.1f/10"
+	return fmt.Sprintf(fstr, p.Nombre, p.Año, p.Puntaje)
+}
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>Pelicula<span class="token punctuation">)</span> <span class="token function">SetNombre</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    p<span class="token punctuation">.</span>Nombre <span class="token operator">=</span> name
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    p <span class="token operator">:=</span> Pelicula<span class="token punctuation">{</span>Nombre<span class="token punctuation">:</span> <span class="token string">"Un Cuento Chino"</span><span class="token punctuation">,</span>Año<span class="token punctuation">:</span> <span class="token number">2011</span><span class="token punctuation">,</span> Puntaje<span class="token punctuation">:</span> <span class="token number">7.3</span><span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">Resumen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    p<span class="token punctuation">.</span><span class="token function">SetNombre</span><span class="token punctuation">(</span><span class="token string">"El robo del siglo"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">Resumen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption> El <code>*</code> indica que <code>p</code> es de "tipo 
+puntero a una Película" y no "tipo Película". Probar el código con y sin
+ el asterisco en el receptor para ver la diferencia.</figcaption> 
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Bloques y Funciones</h2>
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        <h3> Bloques <code>{ }</code> y Scope (alcance) </h3>
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build OMIT
+package main
+
+import "fmt"
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    yo <span class="token operator">:=</span> <span class="token string">"Ismael"</span>
+    <span class="token punctuation">{</span>
+        tu <span class="token operator">:=</span> <span class="token string">"Fulano"</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>yo<span class="token punctuation">,</span> tu<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>yo<span class="token punctuation">)</span> <span class="token comment">// Se puede imprimir la variable "tu" aquí?</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>// FUNC_S OMIT
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>Hay una tres reglas muy simples que indican si se puede acceder a una variable en un cierto lugar o no:</p>
+<ol>
+<li>
+<p>El caracter <code>{</code> abre un bloque y <code>}</code> lo cierra.</p>
+</li>
+<li>
+<p>En una función, una variable se puede utilizar desde que se declara, hasta que cierra el bloque que la contiene.</p>
+</li>
+<li>
+<p>Una variable declara fuera de la función (en el top level) siempre es accesible, independientemente del orden.</p>
+</li>
+</ol>
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Funciones como tipos</h3>
+        <p>Las funciones pueden ser guardadas en una variable de tipo "función".</p>
+<p>Aquí se asigna y se declara la variable <code>mas1</code>:</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    mas1 <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+        n<span class="token operator">++</span>
+        <span class="token keyword">return</span> n
+    <span class="token punctuation">}</span>
+    b <span class="token operator">:=</span> <span class="token function">mas1</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+
+// FUNC_S OMIT
+func ClosureActualWork() {
+	// FPROG_S OMIT
+	b := "no, no sé. "
+	mistring := "ya tu sabe"
+	b += mistring
+	fmt.Println(b)
+	// FPROG_E OMIT
+}
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>Se puede llamar a la función inmediatamente después de la declaración:</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    b <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+        n<span class="token operator">++</span>
+        <span class="token keyword">return</span> n
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// la llamo con argumento 2</span>
+
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+
+// FUNC_S OMIT
+func ClosureActualWork() {
+	// FPROG_S OMIT
+	b := "no, no sé. "
+	mistring := "ya tu sabe"
+	b += mistring
+	fmt.Println(b)
+	// FPROG_E OMIT
+}
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Closures (ejemplo)</h3>
+        <p>Una patrón común que usa esto se denomina <em>closure</em> y se usa cuando se quiere que la función acceda a variables definidas por fuera de ésta.</p>
+<p>Aquí <code>mas1</code> puede acceder a la variable <code>a</code> definida anteriormente.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    b <span class="token operator">:=</span> <span class="token number">0</span>
+    mas1 <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        b<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">mas1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">mas1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+
+// FUNC_S OMIT
+func ClosureActualWork() {
+	// FPROG_S OMIT
+
+	// FPROG_E OMIT
+}
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>El concepto de un <em>closure</em> es especialmente útil cuando entran en juego los modificadores de funciones, <code>defer</code> y <code>go</code>.</p>
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Funciones variadicas</h3>
+        <p>Una función variádica puede tomar cualquier cantidad de argumentos.</p>
+<p>La cantidad a devolver es fija.</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go"><span class="token keyword">func</span> <span class="token function">Concatenar</span><span class="token punctuation">(</span>palabras <span class="token operator">...</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token comment">// palabras es tipo de []string</span>
+    <span class="token keyword">var</span> oración <span class="token builtin">string</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> palabra <span class="token operator">:=</span> <span class="token keyword">range</span> palabras <span class="token punctuation">{</span>
+        oración <span class="token operator">+=</span> palabra
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> oración
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import "fmt"
+
+func main() {
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true">    s <span class="token operator">:=</span> <span class="token function">Concatenar</span><span class="token punctuation">(</span><span class="token string">"John"</span><span class="token punctuation">,</span> <span class="token string">"Paul"</span><span class="token punctuation">,</span> <span class="token string">"Ringo"</span><span class="token punctuation">,</span> <span class="token string">"George"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</pre>
+<pre style="display: none"><span>}
+
+// FUNC_S OMIT
+func Concatenar(palabras ...string) string {
+	// palabras es tipo de []string
+	var oración string
+	for _, palabra := range palabras {
+		oración += palabra
+	}
+	return oración
+}
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption>La familia de funciones <code>fmt.Print</code> son todas variádicas</figcaption>
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Interfaces</h2>
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Interfaces</h3>
+        <p>Una interface es una colección de métodos.</p>
+<p>Así se define una de las interfaces más importantes, la <code>io.Reader</code></p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go"><span class="token comment">// Dentro del paquete io</span>
+<span class="token keyword">type</span> Reader <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Read</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div>
+<p>Representa a <strong>cualquier</strong> tipo que tenga implementado ese método.</p>
+<p>Las funciónes que toman un tipo interface como argumento, aceptan a cualquiera de esos tipos.</p>
+<figcaption style="position:absolute;bottom:1em;margin-right:4em;margin-left:-1em;">"When
+ I see a bird that walks like a duck and swims like a duck and quacks 
+like a duck, I call that bird a duck." ~James Whitcomb Riley 1888<figcaption>
+      
+      <span class="pagenumber">20</span>
+      </figcaption></figcaption></article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        <h3> Caso <code>ReadAll</code> </h3>
+<p>En el paquete <code>ioutil</code> hay una función llamada <code>ReadAll</code>, que lee todos los contenidos de un <code>io.Reader</code>.</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go"><span class="token comment">// Dentro del paquete ioutil</span>
+<span class="token keyword">func</span> <span class="token function">ReadAll</span><span class="token punctuation">(</span>r io<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div>
+<p>En la librería estándar hay 31 tipos que cumplen las condiciones del <code>io.Reader</code>:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">archive<span class="token operator">/</span>tar<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>  bufio<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>  bufio<span class="token punctuation">.</span>ReadWriter  bytes<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Buffer<span class="token punctuation">)</span>  bytes<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>  compress<span class="token operator">/</span>flate<span class="token punctuation">.</span>Reader   compress<span class="token operator">/</span>gzip<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>
+crypto<span class="token operator">/</span>cipher<span class="token punctuation">.</span>StreamReader  crypto<span class="token operator">/</span>tls<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Conn<span class="token punctuation">)</span>  fmt<span class="token punctuation">.</span>ScanState   image<span class="token operator">/</span>jpeg<span class="token punctuation">.</span>Reader   internal<span class="token operator">/</span>poll<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>FD<span class="token punctuation">)</span>
+internal<span class="token operator">/</span>trace<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Writer<span class="token punctuation">)</span>  math<span class="token operator">/</span>rand<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Rand<span class="token punctuation">)</span>   mime<span class="token operator">/</span>multipart<span class="token punctuation">.</span>File   mime<span class="token operator">/</span>multipart<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Part<span class="token punctuation">)</span>  mime<span class="token operator">/</span>quotedprintable<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>  net<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Buffers<span class="token punctuation">)</span>
+net<span class="token punctuation">.</span>Conn   net<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>IPConn<span class="token punctuation">)</span>  net<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>TCPConn<span class="token punctuation">)</span>  net<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>UDPConn<span class="token punctuation">)</span>  net<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>UnixConn<span class="token punctuation">)</span>  net<span class="token operator">/</span>http<span class="token punctuation">.</span>File   os<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>File<span class="token punctuation">)</span>  strings<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>Reader<span class="token punctuation">)</span>
+</pre>
+</code></pre></div>
+<p><code>ReadAll</code> hace su trabajo con cualquiera de ellos.</p>
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo completo</h3>
+        
+<div class="code noedit playground"><pre><code class="code language-go">
+<pre style="display: none" class=" language-go"><span class="token comment">//+build os OMIT</span>
+
+</pre><pre class=" language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"io"</span>
+    <span class="token string">"io/ioutil"</span>
+    <span class="token string">"os"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span><span class="token string">"data/archivo.txt"</span><span class="token punctuation">)</span> <span class="token comment">// f es un *os.File</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    b<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadAll</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span> <span class="token comment">// ReadAll acepta a f como argumento</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none" class=" language-go">
+<span class="token comment">// INTERFACE_S OMIT</span>
+<span class="token comment">// Dentro del paquete io</span>
+<span class="token keyword">type</span> Reader <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+	<span class="token function">Read</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// INTERFACE_E OMIT</span>
+
+<span class="token comment">// READALL_S OMIT</span>
+<span class="token comment">// Dentro del paquete ioutil</span>
+<span class="token keyword">func</span> <span class="token function">ReadAll</span><span class="token punctuation">(</span>r io<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">nil</span> <span class="token comment">// OMIT</span>
+	<span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// READALL_E OMIT</span>
+<pre style="display: none;">// THINGS_S OMIT
+  func init() {
+    os.Mkdir("data", os.ModeDevice)
+    f, err := os.Create("data/archivo.txt")
+    if err != nil {
+      panic(err)
+    }
+    f.Write([]byte(`Contengo datos muy importantes:
+  
+    creado: 14/11/2020
+    modificado: 22/11/2020
+    contenido: Saludos de parte del Seminario de Go
+    autores: Patricio Whittingslow, Agustín Canalis
+    
+    fin`))
+  }
+  // THINGS_E OMIT</pre>
+</pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>¿Por qué interfaces?</h3>
+        <p>Toman en cuenta la <em><strong>funcionalidad</strong></em> de los tipos de datos, y abstrae el resto de los detalles.</p>
+<p>Con interfaces:</p>
+<ul>
+<li>La programadora de funciones puede abstraer detalles y dar flexibilidad a las usuarias.</li>
+<li>La usuaria de las funciones tiene un amplio catálogo de funciones disponibles.</li>
+<li>Usar las funciones es cuestión de implementar los métodos de la interface.</li>
+</ul>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Concurrencia</h2>
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Un programa secuencial (no concurrente)</h3>
+        
+<div class="code noedit playground"><pre><code class="code language-go">
+<pre class=" language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">)</span>
+    <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pan🍞"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Hacer</span><span class="token punctuation">(</span>cosa <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> cosa<span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Millisecond <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        <h3> Concurrencia y <code>go</code> </h3>
+<p>La concurrencia es la ejecución de procesos al mismo tiempo.</p>
+<p>En go, esto se logra usando la palabra <code>go</code> antes de las funciones.</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    <span class="token keyword">go</span> <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">)</span>
+</pre>
+</code></pre></div>
+<p><code>go</code> ejecuta la función, mientras que el programa continúa inmediatamente sin esperar a que la función termine.</p>
+<p>Se llaman <strong>gorutinas</strong> a cada uno de estos procesos independientes.</p>
+<p>Cualquier función puede ser llamada con <code>go</code> sin necesidad de modificarla.</p>
+<figcaption style="position: absolute; bottom:40px;"> "Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once." ~ <a href="https://www.youtube.com/watch?v=oV9rvDllKEg"> Rob Pike</a></figcaption>
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Un programa concurrente</h3>
+        
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">go</span> <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">)</span>
+    <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pan🍞"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Hacer</span><span class="token punctuation">(</span>cosa <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> cosa<span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Millisecond <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption>Modificar la línea de <code>main()</code> a <code>go Hacer("pan🍞")</code></figcaption>
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Sincronizando gorutinas con variables</h3>
+        
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    waitPizza<span class="token punctuation">,</span> waitPan <span class="token operator">:=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span>
+
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pan🍞"</span><span class="token punctuation">)</span>
+        waitPan <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">)</span>
+        waitPizza <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> waitPan <span class="token operator">||</span> waitPizza <span class="token punctuation">{</span>
+        <span class="token comment">// solo espera</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>
+// FUNC_S OMIT
+func Hacer(cosa string) {
+	for i := 1; i &lt;= 5; i++ {
+		fmt.Println(i, cosa)
+		time.Sleep(time.Millisecond * 500)
+	}
+}
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption>Si bien esto funciona, hay mejores maneras.</figcaption>
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Canales (channels)</h2>
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Canales</h3>
+        <p>Los canales se usan para mandar mensajes entre gorutinas.</p>
+<p>Para inicializar un canal:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+</pre>
+</code></pre></div>
+<p>Para enviar un mensaje:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    ch <span class="token operator">&lt;-</span> <span class="token string">"pizza🍕"</span>
+</pre>
+</code></pre></div>
+<p>Para recibir un mensaje:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    s <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch <span class="token comment">// ahora s vale "pizza🍕"</span>
+</pre>
+</code></pre></div>
+<figcaption> En este caso los mensajes son de tipo <code>string</code>, pero puede usarse cualquier tipo</figcaption>
+      
+      <span class="pagenumber">30</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="code noedit playground"><pre><code class="code language-go">
+<pre style="display: none" class=" language-go"><span class="token comment">//+build ignore OMIT</span>
+
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+</pre><pre class=" language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    puerta <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">Delivery</span><span class="token punctuation">(</span>puerta<span class="token punctuation">)</span>
+    pedido <span class="token operator">:=</span> <span class="token operator">&lt;-</span>puerta
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>pedido<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Delivery</span><span class="token punctuation">(</span>c <span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Haciendo la pizza"</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    c <span class="token operator">&lt;-</span> <span class="token string">"🍕"</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption>Los canales comunican <b>y</b> sincronizan.</figcaption>
+      
+      <span class="pagenumber">31</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Sincronizando con canales</h3>
+        
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+// IMPORT_S OMIT
+import (
+	"fmt"
+	"time"
+)
+
+// IMPORT_E OMIT
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        msj <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msj<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Hacer</span><span class="token punctuation">(</span>cosa <span class="token builtin">string</span><span class="token punctuation">,</span> c <span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Millisecond <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">)</span>
+        str <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%d %s"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> cosa<span class="token punctuation">)</span>
+        c <span class="token operator">&lt;-</span> str
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>Error 🙃</p>
+
+      
+      <span class="pagenumber">32</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Deadlock - Explicación</h3>
+        <p><code>main</code> se queda esperando el sexto mensaje que 
+nunca llegará. El Go se da cuenta de que todas las gorutinas están 
+bloqueadas y termina con el error <em><strong>deadlock!</strong></em>.</p>
+<p>Para prevenir este error, se puede avisar que ya no hay más mensajes <strong>cerrando</strong> el canal:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    <span class="token function">close</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+</pre>
+</code></pre></div>
+<p>Y las gorutinas que reciben mensajes de ese canal pueden preguntar si sigue abierto o no:</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    str<span class="token punctuation">,</span> abierto <span class="token operator">:=</span> <span class="token operator">&lt;-</span>c
+</pre>
+</code></pre></div>
+<p>La variable <code>abierto</code> es un <code>bool</code> que vale <code>true</code> si el canal está abierto.</p>
+
+      
+      <span class="pagenumber">33</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        <h3> Sincronizando gorutinas con <code>close()</code> </h3>
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+// IMPORT_S OMIT
+import (
+	"fmt"
+	"time"
+)
+
+// IMPORT_E OMIT
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        msj<span class="token punctuation">,</span> abierto <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+        <span class="token keyword">if</span> <span class="token operator">!</span>abierto <span class="token punctuation">{</span> <span class="token comment">// Si el canal está cerrado salimos del for</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msj<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Hacer</span><span class="token punctuation">(</span>cosa <span class="token builtin">string</span><span class="token punctuation">,</span> c <span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Millisecond <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">)</span>
+        str <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%d %s"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> cosa<span class="token punctuation">)</span>
+        c <span class="token operator">&lt;-</span> str
+    <span class="token punctuation">}</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token comment">// Cerramos el canal al terminar el trabajo</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>
+// FUNC_DUMMY_S OMIT
+func dummy(c chan string) {
+	// ASK_S OMIT
+	str, abierto := &lt;-c
+	// ASK_E OMIT
+	// CLOSE_S OMIT
+	close(c)
+	// CLOSE_E OMIT
+	fmt.Println(str, abierto)
+}
+
+// FUNC_DUMMY_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">34</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        <h3> Sincronizando gorutinas con <code>range</code></h3>
+<p>Este código es equivalente al anterior, pero más corto.</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+// IMPORT_S OMIT
+import (
+	"fmt"
+	"time"
+)
+
+// IMPORT_E OMIT
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">Hacer</span><span class="token punctuation">(</span><span class="token string">"pizza🍕"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> msj <span class="token operator">:=</span> <span class="token keyword">range</span> ch <span class="token punctuation">{</span> <span class="token comment">// Deja de iterar cuando se cierra el canal</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msj<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Hacer</span><span class="token punctuation">(</span>cosa <span class="token builtin">string</span><span class="token punctuation">,</span> c <span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Millisecond <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">)</span>
+        str <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%d %s"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> cosa<span class="token punctuation">)</span>
+        c <span class="token operator">&lt;-</span> str
+    <span class="token punctuation">}</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token comment">// Cerramos el canal al terminar el trabajo</span>
+<span class="token punctuation">}</span>
+</pre>
+</code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption> La palabra clave <code>range</code> se puede usar para iterar sobre canales, slices y mapas </figcaption>
+      
+      <span class="pagenumber">35</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bloqueo de canales</h3>
+        <p>Una gorutina se bloquea si:</p>
+<ul>
+<li>Necesita recibir un mensaje, pero no hay ninguno disponibles</li>
+<li>Envía un mensaje, pero no hay nadie quien lo reciba.</li>
+</ul>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+// IMPORT_S OMIT
+import (
+	"fmt"
+)
+
+// IMPORT_E OMIT
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+    ch <span class="token operator">&lt;-</span> <span class="token string">"🏀"</span>
+
+    s <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>// FUNC_S OMIT
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<p>En este caso la mensajera bloquea el programa y el receptor nunca llega a atenderlo, causando un <em><strong>deadlock</strong></em>.</p>
+<p>Esto se resuelve con buffered channels</p>
+
+      
+      <span class="pagenumber">36</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Buffered channels</h3>
+        <p>Un buffered channel es un canal que puede guardar un cierto número de mensajes antes de bloquearse.</p>
+<p>Este buffered channel puede recibir 2 mensajes antes de bloquear la gorutina.</p>
+
+<div class="code noedit"><pre><code class="code language-go">
+<pre class=" language-go">    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre>
+</code></pre></div>
+<p>Ahora a puede seguir la ejecución después de mandar un mensaje:</p>
+
+<div class="code edit playground" spellcheck="false" contenteditable="true"><pre spellcheck="false" contenteditable="true"><code class="code language-go">
+<pre style="display: none"><span>//+build ignore OMIT
+
+package main
+
+// IMPORT_S OMIT
+import (
+	"fmt"
+)
+
+// IMPORT_E OMIT
+</span></pre><pre spellcheck="false" class=" language-go" contenteditable="true"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    ch <span class="token operator">&lt;-</span> <span class="token string">"🏀"</span>
+    ch <span class="token operator">&lt;-</span> <span class="token string">"🏀"</span>
+    b1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+    b2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b1<span class="token punctuation">,</span> b2<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+<pre style="display: none"><span>// FUNC_S OMIT
+
+// FUNC_E OMIT
+</span></pre></code></pre></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">37</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Select</h2>
+      
+      <span class="pagenumber">38</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bloqueo de canales lentos</h3>
+        <p>El siguiente programa es limitado por la gorutina más lenta.</p>
+
+        <div class="code edit playground" contenteditable="true" spellcheck="false"><pre spellcheck="false"><code class="code language-go"><pre style="display: none" contenteditable="false"><span>package main
+          
+          // IMPORT_S OMIT
+          import (
+            &#34;fmt&#34;
+            &#34;log&#34; // OMIT
+            &#34;time&#34;
+          )
+          
+          // IMPORT_E OMIT
+          
+          </span></pre><pre contenteditable="true" spellcheck="false"><span num="15">func main() {</span>
+          <span num="17">    c1 := make(chan string)</span>
+          <span num="18">    c2 := make(chan string)</span>
+          <span num="19"></span>
+          <span num="20">    go PizzeroRapido(c1) // pizza cada 500ms</span>
+          <span num="21">    go PizzeroLento(c2)  // pizza cada 2000ms</span>
+          <span num="22"></span>
+          <span num="23">    for {</span>
+          <span num="24">        fmt.Println(&lt;-c1)</span>
+          <span num="25">        fmt.Println(&lt;-c2)</span>
+          <span num="26">    }</span>
+          <span num="28">}</span></pre><pre style="display: none" contenteditable="false"><span>// FUNC_S OMIT
+          
+          func PizzeroRapido(c chan string) {
+            t := 500
+            for {
+              c &lt;- fmt.Sprintf(&#34;🍕 cada %vms&#34;, t)
+              time.Sleep(time.Millisecond * time.Duration(t))
+            }
+          }
+          func PizzeroLento(c chan string) {
+            t := 2000
+            for {
+              c &lt;- fmt.Sprintf(&#34;🍕 cada %vms&#34;, t)
+              time.Sleep(time.Millisecond * time.Duration(t))
+            }
+          }
+          
+          // FUNC_E OMIT
+          
+          // TIMEOUT_S OMIT
+          
+          func init() {
+            go main()
+            time.Sleep(30 * time.Second)
+            log.Fatal(&#34;timeout after 30 seconds&#34;)
+          }
+          
+          // TIMEOUT_E OMIT
+          </span></pre></code></pre></div>
+
+
+<div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+<figcaption> El programa es limitado por la velocidad a la que el canal 2 puede recibir mensajes (<code>&lt;-c2</code>) </figcaption>
+      
+      <span class="pagenumber">39</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Select</h3>
+        <p><code>select</code> le permite al programa esperar hasta que llegue un mensaje entre varios canales.</p>
+
+        <div class="code edit playground" contenteditable="true" spellcheck="false"><pre contenteditable="true" spellcheck="false"><code class="code language-go"><pre style="display: none" contenteditable="false"><span>//&#43;build ignore OMIT
+          
+          package main
+          
+          // IMPORT_S OMIT
+          import (
+            &#34;fmt&#34;
+            &#34;log&#34; // OMIT
+            &#34;time&#34;
+          )
+          
+          // IMPORT_E OMIT
+          </span></pre><pre contenteditable="true" spellcheck="false"><span num="15">func main() {</span>
+          <span num="17">    c1, c2 := make(chan string), make(chan string)</span>
+          <span num="18"></span>
+          <span num="19">    go PizzeroRapido(c1)</span>
+          <span num="20">    go PizzeroLento(c2)</span>
+          <span num="21"></span>
+          <span num="22">    for {</span>
+          <span num="23">        select {</span>
+          <span num="24">        case msj := &lt;-c1:</span>
+          <span num="25">            fmt.Println(msj)</span>
+          <span num="26">        case msj := &lt;-c2:</span>
+          <span num="27">            fmt.Println(msj)</span>
+          <span num="28">        }</span>
+          <span num="29">    }</span>
+          <span num="31">}</span></pre><pre style="display: none"><span>// FUNC_S OMIT
+          func PizzeroRapido(c chan string) {
+            t := 500
+            for {
+              c &lt;- fmt.Sprintf(&#34;🍕 cada %vms&#34;, t)
+              time.Sleep(time.Millisecond * time.Duration(t))
+            }
+          }
+          func PizzeroLento(c chan string) {
+            t := 2000
+            for {
+              c &lt;- fmt.Sprintf(&#34;🍕 cada %vms&#34;, t)
+              time.Sleep(time.Millisecond * time.Duration(t))
+            }
+          }
+          
+          // FUNC_E OMIT
+          
+          // FUNC_E OMIT
+          // TIMEOUT_S OMIT
+          
+          func init() {
+            go main()
+            time.Sleep(30 * time.Second)
+            log.Fatal(&#34;timeout after 30 seconds&#34;)
+          }
+          
+          // TIMEOUT_E OMIT
+          </span></pre></code></pre></div>
+
+        <div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+      
+      <span class="pagenumber">40</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Preguntas?</h2>
+      
+      <span class="pagenumber">41</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Patricio Whittingslow
+  </p>
+  
+
+  
+  <p>
+    Agustín Canalis
+  </p>
+  
+<p class="link"><a href="mailto:pwhittingslow@itba.edu.ar" target="_blank">pwhittingslow@itba.edu.ar</a></p><p class="link"><a href="mailto:acanalis@itba.edu.ar" target="_blank">acanalis@itba.edu.ar</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="files/play.js" data-manual=""></script>
+    <script>
+
+    </script>
+    
+
+    <script>
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+    'remove-trailing': true,
+    'remove-indent': false,
+    'remove-initial-line-feed': true,
+    'left-trim': false,
+    'right-trim': true
+
+    
+
+  });
+    </script>
+
+ 
+    <script> 
+      var codeElem = document.querySelectorAll('div.noedit code pre');
+      var editableCodeElems = document.querySelectorAll('div.edit code pre[contenteditable="true"]');
+      var focusableEditElems = document.querySelectorAll('div.edit, div.edit code, div.edit pre');
+      
+      
+      function renderGo(el) {
+        el.innerHTML = el.innerHTML.replace(/[<]br[/]?[>]/gi,"\n"); 
+        Prism.highlightElement(el);
+      }
+      
+      
+      
+      function renderEditables() {
+        document.querySelectorAll('div.edit code pre[contenteditable="true"]').forEach(renderGo);
+        
+        
+      }
+      
+      
+      function renderAll() {
+        renderEditables();
+        codeElem.forEach(renderGo)
+      }
+
+    
+    function addRenderListener(el) {
+      el.addEventListener("keyup", event => {
+        var k = event.keyCode || event.which; 
+        if (k == 17) {
+          renderEditables();
+        }
+      });
+    }
+    
+    focusableEditElems.forEach(addRenderListener) 
+    renderAll(); 
+
+    
+    $('div[contenteditable="true"]').on("keydown",function(event) {
+      var k = event.keyCode || event.which; 
+      if (k == 9) {
+        event.preventDefault();
+        document.execCommand('insertHTML', false, '    ');
+      }
+    });
+
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="files/css.css"><link rel="stylesheet" type="text/css" href="files/styles.css"></body></html>

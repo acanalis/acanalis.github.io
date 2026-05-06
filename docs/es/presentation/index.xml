@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Presentaciones on ΔY</title>
-    <link>https://acanalis.github.io/es/presentation/</link>
-    <description>Recent content in Presentaciones on ΔY</description>
+    <title>Presentaciones on ΔY - Cana&#39;s blog</title>
+    <link>http://localhost:1313/es/presentation/</link>
+    <description>Recent content in Presentaciones on ΔY - Cana&#39;s blog</description>
     <generator>Hugo</generator>
     <language>es-ar</language>
     <lastBuildDate>Fri, 04 Dec 2020 19:00:00 +0000</lastBuildDate>
-    <atom:link href="https://acanalis.github.io/es/presentation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/es/presentation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Curso de Go - WIE</title>
-      <link>https://acanalis.github.io/es/presentation/curso-go/</link>
+      <link>http://localhost:1313/es/presentation/curso-go/</link>
       <pubDate>Fri, 04 Dec 2020 19:00:00 +0000</pubDate>
-      <guid>https://acanalis.github.io/es/presentation/curso-go/</guid>
+      <guid>http://localhost:1313/es/presentation/curso-go/</guid>
       <description>Un curso para personas con poca y mucha experiencia programando hecho por Patricio Whittinslow (&lt;a href=&#34;https://github.com/soypat&#34;&gt;@soypat&lt;/a&gt;), @acanalis, y &lt;a href=&#34;https://www.linkedin.com/company/wie-itba/&#34;&gt;Women in Engineering ITBA&lt;/a&gt;.</description>
     </item>
   </channel>

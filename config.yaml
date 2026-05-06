@@ -1,5 +1,5 @@
 publishdir: docs
-title: ΔY
+title: ΔY - Cana's blog
 baseurl: https://acanalis.github.io/
 
 theme: PaperMod
@@ -46,8 +46,7 @@ languages:
           weight: 30
     params:
       homeInfoParams:
-        Title: ΔY
-        Content: Programming, learning and teaching.
+        Title: ΔY - Cana's blog
 
   es:
     languageCode: "es-ar"
@@ -62,5 +61,4 @@ languages:
           weight: 30
     params:
       homeInfoParams:
-        Title: ΔY
-        Content: Programación, aprendizaje y enseñanza.
+        Title: ΔY - Cana's blog

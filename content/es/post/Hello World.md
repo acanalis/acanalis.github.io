@@ -8,7 +8,5 @@ Hello World! Bienvenidos a ΔY.
 
 El nombre del sitio representa avanzar un paso a la vez.
 
-La idea es hablar acerca de programar, aprender y enseñar. 
-
 Que lo disfruten.
 
