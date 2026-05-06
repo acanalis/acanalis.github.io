@@ -287,11 +287,12 @@ Software is libraries using libraries.. n times ..using libraries finally ending
 
 When importing a library, implicitly or explicitly we believe that it will work, it will be fast enough, it will have no vulnerabilities, etc. The library in turn expects us to use it properly, provide the right type of inputs, provide inputs that make sense and not edge cases, that the classes provided will be used as intended. Unexpected errors shatter this view. 
 
-Library writers can work on the quality of documentation. Indeed, in a modern coding environment, just by hovering on top of a imported function users can read the documentation, "a message from the past". To go with, a carefully designed error interface puts the user and the library-writers in the same room when an error bubbles up. This was A's role.
+Library writers can work on the quality of documentation. Indeed, in a modern coding environment, just by hovering on top of a imported function users can read the documentation, "a message from the past". To go with, a carefully designed error interface puts the user and the library-writers in the same room when an error bubbles up. This was A's role. But A is not there when the error happens. It's B the one who had a mission, who wanted to combine A and D, E, F's libraries to make something genuingly new. It's up to library users to cover for errors: their own and of others.
 
-But A is not there when the error happens. It's B the one who had a mission, who wanted to combine A and D, E, F's libraries into a combination that no one had seen before. So it's up to them, as library user, to debug, for hours perhaps, and cover for errors.
+The point of this post is not to recommend any particular strategy, many projects don't need fine level of control, but as it develops, it's good to think critically when is time to _grow out_ of one strategy and go for the next.
 
-> Word count for the word "error": 20 times
+
+> Word count for the word "error": 22 times
 
 --- 
 
