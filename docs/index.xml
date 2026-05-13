@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ΔY - Cana&#39;s blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://acanalis.github.io/</link>
     <description>Recent content on ΔY - Cana&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 05 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://acanalis.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pass me the hammer: how people deal with errors in Python</title>
-      <link>http://localhost:1313/post/pass-me-the-hammer/</link>
+      <link>https://acanalis.github.io/post/pass-me-the-hammer/</link>
       <pubDate>Tue, 05 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pass-me-the-hammer/</guid>
+      <guid>https://acanalis.github.io/post/pass-me-the-hammer/</guid>
       <description>A collection of stories that illustrate how errors in programming represent communication between programmers far apart in time and space.</description>
     </item>
     <item>
       <title>Concepts of Hugo</title>
-      <link>http://localhost:1313/post/concepts-of-hugo/</link>
+      <link>https://acanalis.github.io/post/concepts-of-hugo/</link>
       <pubDate>Wed, 13 Jan 2021 11:00:00 -0300</pubDate>
-      <guid>http://localhost:1313/post/concepts-of-hugo/</guid>
+      <guid>https://acanalis.github.io/post/concepts-of-hugo/</guid>
       <description>Learn &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; efficiently! 90% of Hugo explained in less than 25 key points.</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>http://localhost:1313/post/hello-world/</link>
+      <link>https://acanalis.github.io/post/hello-world/</link>
       <pubDate>Sun, 22 Nov 2020 21:42:04 -0300</pubDate>
-      <guid>http://localhost:1313/post/hello-world/</guid>
+      <guid>https://acanalis.github.io/post/hello-world/</guid>
       <description>&lt;p&gt;Hello World! Welcome to ΔY.&lt;/p&gt;
 &lt;p&gt;The name of the blog represents moving forward one small step at a time.&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;</description>
     </item>
     <item>
       <title>About @acanalis</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://acanalis.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://acanalis.github.io/about/</guid>
       <description>&lt;h1 id=&#34;agustin-canalis&#34;&gt;Agustin Canalis&lt;/h1&gt;
 &lt;p&gt;Born in Neuquén, Argentina &amp;#x1f1e6;&amp;#x1f1f7; and now living in Denmark.&lt;/p&gt;
 &lt;p&gt;Mechanical engineer, working in Wind Energy research.&lt;/p&gt;

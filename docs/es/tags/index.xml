@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on ΔY - Cana&#39;s blog</title>
-    <link>http://localhost:1313/es/tags/</link>
+    <link>https://acanalis.github.io/es/tags/</link>
     <description>Recent content in Tags on ΔY - Cana&#39;s blog</description>
     <generator>Hugo</generator>
     <language>es-ar</language>
-    <atom:link href="http://localhost:1313/es/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://acanalis.github.io/es/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
